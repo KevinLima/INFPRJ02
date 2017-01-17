@@ -2,8 +2,8 @@
 Git project for INFPRJ02 by group 2
 
 ## Projectmembers
+- Pim Bazuin
+- Dave Caron
 - Kevin Lima
-- Pim Bazuin 
-- Dave Caron 
 - Mitchell van der Staal 
 - Duncan Sumter
