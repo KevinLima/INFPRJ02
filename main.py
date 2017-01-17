@@ -1,5 +1,5 @@
 def program():
-    print("Hello World!")
+    print("Test")
 
 
 program()
