@@ -1,5 +1,6 @@
 import pygame
 from pygame.locals import *
+from EventsHelper import EventExist
 
 class Color:
     def __init__(self):
@@ -35,9 +36,10 @@ def main():
 
     # Event loop
     while True:
-        for event in pygame.event.get():
-            if event.type == QUIT:
-                return
+        events = pygame.event.get()
+        if EventExist(events, pygame.QUIT):
+            pygame.quit()
+            exit()
 
         screen.blit(background, (0, 0))
         pygame.display.flip()
