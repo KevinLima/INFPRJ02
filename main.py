@@ -1,13 +1,9 @@
 import pygame
+from assets.modules.gui import *
 from pygame.locals import *
 from EventsHelper import EventExist
 
-class Color:
-    def __init__(self):
-        self.grey50 = (250,250,250)
-        self.indigo500 = (63,81,181)
-
-color = Color()
+color_pallete = ColorPallete()
 
 def main():
     # Initialise screen
@@ -20,11 +16,11 @@ def main():
     # Fill background
     background = pygame.Surface(screen.get_size())
     background = background.convert()
-    background.fill(color.indigo500)
+    background.fill(color_pallete.indigo500)
 
     # Display text
     font = pygame.font.Font(None, 72)
-    text = font.render('INFPRJ02', 1, color.grey50)
+    text = font.render('INFPRJ02', 1, color_pallete.grey50)
     textpos = text.get_rect()
     textpos.centerx = background.get_rect().centerx
     textpos.centery = background.get_rect().centery - (height/4)
