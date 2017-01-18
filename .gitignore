@@ -87,3 +87,8 @@ ENV/
 
 # Rope project settings
 .ropeproject
+.idea
+
+.idea/markdown-navigator.xml
+
+.idea/markdown-navigator/profiles_settings.xml
