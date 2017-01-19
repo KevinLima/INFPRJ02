@@ -1,7 +1,6 @@
 import pygame
 
-
-class button:
+class Button:
     def __init__(self, text, x, y, width, height):
 
         self.text = text  # TEXT ON BUTTON
@@ -44,11 +43,13 @@ class button:
             self.action = False
 
 
-class color_palette:
+class ColorPalette:
     def __init__(self):
+        self.blue500 = (33, 150, 243)
+        self.green500 = (76, 175, 80)
         self.grey50 = (250, 250, 250)
         self.indigo500 = (63, 81, 181)
         self.red500 = (244, 67, 54)
 
 
-color_pallete = color_palette()
+color_pallete = ColorPalette()
