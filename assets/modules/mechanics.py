@@ -1,4 +1,5 @@
 import random
+from .gui import *
 
 class Dice:
     def __init__(self):
@@ -9,15 +10,14 @@ class Dice:
         return self.number
 
 class Player:
-    def __init__(self, color, x, y, w, h, name):
+    def __init__(self, color, x, y, width, height, name):
         self.color = color
-        self.posx = x # Center position of rect
-        self.posy = y # Center position of rect
-        self.sizew = w
-        self.sizeh = h
+        self.position = Position(x, y)
+        self.width = width
+        self.height = height
         self.name = name
 
     def update(self):
-        if (self.posy <= 0):
+        if self.position.y <= 0:
             print(self.name + " won!")
-            self.posy = 550
+            self.position.y = 550

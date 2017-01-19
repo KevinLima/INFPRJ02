@@ -1,7 +1,6 @@
 from .events_helper import *
 from .gui import *
 from .mechanics import *
-from .settings import *
 
 # Set fps
 FPS = 30  # frames per second setting
@@ -34,7 +33,7 @@ def startmenu():
     text = font.render("INFPRJ02", 1, color_pallete.grey50)
     textpos = text.get_rect()
     textpos.centerx = background.get_rect().centerx
-    textpos.centery = background.get_rect().centery - (height / 4)
+    textpos.centery = background.get_rect().centery - ((height * 0.25))
     background.blit(text, textpos)
 
     # Initialize Players
@@ -73,20 +72,20 @@ def startmenu():
         # Display buttons
         # start_button.display()
         pygame.draw.rect(screen, start_button.color, (
-        start_button.posx - start_button.sizew / 2, start_button.posy - start_button.sizeh / 2, start_button.sizew,
-        start_button.sizeh))
+        start_button.position.x - start_button.width / 2, start_button.position.y - start_button.height / 2, start_button.width,
+        start_button.height))
         screen.blit(start_button.textSurfaceObj, start_button.textRectObj)
 
         # exit_button.display()
         pygame.draw.rect(screen, exit_button.color, (
-        exit_button.posx - exit_button.sizew / 2, exit_button.posy - exit_button.sizeh / 2, exit_button.sizew,
-        exit_button.sizeh))
+        exit_button.position.x - exit_button.width / 2, exit_button.position.y - exit_button.height / 2, exit_button.width,
+        exit_button.height))
         screen.blit(exit_button.textSurfaceObj, exit_button.textRectObj)
 
         # optionsButton.display()
         pygame.draw.rect(screen, options_button.color, (
-        options_button.posx - options_button.sizew / 2, options_button.posy - options_button.sizeh / 2, options_button.sizew,
-        options_button.sizeh))
+        options_button.position.x - options_button.width / 2, options_button.position.y - options_button.height / 2, options_button.width,
+        options_button.height))
         screen.blit(options_button.textSurfaceObj, options_button.textRectObj)
 
         pygame.display.update()
@@ -119,26 +118,26 @@ def startmenu():
         options_button.track_mouse()
 
         # options_button.display()
-        pygame.draw.rect(screen, options_button.color, (options_button.posx - options_button.sizew / 2, options_button.posy - options_button.sizeh / 2,options_button.sizew,options_button.sizeh))
+        pygame.draw.rect(screen, options_button.color, (options_button.position.x - options_button.width / 2, options_button.position.y - options_button.height / 2,options_button.width,options_button.height))
         screen.blit(options_button.textSurfaceObj, options_button.textRectObj)
 
         # Dice button
         # button update
         dice_button.track_mouse()
         pygame.draw.rect(screen, dice_button.color, (
-        dice_button.posx - dice_button.sizew / 2, dice_button.posy - dice_button.sizeh / 2, dice_button.sizew,
-        dice_button.sizeh))
+        dice_button.position.x - dice_button.width / 2, dice_button.position.y - dice_button.height / 2, dice_button.width,
+        dice_button.height))
         screen.blit(dice_button.textSurfaceObj, dice_button.textRectObj)
 
         next_turn.track_mouse()
         pygame.draw.rect(screen, next_turn.color, (
-        next_turn.posx - next_turn.sizew / 2, next_turn.posy - next_turn.sizeh / 2, next_turn.sizew, next_turn.sizeh))
+        next_turn.position.x - next_turn.width / 2, next_turn.position.y - next_turn.height / 2, next_turn.width, next_turn.height))
         screen.blit(next_turn.textSurfaceObj, next_turn.textRectObj)
 
         direction_button.track_mouse()
         pygame.draw.rect(screen, direction_button.color, (
-        direction_button.posx - direction_button.sizew / 2, direction_button.posy - direction_button.sizeh / 2,
-        direction_button.sizew, direction_button.sizeh))
+        direction_button.position.x - direction_button.width / 2, direction_button.position.y - direction_button.height / 2,
+        direction_button.width, direction_button.height))
         screen.blit(direction_button.textSurfaceObj, direction_button.textRectObj)
 
         if direction_button.action:
@@ -167,27 +166,27 @@ def startmenu():
 
             if (direction == 0):
                 if turn == 0:
-                    player1.posx -= player1.sizeh * dice_number
+                    player1.position.x -= player1.height * dice_number
                 if turn == 1:
-                    player2.posx -= player2.sizeh * dice_number
+                    player2.position.x -= player2.height * dice_number
 
             if (direction == 1):
                 if turn == 0:
-                    player1.posy -= player1.sizeh * dice_number
+                    player1.position.y -= player1.height * dice_number
                 if turn == 1:
-                    player2.posy -= player2.sizeh * dice_number
+                    player2.position.y -= player2.height * dice_number
 
             if (direction == 2):
                 if turn == 0:
-                    player1.posx += player1.sizeh * dice_number
+                    player1.position.x += player1.height * dice_number
                 if turn == 1:
-                    player2.posx += player2.sizeh * dice_number
+                    player2.position.x += player2.height * dice_number
 
             if (direction == 3):
                 if turn == 0:
-                    player1.posy += player1.sizeh * dice_number
+                    player1.position.y += player1.height * dice_number
                 if turn == 1:
-                    player2.posy += player2.sizeh * dice_number
+                    player2.position.y += player2.height * dice_number
 
         if next_turn.action:
             pygame.time.wait(100)
@@ -202,9 +201,9 @@ def startmenu():
         player2.update()
         ## draw Player1
         pygame.draw.rect(screen, player1.color, (
-        player1.posx - player1.sizew / 2, player1.posy - player1.sizeh / 2, player1.sizew, player1.sizeh))
+        player1.position.x - player1.width / 2, player1.position.y - player1.height / 2, player1.width, player1.height))
         pygame.draw.rect(screen, player2.color, (
-        player2.posx - player2.sizew / 2, player2.posy - player2.sizeh / 2, player2.sizew, player2.sizeh))
+        player2.position.x - player2.width / 2, player2.position.y - player2.height / 2, player2.width, player2.height))
         # pygame.draw.rect(screen, player1.color, (200, 200, 100, 100))
 
         # Display screen, according to framerate
