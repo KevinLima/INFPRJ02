@@ -1,12 +1,9 @@
+import random
+import Players
 import pygame
 from assets.modules.gui import *
 from pygame.locals import *
 from EventsHelper import EventExist
-import button
-import random
-import Players
-
-color_pallete = ColorPallete()
 
 # Set fps
 FPS = 30  # frames per second setting
@@ -21,10 +18,10 @@ pygame.display.set_caption('INFPRJ02')
 
 def startmenu():
     # Initialize menu buttons
-    startButton = button.Button("START", 800 / 2 - 100, 600 / 2, 150, 50)
-    exitButton = button.Button("EXIT", 800 / 2 + 100, 600 / 2, 150, 50)
-    optionsButton = button.Button("OPTIONS", 700, 50, 100, 33)
-    diceButton = button.Button("THROW ME", 100, 50, 75, 75)
+    startButton = Button("START", (width / 2 - 100), (height / 2), 150, 50)
+    exitButton = Button("EXIT", (width / 2 + 100), (height / 2), 150, 50)
+    optionsButton = Button("OPTIONS", (width * 0.875), (height * 0.1), 100, 33)
+    diceButton = Button("THROW ME", (width / width * 100), (height / height * 50), 75, 75)
     optionsButton.action = not optionsButton.action
 
     # Initialize background
@@ -42,7 +39,7 @@ def startmenu():
     background.blit(text, textpos)
 
     # Initialize Players
-    player1 = Players.Player((0,255,0),400,550,25,25)
+    player1 = Players.Player((0,255,0),400,550,25,25, 'Player 1')
 
     # Run menu loop
     runStartmenu = True;
@@ -145,7 +142,3 @@ def startmenu():
         fpsClock.tick(FPS)
 
 startmenu()
-
-
-
-
