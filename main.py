@@ -9,26 +9,28 @@ from EventsHelper import EventExist
 FPS = 30  # frames per second setting
 fpsClock = pygame.time.Clock()
 
-# Initialise screen
+# Initialize screen
 pygame.init()
 width = 800
 height = 600
 screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption('INFPRJ02')
 
+# Initialize menu buttons
 def startmenu():
-    # Initialize menu buttons
+    
     startButton = Button("START", (width / 2 - 100), (height / 2), 150, 50)
     exitButton = Button("EXIT", (width / 2 + 100), (height / 2), 150, 50)
     optionsButton = Button("OPTIONS", (width * 0.875), (height * 0.1), 100, 33)
     diceButton = Button("THROW ME", (width / width * 100), (height / height * 50), 75, 75)
+    nextTurn = Button("NEXT TURN", (width / width * 200), 50, 75, 75)
+    directionButton = Button("DIRECTION", (width / width * 300), 50, 75, 75)
     optionsButton.action = not optionsButton.action
 
     # Initialize background
     background = pygame.Surface(screen.get_size())
     background = background.convert()
     background.fill(color_pallete.indigo500)
-
 
     # Initialize text to display
     font = pygame.font.Font(None, 72)
@@ -39,7 +41,15 @@ def startmenu():
     background.blit(text, textpos)
 
     # Initialize Players
-    player1 = Players.Player((0,255,0),400,550,25,25, 'Player 1')
+    player1 = Players.Player((0,255,0),375,550,25,25,"GREEN")
+    player2 = Players.Player((0, 0, 255), 400, 550, 25, 25,"BLUE")
+
+    # Initialize whose turn
+    turn = 1
+    noPlayers = 2 # Number of players
+
+    # Initialize direction
+    direction = 1
 
     # Run menu loop
     runStartmenu = True;
@@ -119,23 +129,86 @@ def startmenu():
         # DICE BUTTON
         # Button update
         diceButton.trackMouse()
-        pygame.draw.rect(screen, diceButton.color, (diceButton.posx - diceButton.sizew / 2, diceButton.posy - diceButton.sizeh / 2, diceButton.sizew,diceButton.sizeh))
+        pygame.draw.rect(screen, diceButton.color, (
+        diceButton.posx - diceButton.sizew / 2, diceButton.posy - diceButton.sizeh / 2, diceButton.sizew,
+        diceButton.sizeh))
         screen.blit(diceButton.textSurfaceObj, diceButton.textRectObj)
+
+        nextTurn.trackMouse()
+        pygame.draw.rect(screen, nextTurn.color, (
+        nextTurn.posx - nextTurn.sizew / 2, nextTurn.posy - nextTurn.sizeh / 2, nextTurn.sizew, nextTurn.sizeh))
+        screen.blit(nextTurn.textSurfaceObj, nextTurn.textRectObj)
+
+        directionButton.trackMouse()
+        pygame.draw.rect(screen, directionButton.color, (
+        directionButton.posx - directionButton.sizew / 2, directionButton.posy - directionButton.sizeh / 2,
+        directionButton.sizew, directionButton.sizeh))
+        screen.blit(directionButton.textSurfaceObj, directionButton.textRectObj)
+
+        if directionButton.action:
+            pygame.time.wait(100)
+            direction += 1
+            direction = direction % 4
+            if (direction == 0):
+                directionButton.text = "LEFT"
+            elif (direction == 1):
+                directionButton.text = "UP"
+            elif (direction == 2):
+                directionButton.text = "RIGHT"
+            elif (direction == 3):
+                directionButton.text = "DOWN"
+
+            directionButton.updateText()
+            directionButton.action = False
 
         if diceButton.action:
             pygame.time.wait(100)
-            diceNumber = random.randint(1,6)
+            diceNumber = random.randint(1, 6)
             diceButton.text = str(diceNumber)
             diceButton.updateText()
             diceButton.action = False
-            player1.posy -= player1.sizeh*diceNumber
 
+            if (direction == 0):
+                if turn == 0:
+                    player1.posx -= player1.sizeh * diceNumber
+                if turn == 1:
+                    player2.posx -= player2.sizeh * diceNumber
 
-        # Update Player1
+            if (direction == 1):
+                if turn == 0:
+                    player1.posy -= player1.sizeh * diceNumber
+                if turn == 1:
+                    player2.posy -= player2.sizeh * diceNumber
+
+            if (direction == 2):
+                if turn == 0:
+                    player1.posx += player1.sizeh * diceNumber
+                if turn == 1:
+                    player2.posx += player2.sizeh * diceNumber
+
+            if (direction == 3):
+                if turn == 0:
+                    player1.posy += player1.sizeh * diceNumber
+                if turn == 1:
+                    player2.posy += player2.sizeh * diceNumber
+
+        if nextTurn.action:
+            pygame.time.wait(100)
+            turn += 1
+            turn = turn % noPlayers
+            nextTurn.text = "Player " + str(turn + 1)
+            nextTurn.updateText()
+            nextTurn.action = False
+
+        # Update Players
         player1.update()
+        player2.update()
         ## draw Player1
-        pygame.draw.rect(screen, player1.color,(player1.posx - player1.sizew/2,player1.posy - player1.sizeh/2,player1.sizew,player1.sizeh))
-        #pygame.draw.rect(screen, player1.color, (200, 200, 100, 100))
+        pygame.draw.rect(screen, player1.color, (
+        player1.posx - player1.sizew / 2, player1.posy - player1.sizeh / 2, player1.sizew, player1.sizeh))
+        pygame.draw.rect(screen, player2.color, (
+        player2.posx - player2.sizew / 2, player2.posy - player2.sizeh / 2, player2.sizew, player2.sizeh))
+        # pygame.draw.rect(screen, player1.color, (200, 200, 100, 100))
 
         # Display screen, according to framerate
         pygame.display.update()
