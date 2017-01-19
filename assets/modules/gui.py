@@ -53,4 +53,13 @@ class ColorPalette:
         self.indigo500 = (63, 81, 181)
         self.red500 = (244, 67, 54)
 
+def resolution(width = 1280, height = 720):
+    if width != 1280:
+        width = width
+
+    if height != 720:
+        height = height
+
+    return width, height
+
 color_pallete = ColorPalette()

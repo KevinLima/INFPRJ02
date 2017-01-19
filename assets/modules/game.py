@@ -9,8 +9,8 @@ fps_clock = pygame.time.Clock()
 
 # Initialize screen
 pygame.init()
-width = 1280
-height = 720
+# Sets game resolution (Changeable)
+width, height = resolution(1280, 720)
 screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption("INFPRJ02")
 
