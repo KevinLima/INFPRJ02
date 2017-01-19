@@ -9,13 +9,14 @@ from EventsHelper import EventExist
 FPS = 30  # frames per second setting
 fpsClock = pygame.time.Clock()
 
-# Initialise screen
+# Initialize screen
 pygame.init()
 width = 800
 height = 600
 screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption('INFPRJ02')
 
+# Initialize menu buttons
 def startmenu():
     
     startButton = Button("START", (width / 2 - 100), (height / 2), 150, 50)
