@@ -2,13 +2,13 @@ import pygame
 from pygame.locals import *
 
 class Button:
-    def __init__(self, t, x, y, w, h):
+    def __init__(self, text, x, y, width, height):
 
-        self.text = t;  # TEXT ON BUTTON
+        self.text = text;  # TEXT ON BUTTON
         self.posx = x;  # X-POSITION -- CENTER OF THE RECT
         self.posy = y;  # Y-POSITION -- CENTER OF THE RECT
-        self.sizew = w;  # WIDTH
-        self.sizeh = h;  # HEIGHT
+        self.sizew = width;  # WIDTH
+        self.sizeh = height;  # HEIGHT
 
         self.hover = False
         self.color = (200, 0, 0)
