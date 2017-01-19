@@ -10,18 +10,18 @@ class Button:
         self.sizeh = height  # HEIGHT
 
         self.hover = False
-        self.color = (200, 0, 0)
+        self.color = color_pallete.red500
         self.action = False
 
-        self.fontObj = pygame.font.Font('freesansbold.ttf', 12)
-        self.textSurfaceObj = self.fontObj.render(self.text, True, (255, 255, 255), ())
+        self.fontObj = pygame.font.Font(None, int(self.sizew * 0.175))
+        self.textSurfaceObj = self.fontObj.render(self.text, True, color_pallete.grey50, ())
         self.textRectObj = self.textSurfaceObj.get_rect()
         self.textRectObj.center = (self.posx, self.posy)
 
     # Detect if hover, and if mousepressed
     def update_text(self):
-        self.fontObj = pygame.font.Font('freesansbold.ttf', 12)
-        self.textSurfaceObj = self.fontObj.render(self.text, True, (255, 255, 255), ())
+        self.fontObj = pygame.font.Font(None, int(self.sizew * 0.175))
+        self.textSurfaceObj = self.fontObj.render(self.text, True, color_pallete.grey50, ())
         self.textRectObj = self.textSurfaceObj.get_rect()
         self.textRectObj.center = (self.posx, self.posy)
 
@@ -32,14 +32,14 @@ class Button:
 
         if (mouseX > self.posx - self.sizew / 2 and mouseX < self.posx + self.sizew / 2 and mouseY > self.posy - self.sizeh / 2 and mouseY < self.posy + self.sizeh / 2):
             self.hover = True
-            self.color = (150, 0, 0)
+            self.color = color_pallete.grey800
             if (mouse_pressed1):
-                self.color = (255, 0, 0)
+                self.color = color_pallete.red500
                 self.action = not self.action
                 ## ENTER AN ACTION HERE
         else:
             self.hover = False
-            self.color = (0, 0, 0)
+            self.color = color_pallete.grey900
             self.action = False
 
 
@@ -48,8 +48,9 @@ class ColorPalette:
         self.blue500 = (33, 150, 243)
         self.green500 = (76, 175, 80)
         self.grey50 = (250, 250, 250)
+        self.grey800 = (66, 66, 66)
+        self.grey900 = (33, 33, 33)
         self.indigo500 = (63, 81, 181)
         self.red500 = (244, 67, 54)
-
 
 color_pallete = ColorPalette()
