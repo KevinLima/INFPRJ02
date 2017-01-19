@@ -1,9 +1,8 @@
 import random
-import Players
-import pygame
+
+import players
 from assets.modules.gui import *
-from pygame.locals import *
-from EventsHelper import EventExist
+from eventshelper import event_exist
 
 # Set fps
 FPS = 30  # frames per second setting
@@ -18,13 +17,12 @@ pygame.display.set_caption('INFPRJ02')
 
 # Initialize menu buttons
 def startmenu():
-    
-    startButton = Button("START", (width / 2 - 100), (height / 2), 150, 50)
-    exitButton = Button("EXIT", (width / 2 + 100), (height / 2), 150, 50)
-    optionsButton = Button("OPTIONS", (width * 0.875), (height * 0.1), 100, 33)
-    diceButton = Button("THROW ME", (width / width * 100), (height / height * 50), 75, 75)
-    nextTurn = Button("NEXT TURN", (width / width * 200), 50, 75, 75)
-    directionButton = Button("DIRECTION", (width / width * 300), 50, 75, 75)
+    startButton = button("START", (width / 2 - 100), (height / 2), 150, 50)
+    exitButton = button("EXIT", (width / 2 + 100), (height / 2), 150, 50)
+    optionsButton = button("OPTIONS", (width * 0.875), (height * 0.1), 100, 33)
+    diceButton = button("THROW ME", (width / width * 100), (height / height * 50), 75, 75)
+    nextTurn = button("NEXT TURN", (width / width * 200), 50, 75, 75)
+    directionButton = button("DIRECTION", (width / width * 300), 50, 75, 75)
     optionsButton.action = not optionsButton.action
 
     # Initialize background
@@ -41,8 +39,8 @@ def startmenu():
     background.blit(text, textpos)
 
     # Initialize Players
-    player1 = Players.Player((0,255,0),375,550,25,25,"GREEN")
-    player2 = Players.Player((0, 0, 255), 400, 550, 25, 25,"BLUE")
+    player1 = players.Player((0, 255, 0), 375, 550, 25, 25, "GREEN")
+    player2 = players.Player((0, 0, 255), 400, 550, 25, 25, "BLUE")
 
     # Initialize whose turn
     turn = 1
@@ -52,11 +50,11 @@ def startmenu():
     direction = 1
 
     # Run menu loop
-    runStartmenu = True;
+    runStartmenu = True
 
     while runStartmenu:
         events = pygame.event.get()
-        if EventExist(events, pygame.QUIT) or (exitButton.action):
+        if event_exist(events, pygame.QUIT) or (exitButton.action):
             pygame.quit()
             exit()
 
@@ -70,9 +68,9 @@ def startmenu():
 
         # Menu buttons
         # Update buttons
-        startButton.trackMouse()
-        exitButton.trackMouse()
-        optionsButton.trackMouse()
+        startButton.track_mouse()
+        exitButton.track_mouse()
+        optionsButton.track_mouse()
 
         # Display buttons
         # startButton.display()
@@ -104,7 +102,7 @@ def startmenu():
     # MAIN GAME LOOP
     while True:
         events = pygame.event.get()
-        if EventExist(events, pygame.QUIT):
+        if event_exist(events, pygame.QUIT):
             pygame.quit()
             exit()
 
@@ -119,27 +117,27 @@ def startmenu():
 
         screen.blit(background, (0, 0))
 
-        # Button update
-        optionsButton.trackMouse()
+        # button update
+        optionsButton.track_mouse()
 
         # optionsButton.display()
         pygame.draw.rect(screen, optionsButton.color, (optionsButton.posx - optionsButton.sizew / 2, optionsButton.posy - optionsButton.sizeh / 2,optionsButton.sizew,optionsButton.sizeh))
         screen.blit(optionsButton.textSurfaceObj, optionsButton.textRectObj)
 
         # DICE BUTTON
-        # Button update
-        diceButton.trackMouse()
+        # button update
+        diceButton.track_mouse()
         pygame.draw.rect(screen, diceButton.color, (
         diceButton.posx - diceButton.sizew / 2, diceButton.posy - diceButton.sizeh / 2, diceButton.sizew,
         diceButton.sizeh))
         screen.blit(diceButton.textSurfaceObj, diceButton.textRectObj)
 
-        nextTurn.trackMouse()
+        nextTurn.track_mouse()
         pygame.draw.rect(screen, nextTurn.color, (
         nextTurn.posx - nextTurn.sizew / 2, nextTurn.posy - nextTurn.sizeh / 2, nextTurn.sizew, nextTurn.sizeh))
         screen.blit(nextTurn.textSurfaceObj, nextTurn.textRectObj)
 
-        directionButton.trackMouse()
+        directionButton.track_mouse()
         pygame.draw.rect(screen, directionButton.color, (
         directionButton.posx - directionButton.sizew / 2, directionButton.posy - directionButton.sizeh / 2,
         directionButton.sizew, directionButton.sizeh))
@@ -158,14 +156,14 @@ def startmenu():
             elif (direction == 3):
                 directionButton.text = "DOWN"
 
-            directionButton.updateText()
+            directionButton.update_text()
             directionButton.action = False
 
         if diceButton.action:
             pygame.time.wait(100)
             diceNumber = random.randint(1, 6)
             diceButton.text = str(diceNumber)
-            diceButton.updateText()
+            diceButton.update_text()
             diceButton.action = False
 
             if (direction == 0):
@@ -197,7 +195,7 @@ def startmenu():
             turn += 1
             turn = turn % noPlayers
             nextTurn.text = "Player " + str(turn + 1)
-            nextTurn.updateText()
+            nextTurn.update_text()
             nextTurn.action = False
 
         # Update Players
