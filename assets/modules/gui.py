@@ -2,11 +2,10 @@ import pygame
 
 class Button:
     def __init__(self, text, x, y, width, height):
-
-        self.text = text  # TEXT ON BUTTON
+        self.text = text
         self.position = Position(x, y)
-        self.width = width  # WIDTH
-        self.height = height  # HEIGHT
+        self.width = width
+        self.height = height
 
         self.hover = False
         self.color = color_pallete.red500
@@ -52,18 +51,18 @@ class ColorPalette:
         self.indigo500 = (63, 81, 181)
         self.red500 = (244, 67, 54)
 
+color_pallete = ColorPalette()
+
 class Position:
     def __init__(self, x, y):
         self.x = x
         self.y = y
 
-def resolution(width = 1280, height = 720):
-    if width != 1280:
-        width = width
+def resolution(screen_width = 1280, screen_height = 720):
+    if screen_width != 1280:
+        screen_width = screen_width
 
-    if height != 720:
-        height = height
+    if screen_height != 720:
+        screen_height = screen_height
 
-    return width, height
-
-color_pallete = ColorPalette()
+    return screen_width, screen_height

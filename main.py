@@ -1,6 +1,6 @@
 from assets.modules.game import *
 
 def main():
-    startmenu()
+    intro_menu()
 
 main()

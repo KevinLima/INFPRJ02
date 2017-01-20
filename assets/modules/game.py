@@ -9,48 +9,37 @@ fps_clock = pygame.time.Clock()
 # Initialize screen
 pygame.init()
 # Sets game resolution (Changeable)
-width, height = resolution(1280, 720)
-screen = pygame.display.set_mode((width, height))
+screen_width, screen_height = resolution(1920, 1080)
+screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption("INFPRJ02")
 
-# Initialize menu buttons
-def startmenu():
-    start_button = Button("START", (width * 0.5), (height * 0.5), (width * 0.25), (height * 0.1))
-    exit_button = Button("EXIT", (width * 0.5), (height * 0.5 + height * 0.125), (width * 0.25), (height * 0.1))
-    options_button = Button("OPTIONS", (width * 0.075), (height * 0.05), (width * 0.125), (height * 0.05))
-    dice_button = Button("ROLL DICE", (width * 0.925), (height * 0.75), (width * 0.125), (height * 0.05))
-    next_turn = Button("NEXT TURN", (width * 0.925), (height * 0.85), (width * 0.125), (height * 0.05))
-    direction_button = Button("DIRECTION", (width * 0.925), (height * 0.95), (width * 0.125), (height * 0.05))
-    options_button.action != options_button.action
+# Initialize buttons
+start_button = Button("START", (screen_width * 0.5), (screen_height * 0.5), (screen_width * 0.25), (screen_height * 0.1))
+settings_button = Button("SETTINGS",  (screen_width * 0.5), (screen_height * 0.5 + screen_height * 0.125), (screen_width * 0.25), (screen_height * 0.1))
+exit_button = Button("EXIT", (screen_width * 0.5), (screen_height * 0.5 + screen_height * 0.250), (screen_width * 0.25), (screen_height * 0.1))
+quit_button = Button("QUIT",  (screen_width * 0.075), (screen_height * 0.05), (screen_width * 0.125), (screen_height * 0.05))
+dice_button = Button("ROLL DICE", (screen_width * 0.925), (screen_height * 0.75), (screen_width * 0.125), (screen_height * 0.05))
+next_turn = Button("NEXT TURN", (screen_width * 0.925), (screen_height * 0.85), (screen_width * 0.125), (screen_height * 0.05))
+direction_button = Button("DIRECTION", (screen_width * 0.925), (screen_height * 0.95), (screen_width * 0.125), (screen_height * 0.05))
 
+def intro_menu():
     # Initialize background
     background = pygame.Surface(screen.get_size())
     background = background.convert()
     background.fill(color_pallete.indigo500)
 
     # Initialize text to display
-    font = pygame.font.Font(None, int((width * 0.1)))
+    font = pygame.font.Font(None, int((screen_width * 0.2)))
     text = font.render("INFPRJ02", 1, color_pallete.grey50)
     textpos = text.get_rect()
     textpos.centerx = background.get_rect().centerx
-    textpos.centery = background.get_rect().centery - ((height * 0.25))
+    textpos.centery = background.get_rect().centery - ((screen_height * 0.25))
     background.blit(text, textpos)
 
-    # Initialize Players
-    player1 = Player(color_pallete.green500, (width * 0.25), (height * 0.75), (width * 0.0125), (height * 0.05), "Player 1")
-    player2 = Player(color_pallete.blue500, (width * 0.3), (height * 0.75), (width * 0.0125), (height * 0.05), "Player 2")
-
-    # Initialize whose turn
-    turn = 1
-    noPlayers = 2 # Number of players
-
-    # Initialize direction
-    direction = 1
-
     # Run menu loop
-    runStartmenu = True
+    run_intro_menu = True
 
-    while runStartmenu:
+    while run_intro_menu:
         events = pygame.event.get()
         if event_exist(events, pygame.QUIT) or (exit_button.action):
             pygame.quit()
@@ -58,7 +47,7 @@ def startmenu():
 
         if (start_button.action):
             start_button.action != start_button.action
-            runStartmenu = False
+            run_intro_menu = False
 
         # Display background
         screen.blit(background, (0, 0))
@@ -66,8 +55,9 @@ def startmenu():
         # Menu buttons
         # Update buttons
         start_button.track_mouse()
+        settings_button.track_mouse()
         exit_button.track_mouse()
-        options_button.track_mouse()
+        quit_button.track_mouse()
 
         # Display buttons
         # start_button.display()
@@ -76,20 +66,35 @@ def startmenu():
         start_button.height))
         screen.blit(start_button.textSurfaceObj, start_button.textRectObj)
 
+        # settings_button.display()
+        pygame.draw.rect(screen, settings_button.color, (
+        settings_button.position.x - settings_button.width / 2, settings_button.position.y - settings_button.height / 2, settings_button.width,
+        settings_button.height))
+        screen.blit(settings_button.textSurfaceObj, settings_button.textRectObj)
+
         # exit_button.display()
         pygame.draw.rect(screen, exit_button.color, (
         exit_button.position.x - exit_button.width / 2, exit_button.position.y - exit_button.height / 2, exit_button.width,
         exit_button.height))
         screen.blit(exit_button.textSurfaceObj, exit_button.textRectObj)
 
-        # optionsButton.display()
-        pygame.draw.rect(screen, options_button.color, (
-        options_button.position.x - options_button.width / 2, options_button.position.y - options_button.height / 2, options_button.width,
-        options_button.height))
-        screen.blit(options_button.textSurfaceObj, options_button.textRectObj)
-
         pygame.display.update()
         fps_clock.tick(FPS)
+
+    gameplay()
+
+def gameplay():
+    # Initialize whose turn
+    turn = 1
+    noPlayers = 2 # Number of players
+
+    # Initialize direction
+    direction = 1
+
+    # Initialize Players
+    player_1 = Player(color_pallete.green500, (screen_width * 0.25), (screen_height * 0.75), (screen_width * 0.0125), (screen_height * 0.05), "Player 1")
+    player_2 = Player(color_pallete.blue500, (screen_width * 0.3), (screen_height * 0.75), (screen_width * 0.0125), (screen_height * 0.05), "Player 2")
+
 
     # GAME
     background = pygame.Surface(screen.get_size())
@@ -104,9 +109,9 @@ def startmenu():
             exit()
 
         # IF YOU PRESS OPTIONS, RUN STARTMENU
-        if (options_button.action):
-            options_button.action != options_button.action
-            startmenu()
+        if (quit_button.action):
+            quit_button.action != quit_button.action
+            intro_menu()
 
         # Get mouse values
         mouseX, mouseY = pygame.mouse.get_pos()
@@ -115,11 +120,11 @@ def startmenu():
         screen.blit(background, (0, 0))
 
         # button update
-        options_button.track_mouse()
+        quit_button.track_mouse()
 
-        # options_button.display()
-        pygame.draw.rect(screen, options_button.color, (options_button.position.x - options_button.width / 2, options_button.position.y - options_button.height / 2,options_button.width,options_button.height))
-        screen.blit(options_button.textSurfaceObj, options_button.textRectObj)
+        # quit_button.display()
+        pygame.draw.rect(screen, quit_button.color, (quit_button.position.x - quit_button.width / 2, quit_button.position.y - quit_button.height / 2,quit_button.width,quit_button.height))
+        screen.blit(quit_button.textSurfaceObj, quit_button.textRectObj)
 
         # Dice button
         # button update
@@ -166,27 +171,27 @@ def startmenu():
 
             if (direction == 0):
                 if turn == 0:
-                    player1.position.x -= player1.height * dice_number
+                    player_1.position.x -= player_1.height * dice_number
                 if turn == 1:
-                    player2.position.x -= player2.height * dice_number
+                    player_2.position.x -= player_2.height * dice_number
 
             if (direction == 1):
                 if turn == 0:
-                    player1.position.y -= player1.height * dice_number
+                    player_1.position.y -= player_1.height * dice_number
                 if turn == 1:
-                    player2.position.y -= player2.height * dice_number
+                    player_2.position.y -= player_2.height * dice_number
 
             if (direction == 2):
                 if turn == 0:
-                    player1.position.x += player1.height * dice_number
+                    player_1.position.x += player_1.height * dice_number
                 if turn == 1:
-                    player2.position.x += player2.height * dice_number
+                    player_2.position.x += player_2.height * dice_number
 
             if (direction == 3):
                 if turn == 0:
-                    player1.position.y += player1.height * dice_number
+                    player_1.position.y += player_1.height * dice_number
                 if turn == 1:
-                    player2.position.y += player2.height * dice_number
+                    player_2.position.y += player_2.height * dice_number
 
         if next_turn.action:
             pygame.time.wait(100)
@@ -197,14 +202,14 @@ def startmenu():
             next_turn.action = False
 
         # Update Players
-        player1.update()
-        player2.update()
-        ## draw Player1
-        pygame.draw.rect(screen, player1.color, (
-        player1.position.x - player1.width / 2, player1.position.y - player1.height / 2, player1.width, player1.height))
-        pygame.draw.rect(screen, player2.color, (
-        player2.position.x - player2.width / 2, player2.position.y - player2.height / 2, player2.width, player2.height))
-        # pygame.draw.rect(screen, player1.color, (200, 200, 100, 100))
+        player_1.update()
+        player_2.update()
+        ## draw player_1
+        pygame.draw.rect(screen, player_1.color, (
+        player_1.position.x - player_1.width / 2, player_1.position.y - player_1.height / 2, player_1.width, player_1.height))
+        pygame.draw.rect(screen, player_2.color, (
+        player_2.position.x - player_2.width / 2, player_2.position.y - player_2.height / 2, player_2.width, player_2.height))
+        # pygame.draw.rect(screen, player_1.color, (200, 200, 100, 100))
 
         # Display screen, according to framerate
         pygame.display.update()
