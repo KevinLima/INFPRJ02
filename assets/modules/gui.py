@@ -55,6 +55,13 @@ class ColorPalette:
 
 color_pallete = ColorPalette()
 
+class Screen():
+    def __init__(self):
+        self.width = 1920
+        self.height = 1080
+
+screen = Screen()
+
 def resolution(screen_width = 1280, screen_height = 720):
     if screen_width != 1280:
         screen_width = screen_width
