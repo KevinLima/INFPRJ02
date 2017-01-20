@@ -1,4 +1,5 @@
 import pygame
+from .mechanics import *
 
 class Button:
     def __init__(self, text, x, y, width, height):
@@ -28,7 +29,7 @@ class Button:
         mouseX, mouseY = pygame.mouse.get_pos()
         mouse_pressed1, mouse_pressed2, mouse_pressed3 = pygame.mouse.get_pressed()
 
-        if (mouseX > self.position.x - self.width / 2 and mouseX < self.position.x + self.width / 2 and mouseY > self.position.y - self.height / 2 and mouseY < self.position.y + self.height / 2):
+        if (mouseX > self.position.x - self.width * 0.5 and mouseX < self.position.x + self.width * 0.5 and mouseY > self.position.y - self.height * 0.5 and mouseY < self.position.y + self.height * 0.5):
             self.hover = True
             self.color = color_pallete.grey800
             if (mouse_pressed1):
@@ -37,7 +38,7 @@ class Button:
                 ## ENTER AN ACTION HERE
         else:
             self.hover = False
-            self.color = color_pallete.grey900
+            self.color = color_pallete.grey700
             self.action = False
 
 
@@ -46,17 +47,13 @@ class ColorPalette:
         self.blue500 = (33, 150, 243)
         self.green500 = (76, 175, 80)
         self.grey50 = (250, 250, 250)
+        self.grey700 = (97, 97, 97)
         self.grey800 = (66, 66, 66)
         self.grey900 = (33, 33, 33)
         self.indigo500 = (63, 81, 181)
         self.red500 = (244, 67, 54)
 
 color_pallete = ColorPalette()
-
-class Position:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
 
 def resolution(screen_width = 1280, screen_height = 720):
     if screen_width != 1280:

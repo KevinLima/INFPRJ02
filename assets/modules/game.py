@@ -3,87 +3,22 @@ from .gui import *
 from .mechanics import *
 
 # Set fps
-FPS = 30  # frames per second setting
+fps = 30  # frames per second setting
 fps_clock = pygame.time.Clock()
 
 # Initialize screen
-pygame.init()
-# Sets game resolution (Changeable)
+# Sets game resolution (Defaults to 800,600)
 screen_width, screen_height = resolution(1920, 1080)
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption("INFPRJ02")
 
-# Initialize buttons
-start_button = Button("START", (screen_width * 0.5), (screen_height * 0.5), (screen_width * 0.25), (screen_height * 0.1))
-settings_button = Button("SETTINGS",  (screen_width * 0.5), (screen_height * 0.5 + screen_height * 0.125), (screen_width * 0.25), (screen_height * 0.1))
-exit_button = Button("EXIT", (screen_width * 0.5), (screen_height * 0.5 + screen_height * 0.250), (screen_width * 0.25), (screen_height * 0.1))
-quit_button = Button("QUIT",  (screen_width * 0.075), (screen_height * 0.05), (screen_width * 0.125), (screen_height * 0.05))
-dice_button = Button("ROLL DICE", (screen_width * 0.925), (screen_height * 0.75), (screen_width * 0.125), (screen_height * 0.05))
-next_turn = Button("NEXT TURN", (screen_width * 0.925), (screen_height * 0.85), (screen_width * 0.125), (screen_height * 0.05))
-direction_button = Button("DIRECTION", (screen_width * 0.925), (screen_height * 0.95), (screen_width * 0.125), (screen_height * 0.05))
-
-def intro_menu():
-    # Initialize background
-    background = pygame.Surface(screen.get_size())
-    background = background.convert()
-    background.fill(color_pallete.indigo500)
-
-    # Initialize text to display
-    font = pygame.font.Font(None, int((screen_width * 0.2)))
-    text = font.render("INFPRJ02", 1, color_pallete.grey50)
-    textpos = text.get_rect()
-    textpos.centerx = background.get_rect().centerx
-    textpos.centery = background.get_rect().centery - ((screen_height * 0.25))
-    background.blit(text, textpos)
-
-    # Run menu loop
-    run_intro_menu = True
-
-    while run_intro_menu:
-        events = pygame.event.get()
-        if event_exist(events, pygame.QUIT) or (exit_button.action):
-            pygame.quit()
-            exit()
-
-        if (start_button.action):
-            start_button.action != start_button.action
-            run_intro_menu = False
-
-        # Display background
-        screen.blit(background, (0, 0))
-
-        # Menu buttons
-        # Update buttons
-        start_button.track_mouse()
-        settings_button.track_mouse()
-        exit_button.track_mouse()
-        quit_button.track_mouse()
-
-        # Display buttons
-        # start_button.display()
-        pygame.draw.rect(screen, start_button.color, (
-        start_button.position.x - start_button.width / 2, start_button.position.y - start_button.height / 2, start_button.width,
-        start_button.height))
-        screen.blit(start_button.textSurfaceObj, start_button.textRectObj)
-
-        # settings_button.display()
-        pygame.draw.rect(screen, settings_button.color, (
-        settings_button.position.x - settings_button.width / 2, settings_button.position.y - settings_button.height / 2, settings_button.width,
-        settings_button.height))
-        screen.blit(settings_button.textSurfaceObj, settings_button.textRectObj)
-
-        # exit_button.display()
-        pygame.draw.rect(screen, exit_button.color, (
-        exit_button.position.x - exit_button.width / 2, exit_button.position.y - exit_button.height / 2, exit_button.width,
-        exit_button.height))
-        screen.blit(exit_button.textSurfaceObj, exit_button.textRectObj)
-
-        pygame.display.update()
-        fps_clock.tick(FPS)
-
-    gameplay()
-
 def gameplay():
+    # Initialize buttons
+    quit_button = Button("QUIT",  (screen_width * 0.075), (screen_height * 0.05), (screen_width * 0.125), (screen_height * 0.05))
+    dice_button = Button("ROLL DICE", (screen_width * 0.925), (screen_height * 0.75), (screen_width * 0.125), (screen_height * 0.05))
+    next_turn = Button("NEXT TURN", (screen_width * 0.925), (screen_height * 0.85), (screen_width * 0.125), (screen_height * 0.05))
+    direction_button = Button("DIRECTION", (screen_width * 0.925), (screen_height * 0.95), (screen_width * 0.125), (screen_height * 0.05))
+
     # Initialize whose turn
     turn = 1
     noPlayers = 2 # Number of players
@@ -123,25 +58,25 @@ def gameplay():
         quit_button.track_mouse()
 
         # quit_button.display()
-        pygame.draw.rect(screen, quit_button.color, (quit_button.position.x - quit_button.width / 2, quit_button.position.y - quit_button.height / 2,quit_button.width,quit_button.height))
+        pygame.draw.rect(screen, quit_button.color, (quit_button.position.x - quit_button.width * 0.5, quit_button.position.y - quit_button.height * 0.5,quit_button.width,quit_button.height))
         screen.blit(quit_button.textSurfaceObj, quit_button.textRectObj)
 
         # Dice button
         # button update
         dice_button.track_mouse()
         pygame.draw.rect(screen, dice_button.color, (
-        dice_button.position.x - dice_button.width / 2, dice_button.position.y - dice_button.height / 2, dice_button.width,
+        dice_button.position.x - dice_button.width * 0.5, dice_button.position.y - dice_button.height * 0.5, dice_button.width,
         dice_button.height))
         screen.blit(dice_button.textSurfaceObj, dice_button.textRectObj)
 
         next_turn.track_mouse()
         pygame.draw.rect(screen, next_turn.color, (
-        next_turn.position.x - next_turn.width / 2, next_turn.position.y - next_turn.height / 2, next_turn.width, next_turn.height))
+        next_turn.position.x - next_turn.width * 0.5, next_turn.position.y - next_turn.height * 0.5, next_turn.width, next_turn.height))
         screen.blit(next_turn.textSurfaceObj, next_turn.textRectObj)
 
         direction_button.track_mouse()
         pygame.draw.rect(screen, direction_button.color, (
-        direction_button.position.x - direction_button.width / 2, direction_button.position.y - direction_button.height / 2,
+        direction_button.position.x - direction_button.width * 0.5, direction_button.position.y - direction_button.height * 0.5,
         direction_button.width, direction_button.height))
         screen.blit(direction_button.textSurfaceObj, direction_button.textRectObj)
 
@@ -206,11 +141,139 @@ def gameplay():
         player_2.update()
         ## draw player_1
         pygame.draw.rect(screen, player_1.color, (
-        player_1.position.x - player_1.width / 2, player_1.position.y - player_1.height / 2, player_1.width, player_1.height))
+        player_1.position.x - player_1.width * 0.5, player_1.position.y - player_1.height * 0.5, player_1.width, player_1.height))
         pygame.draw.rect(screen, player_2.color, (
-        player_2.position.x - player_2.width / 2, player_2.position.y - player_2.height / 2, player_2.width, player_2.height))
+        player_2.position.x - player_2.width * 0.5, player_2.position.y - player_2.height * 0.5, player_2.width, player_2.height))
         # pygame.draw.rect(screen, player_1.color, (200, 200, 100, 100))
 
         # Display screen, according to framerate
         pygame.display.update()
-        fps_clock.tick(FPS)
+        fps_clock.tick(fps)
+
+def intro_menu():
+    # Initialize buttons
+    start_button = Button("START", (screen_width * 0.5), (screen_height * 0.5), (screen_width * 0.25), (screen_height * 0.1))
+    settings_button = Button("SETTINGS",  (screen_width * 0.5), (screen_height * 0.5 + screen_height * 0.125), (screen_width * 0.25), (screen_height * 0.1))
+    exit_button = Button("EXIT", (screen_width * 0.5), (screen_height * 0.5 + screen_height * 0.25), (screen_width * 0.25), (screen_height * 0.1))
+
+    # Initialize background
+    background = pygame.Surface(screen.get_size())
+    background = background.convert()
+    background.fill(color_pallete.grey900)
+
+    # Initialize text to display
+    font = pygame.font.Font(None, int((screen_width * 0.2)))
+    text = font.render("INFPRJ02", 1, color_pallete.grey50)
+    textpos = text.get_rect()
+    textpos.centerx = background.get_rect().centerx
+    textpos.centery = background.get_rect().centery - ((screen_height * 0.25))
+    background.blit(text, textpos)
+
+    # Run menu loop
+    run_intro_menu = True
+
+    while run_intro_menu:
+        events = pygame.event.get()
+        if event_exist(events, pygame.QUIT) or (exit_button.action):
+            pygame.quit()
+            exit()
+
+        if (start_button.action):
+            start_button.action != start_button.action
+            run_intro_menu = False
+
+        if (settings_button.action):
+            settings_button.action != settings_button.action
+            settings_menu()
+
+        # Display background
+        screen.blit(background, (0, 0))
+
+        # Update menu buttons
+        start_button.track_mouse()
+        settings_button.track_mouse()
+        exit_button.track_mouse()
+
+        # Display buttons
+        # start_button.display()
+        pygame.draw.rect(screen, start_button.color, ((start_button.position.x - start_button.width * 0.5), (start_button.position.y - start_button.height * 0.5), start_button.width, start_button.height))
+        screen.blit(start_button.textSurfaceObj, start_button.textRectObj)
+
+        # settings_button.display()
+        pygame.draw.rect(screen, settings_button.color, (settings_button.position.x - settings_button.width * 0.5, settings_button.position.y - settings_button.height * 0.5, settings_button.width, settings_button.height))
+        screen.blit(settings_button.textSurfaceObj, settings_button.textRectObj)
+
+        # exit_button.display()
+        pygame.draw.rect(screen, exit_button.color, (exit_button.position.x - exit_button.width * 0.5, exit_button.position.y - exit_button.height * 0.5, exit_button.width, exit_button.height))
+        screen.blit(exit_button.textSurfaceObj, exit_button.textRectObj)
+
+        pygame.display.update()
+        fps_clock.tick(fps)
+
+def settings_menu():
+    # Initialize background
+    background = pygame.Surface(screen.get_size())
+    background = background.convert()
+    background.fill(color_pallete.grey900)
+
+    font = pygame.font.Font(None, int((screen_width * 0.025)))
+    text = font.render("Resolution: ", 1, color_pallete.grey50)
+    textpos = text.get_rect()
+    textpos.centerx = background.get_rect().centerx - ((screen_width * 0.425))
+    textpos.centery = background.get_rect().centery - ((screen_height * 0.425))
+    background.blit(text, textpos)
+
+    # Initialize buttons
+    resolution_button = Button("START", (screen_width * 0.25), (screen_height * 0.075), (screen_width * 0.25), (screen_height * 0.1))
+    back_button = Button("BACK", (screen_width * 0.5), (screen_height * 0.5 + screen_height * 0.25), (screen_width * 0.25), (screen_height * 0.1))
+
+    # Initialize direction
+    resolution = 1
+
+    resolution_button.track_mouse()
+    pygame.draw.rect(screen, resolution_button.color, (
+    resolution_button.position.x - resolution_button.width * 0.5, resolution_button.position.y - resolution_button.height * 0.5,
+    resolution_button.width, resolution_button.height))
+    screen.blit(resolution_button.textSurfaceObj, resolution_button.textRectObj)
+
+    while 1:
+        events = pygame.event.get()
+        if event_exist(events, pygame.QUIT) or (back_button.action):
+            pygame.quit()
+            exit()
+        if resolution_button.action:
+            pygame.time.wait(100)
+            resolution += 1
+            direction = resolution % 4
+            if (resolution == 0):
+                resolution_button.text = "800 x 600"
+            elif (resolution == 1):
+                resolution_button.text = "1280 x 720"
+            elif (resolution == 2):
+                resolution_button.text = "1600 x 1200"
+            elif (resolution == 3):
+                resolution_button.text = "1920 x 1080"
+
+            resolution_button.update_text()
+            resolution_button.action = False
+
+        # Display background
+        screen.blit(background, (0, 0))
+
+        # Update menu buttons
+        resolution_button.track_mouse()
+        back_button.track_mouse()
+
+        # Display buttons
+        # resolution_button.display()
+        pygame.draw.rect(screen, resolution_button.color, ((resolution_button.position.x - resolution_button.width * 0.5), (resolution_button.position.y - resolution_button.height * 0.5), resolution_button.width, resolution_button.height))
+        screen.blit(resolution_button.textSurfaceObj, resolution_button.textRectObj)
+
+        # back_button.display()
+        pygame.draw.rect(screen, back_button.color, (
+        back_button.position.x - back_button.width * 0.5, back_button.position.y - back_button.height * 0.5, back_button.width, back_button.height))
+        screen.blit(back_button.textSurfaceObj, back_button.textRectObj)
+
+        pygame.display.update()
+        fps_clock.tick(fps)
+
