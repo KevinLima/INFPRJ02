@@ -6,4 +6,4 @@ Git project for INFPRJ02 by group 2
 - Dave Caron
 - Kevin Lima
 - Mitchell van der Staal 
-- Duncan Sumter
+- Duncan Sumter (RIP)
