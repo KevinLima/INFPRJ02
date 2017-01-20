@@ -63,8 +63,8 @@ color_pallete = ColorPalette()
 
 class Screen():
     def __init__(self):
-        self.width = 1920
-        self.height = 1080
+        self.width = 800
+        self.height = 600
         self.screen = pygame.display.set_mode((self.width, self.height))
 
     def resolution(self, width, height):
