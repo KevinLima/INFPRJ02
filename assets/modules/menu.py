@@ -22,7 +22,7 @@ def intro_menu():
     text = font.render("INFPRJ02", 1, color_pallete.grey50)
     textpos = text.get_rect()
     textpos.centerx = background.get_rect().centerx
-    textpos.centery = background.get_rect().centery - ((screen.height * 0.25))
+    textpos.centery = background.get_rect().centery - (screen.height * 0.25)
     background.blit(text, textpos)
 
     # Run menu loop
@@ -39,12 +39,10 @@ def intro_menu():
             pygame.quit()
             exit()
 
-        if (start_button.action):
-            start_button.action != start_button.action
+        if start_button.action:
             run_intro_menu = False
 
-        if (settings_button.action):
-            settings_button.action != settings_button.action
+        if settings_button.action:
             settings_menu()
 
         # Display background
@@ -57,19 +55,27 @@ def intro_menu():
 
         # Display buttons
         # start_button.display()
-        pygame.draw.rect(screen.screen, start_button.color, ((start_button.position.x - start_button.width * 0.5), (start_button.position.y - start_button.height * 0.5), start_button.width, start_button.height))
+        pygame.draw.rect(screen.screen, start_button.color, ((start_button.position.x - start_button.width * 0.5),
+                                                             (start_button.position.y - start_button.height * 0.5),
+                                                             start_button.width, start_button.height))
         screen.screen.blit(start_button.textSurfaceObj, start_button.textRectObj)
 
         # settings_button.display()
-        pygame.draw.rect(screen.screen, settings_button.color, (settings_button.position.x - settings_button.width * 0.5, settings_button.position.y - settings_button.height * 0.5, settings_button.width, settings_button.height))
+        pygame.draw.rect(screen.screen, settings_button.color,
+                         (settings_button.position.x - settings_button.width * 0.5,
+                          settings_button.position.y - settings_button.height * 0.5,
+                          settings_button.width, settings_button.height))
         screen.screen.blit(settings_button.textSurfaceObj, settings_button.textRectObj)
 
         # exit_button.display()
-        pygame.draw.rect(screen.screen, exit_button.color, (exit_button.position.x - exit_button.width * 0.5, exit_button.position.y - exit_button.height * 0.5, exit_button.width, exit_button.height))
+        pygame.draw.rect(screen.screen, exit_button.color, (exit_button.position.x - exit_button.width * 0.5,
+                                                            exit_button.position.y - exit_button.height * 0.5,
+                                                            exit_button.width, exit_button.height))
         screen.screen.blit(exit_button.textSurfaceObj, exit_button.textRectObj)
 
         pygame.display.update()
         fps_clock.tick(fps)
+
 
 def settings_menu():
     # Initialize background
@@ -80,8 +86,8 @@ def settings_menu():
     font = pygame.font.Font(None, int((screen.width * 0.025)))
     text = font.render("Resolution: ", 1, color_pallete.grey50)
     textpos = text.get_rect()
-    textpos.centerx = background.get_rect().centerx - ((screen.width * 0.425))
-    textpos.centery = background.get_rect().centery - ((screen.height * 0.425))
+    textpos.centerx = background.get_rect().centerx - (screen.width * 0.425)
+    textpos.centery = background.get_rect().centery - (screen.height * 0.425)
     background.blit(text, textpos)
 
     # Initialize buttons
@@ -107,17 +113,17 @@ def settings_menu():
         if resolution_button.action:
             pygame.time.wait(100)
             resolution += 1
-            resolution = resolution % 4
-            if (resolution == 0):
+            resolution %= 4
+            if resolution == 0:
                 resolution_button.text = "800 x 600"
                 screen.resolution(800, 600)
-            elif (resolution == 1):
+            elif resolution == 1:
                 resolution_button.text = "1280 x 720"
                 screen.resolution(1280, 720)
-            elif (resolution == 2):
+            elif resolution == 2:
                 resolution_button.text = "1600 x 1200"
                 screen.resolution(1600, 1200)
-            elif (resolution == 3):
+            elif resolution == 3:
                 resolution_button.text = "1920 x 1080"
                 screen.resolution(1920, 1080)
 

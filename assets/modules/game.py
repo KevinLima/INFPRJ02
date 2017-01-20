@@ -7,6 +7,7 @@ fps_clock = pygame.time.Clock()
 # Initialize screen
 pygame.display.set_caption("INFPRJ02")
 
+
 def gameplay():
     # Initialize buttons
     quit_button = Button("QUIT",  (screen.width * 0.075), (screen.height * 0.05), (screen.width * 0.125), (screen.height * 0.05))
@@ -39,8 +40,7 @@ def gameplay():
             exit()
 
         # IF YOU PRESS OPTIONS, RUN STARTMENU
-        if (quit_button.action):
-            quit_button.action != quit_button.action
+        if quit_button.action:
             intro_menu()
 
         # Get mouse values
@@ -53,39 +53,43 @@ def gameplay():
         quit_button.track_mouse()
 
         # quit_button.display()
-        pygame.draw.rect(screen.screen, quit_button.color, (quit_button.position.x - quit_button.width * 0.5, quit_button.position.y - quit_button.height * 0.5,quit_button.width,quit_button.height))
+        pygame.draw.rect(screen.screen, quit_button.color, (quit_button.position.x - quit_button.width * 0.5,
+                                                            quit_button.position.y - quit_button.height * 0.5,
+                                                            quit_button.width, quit_button.height))
         screen.screen.blit(quit_button.textSurfaceObj, quit_button.textRectObj)
 
         # Dice button
         # button update
         dice_button.track_mouse()
         pygame.draw.rect(screen.screen, dice_button.color, (
-        dice_button.position.x - dice_button.width * 0.5, dice_button.position.y - dice_button.height * 0.5, dice_button.width,
-        dice_button.height))
+            dice_button.position.x - dice_button.width * 0.5, dice_button.position.y - dice_button.height * 0.5,
+            dice_button.width, dice_button.height))
         screen.screen.blit(dice_button.textSurfaceObj, dice_button.textRectObj)
 
         next_turn.track_mouse()
         pygame.draw.rect(screen.screen, next_turn.color, (
-        next_turn.position.x - next_turn.width * 0.5, next_turn.position.y - next_turn.height * 0.5, next_turn.width, next_turn.height))
+            next_turn.position.x - next_turn.width * 0.5, next_turn.position.y - next_turn.height * 0.5,
+            next_turn.width, next_turn.height))
         screen.screen.blit(next_turn.textSurfaceObj, next_turn.textRectObj)
 
         direction_button.track_mouse()
         pygame.draw.rect(screen.screen, direction_button.color, (
-        direction_button.position.x - direction_button.width * 0.5, direction_button.position.y - direction_button.height * 0.5,
-        direction_button.width, direction_button.height))
+            direction_button.position.x - direction_button.width * 0.5,
+            direction_button.position.y - direction_button.height * 0.5,
+            direction_button.width, direction_button.height))
         screen.screen.blit(direction_button.textSurfaceObj, direction_button.textRectObj)
 
         if direction_button.action:
             pygame.time.wait(100)
             direction += 1
-            direction = direction % 4
-            if (direction == 0):
+            direction %= 4
+            if direction == 0:
                 direction_button.text = "LEFT"
-            elif (direction == 1):
+            elif direction == 1:
                 direction_button.text = "UP"
-            elif (direction == 2):
+            elif direction == 2:
                 direction_button.text = "RIGHT"
-            elif (direction == 3):
+            elif direction == 3:
                 direction_button.text = "DOWN"
 
             direction_button.update_text()
@@ -99,25 +103,25 @@ def gameplay():
             dice_button.update_text()
             dice_button.action = False
 
-            if (direction == 0):
+            if direction == 0:
                 if turn == 0:
                     player_1.position.x -= player_1.height * dice_number
                 if turn == 1:
                     player_2.position.x -= player_2.height * dice_number
 
-            if (direction == 1):
+            if direction == 1:
                 if turn == 0:
                     player_1.position.y -= player_1.height * dice_number
                 if turn == 1:
                     player_2.position.y -= player_2.height * dice_number
 
-            if (direction == 2):
+            if direction == 2:
                 if turn == 0:
                     player_1.position.x += player_1.height * dice_number
                 if turn == 1:
                     player_2.position.x += player_2.height * dice_number
 
-            if (direction == 3):
+            if direction == 3:
                 if turn == 0:
                     player_1.position.y += player_1.height * dice_number
                 if turn == 1:
@@ -126,7 +130,7 @@ def gameplay():
         if next_turn.action:
             pygame.time.wait(100)
             turn += 1
-            turn = turn % number_of_players
+            turn %= number_of_players
             next_turn.text = "Player " + str(turn + 1)
             next_turn.update_text()
             next_turn.action = False
