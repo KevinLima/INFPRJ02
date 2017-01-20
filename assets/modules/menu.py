@@ -30,7 +30,12 @@ def intro_menu():
 
     while run_intro_menu:
         events = pygame.event.get()
-        if event_exist(events, pygame.QUIT) or (exit_button.action):
+        if event_exist(events, pygame.QUIT):
+            print("quit button pressed")
+            pygame.quit()
+            exit()
+        if exit_button.action:
+            print("exit button pressed")
             pygame.quit()
             exit()
 
@@ -96,8 +101,9 @@ def settings_menu():
         events = pygame.event.get()
         if event_exist(events, pygame.QUIT):
             pygame.quit()
-        if back_button.action:
             exit()
+        if back_button.action:
+            break
         if resolution_button.action:
             pygame.time.wait(100)
             resolution += 1
