@@ -80,7 +80,7 @@ def settings_menu():
     background.blit(text, textpos)
 
     # Initialize buttons
-    resolution_button = Button("START", (screen.width * 0.25), (screen.height * 0.075), (screen.width * 0.25), (screen.height * 0.1))
+    resolution_button = Button("DEFAULT", (screen.width * 0.25), (screen.height * 0.075), (screen.width * 0.25), (screen.height * 0.1))
     back_button = Button("BACK", (screen.width * 0.5), (screen.height * 0.5 + screen.height * 0.25), (screen.width * 0.25), (screen.height * 0.1))
 
     # Initialize direction
@@ -94,8 +94,9 @@ def settings_menu():
 
     while 1:
         events = pygame.event.get()
-        if event_exist(events, pygame.QUIT) or (back_button.action):
+        if event_exist(events, pygame.QUIT):
             pygame.quit()
+        if back_button.action:
             exit()
         if resolution_button.action:
             pygame.time.wait(100)
