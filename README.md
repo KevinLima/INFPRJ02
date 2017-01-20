@@ -1,5 +1,5 @@
 # INFPRJ02
-Git project for INFPRJ02 by group 2
+Git project for INFPRJ02 by group 2.
 
 ## Projectmembers
 - Pim Bazuin
