@@ -36,8 +36,8 @@ def intro_menu():
             exit()
         if exit_button.action:
             print("exit button pressed")
-            pygame.quit()
-            exit()
+            #pygame.quit()
+            #exit()
 
         if start_button.action:
             run_intro_menu = False
@@ -138,7 +138,9 @@ def settings_menu():
 
         # Display buttons
         # resolution_button.display()
-        pygame.draw.rect(screen.screen, resolution_button.color, ((resolution_button.position.x - resolution_button.width * 0.5), (resolution_button.position.y - resolution_button.height * 0.5), resolution_button.width, resolution_button.height))
+        pygame.draw.rect(screen.screen, resolution_button.color, ((resolution_button.position.x - resolution_button.width * 0.5),
+                                                                  (resolution_button.position.y - resolution_button.height * 0.5),
+                                                                  resolution_button.width, resolution_button.height))
         screen.screen.blit(resolution_button.textSurfaceObj, resolution_button.textRectObj)
 
         # back_button.display()
