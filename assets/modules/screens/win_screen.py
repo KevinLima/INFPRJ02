@@ -1,5 +1,5 @@
-from .events_helper import event_exist
-from .gui import *
+from assets.modules.events_helper import event_exist
+from assets.modules.gui import *
 
 def win_screen(winners_name):
     # Initialize buttons

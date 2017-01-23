@@ -1,5 +1,5 @@
+from assets.modules.screens.win_screen import *
 from .menu import *
-from .win_screen import *
 
 # Set fps
 fps = 30  # frames per second setting
