@@ -1,5 +1,6 @@
 from .events_helper import *
 from .gui import *
+from assets.modules.screens.rules_screen import *
 
 # Set fps
 fps = 30  # frames per second setting
@@ -9,7 +10,7 @@ fps_clock = pygame.time.Clock()
 def intro_menu():
     # Initialize buttons
     start_button = Button("START", (screen.width * 0.5), (screen.height * 0.5), (screen.width * 0.25), (screen.height * 0.1))
-    settings_button = Button("SETTINGS",  (screen.width * 0.5), (screen.height * 0.5 + screen.height * 0.125), (screen.width * 0.25), (screen.height * 0.1))
+    rules_button = Button("RULES",  (screen.width * 0.5), (screen.height * 0.5 + screen.height * 0.125), (screen.width * 0.25), (screen.height * 0.1))
     exit_button = Button("EXIT", (screen.width * 0.5), (screen.height * 0.5 + screen.height * 0.25), (screen.width * 0.25), (screen.height * 0.1))
 
     # Initialize background
@@ -42,15 +43,15 @@ def intro_menu():
         if start_button.action:
             run_intro_menu = False
 
-        if settings_button.action:
-            settings_menu()
+        if rules_button.action:
+            rules_screen()
 
         # Display background
         screen.screen.blit(background, (0, 0))
 
         # Update menu buttons
         start_button.track_mouse()
-        settings_button.track_mouse()
+        rules_button.track_mouse()
         exit_button.track_mouse()
 
         # Display buttons
@@ -60,12 +61,12 @@ def intro_menu():
                                                              start_button.width, start_button.height))
         screen.screen.blit(start_button.textSurfaceObj, start_button.textRectObj)
 
-        # settings_button.display()
-        pygame.draw.rect(screen.screen, settings_button.color,
-                         (settings_button.position.x - settings_button.width * 0.5,
-                          settings_button.position.y - settings_button.height * 0.5,
-                          settings_button.width, settings_button.height))
-        screen.screen.blit(settings_button.textSurfaceObj, settings_button.textRectObj)
+        # rules_button.display()
+        pygame.draw.rect(screen.screen, rules_button.color,
+                         (rules_button.position.x - rules_button.width * 0.5,
+                          rules_button.position.y - rules_button.height * 0.5,
+                          rules_button.width, rules_button.height))
+        screen.screen.blit(rules_button.textSurfaceObj, rules_button.textRectObj)
 
         # exit_button.display()
         pygame.draw.rect(screen.screen, exit_button.color, (exit_button.position.x - exit_button.width * 0.5,
@@ -76,77 +77,3 @@ def intro_menu():
         pygame.display.update()
         fps_clock.tick(fps)
 
-
-def settings_menu():
-    # Initialize background
-    background = pygame.Surface(screen.screen.get_size())
-    background = background.convert()
-    background.fill(color_pallete.grey900)
-
-    font = pygame.font.Font(None, int((screen.width * 0.025)))
-    text = font.render("Resolution: ", 1, color_pallete.grey50)
-    textpos = text.get_rect()
-    textpos.centerx = background.get_rect().centerx - (screen.width * 0.425)
-    textpos.centery = background.get_rect().centery - (screen.height * 0.425)
-    background.blit(text, textpos)
-
-    # Initialize buttons
-    resolution_button = Button("DEFAULT", (screen.width * 0.25), (screen.height * 0.075), (screen.width * 0.25), (screen.height * 0.1))
-    back_button = Button("BACK", (screen.width * 0.5), (screen.height * 0.5 + screen.height * 0.25), (screen.width * 0.25), (screen.height * 0.1))
-
-    # Initialize direction
-    resolution = -1
-
-    resolution_button.track_mouse()
-    pygame.draw.rect(screen.screen, resolution_button.color, (
-    resolution_button.position.x - resolution_button.width * 0.5, resolution_button.position.y - resolution_button.height * 0.5,
-    resolution_button.width, resolution_button.height))
-    screen.screen.blit(resolution_button.textSurfaceObj, resolution_button.textRectObj)
-
-    while 1:
-        events = pygame.event.get()
-        if event_exist(events, pygame.QUIT):
-            pygame.quit()
-            exit()
-        if back_button.action:
-            break
-        if resolution_button.action:
-            pygame.time.wait(100)
-            resolution += 1
-            resolution %= 4
-            if resolution == 0:
-                resolution_button.text = "800 x 600"
-                screen.resolution(800, 600)
-            elif resolution == 1:
-                resolution_button.text = "1280 x 720"
-                screen.resolution(1280, 720)
-            elif resolution == 2:
-                resolution_button.text = "1600 x 1200"
-                screen.resolution(1600, 1200)
-            elif resolution == 3:
-                resolution_button.text = "1920 x 1080"
-                screen.resolution(1920, 1080)
-
-            resolution_button.update_text()
-
-        # Display background
-        screen.screen.blit(background, (0, 0))
-
-        # Update menu buttons
-        resolution_button.track_mouse()
-        back_button.track_mouse()
-
-        # Display buttons
-        # resolution_button.display()
-        pygame.draw.rect(screen.screen, resolution_button.color, ((resolution_button.position.x - resolution_button.width * 0.5),
-                                                                  (resolution_button.position.y - resolution_button.height * 0.5),
-                                                                  resolution_button.width, resolution_button.height))
-        screen.screen.blit(resolution_button.textSurfaceObj, resolution_button.textRectObj)
-
-        # back_button.display()
-        pygame.draw.rect(screen.screen, back_button.color, (
-        back_button.position.x - back_button.width * 0.5, back_button.position.y - back_button.height * 0.5, back_button.width, back_button.height))
-        screen.screen.blit(back_button.textSurfaceObj, back_button.textRectObj)
-
-        pygame.display.update()
-        fps_clock.tick(fps)
