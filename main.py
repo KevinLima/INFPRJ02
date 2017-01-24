@@ -6,7 +6,6 @@ pygame.init()
 def main():
     # Uncomment te following line to demo the win screen
     #win_screen("John Doe")
-    rules_screen()
 
     intro_menu()
     gameplay()
