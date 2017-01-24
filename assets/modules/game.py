@@ -1,4 +1,5 @@
 from assets.modules.screens.win_screen import *
+from assets.modules.screens.rules_screen import *
 from .menu import *
 
 # Set fps
@@ -12,6 +13,8 @@ pygame.display.set_caption("INFPRJ02")
 def gameplay():
     # Initialize buttons
     quit_button = Button("QUIT",  (screen.width * 0.075), (screen.height * 0.05), (screen.width * 0.125), (screen.height * 0.05))
+    rules_button = Button("RULES", (screen.width * 0.75), (screen.height * 0.05), (screen.width * 0.125),
+                         (screen.height * 0.05))
     dice_button = Button("ROLL DICE", (screen.width * 0.925), (screen.height * 0.75), (screen.width * 0.125), (screen.height * 0.05))
     next_turn = Button("NEXT TURN", (screen.width * 0.925), (screen.height * 0.85), (screen.width * 0.125), (screen.height * 0.05))
     direction_button = Button("DIRECTION", (screen.width * 0.925), (screen.height * 0.95), (screen.width * 0.125), (screen.height * 0.05))
@@ -44,6 +47,10 @@ def gameplay():
         if quit_button.action:
             intro_menu()
 
+        # Show the rules screen
+        if rules_button.action:
+            rules_screen()
+
         # Get mouse values
         mouse_position_x, mouse_position_y = pygame.mouse.get_pos()
         mouse_pressed_1, mouse_pressed_2, mouse_pressed_3 = pygame.mouse.get_pressed()
@@ -58,6 +65,14 @@ def gameplay():
                                                             quit_button.position.y - quit_button.height * 0.5,
                                                             quit_button.width, quit_button.height))
         screen.screen.blit(quit_button.textSurfaceObj, quit_button.textRectObj)
+
+        # button update
+        rules_button.track_mouse()
+        # rules_button.display()
+        pygame.draw.rect(screen.screen, rules_button.color, (rules_button.position.x - rules_button.width * 0.5,
+                                                             rules_button.position.y - rules_button.height * 0.5,
+                                                             rules_button.width, rules_button.height))
+        screen.screen.blit(rules_button.textSurfaceObj, rules_button.textRectObj)
 
         # Dice button
         # button update
