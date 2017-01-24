@@ -1,4 +1,5 @@
 from assets.modules.screens.win_screen import *
+from assets.modules.screens.rules_screen import *
 from .menu import *
 
 # Set fps
