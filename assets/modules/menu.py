@@ -61,7 +61,7 @@ def intro_menu():
                                                              start_button.width, start_button.height))
         screen.screen.blit(start_button.textSurfaceObj, start_button.textRectObj)
 
-        # settings_button.display()
+        # rules_button.display()
         pygame.draw.rect(screen.screen, rules_button.color,
                          (rules_button.position.x - rules_button.width * 0.5,
                           rules_button.position.y - rules_button.height * 0.5,
