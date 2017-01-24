@@ -4,7 +4,7 @@ from assets.modules.gui import *
 def rules_screen():
     # Initialize buttons
     back_button = Button("BACK", (screen.width * 0.5),
-                         (screen.height * 0.5 + screen.height * 0.25),
+                         (screen.height - (screen.height * 0.1)),
                          (screen.width * 0.25), (screen.height * 0.1))
 
     # Initialize background
@@ -13,19 +13,28 @@ def rules_screen():
     background.fill(color_pallete.grey900)
 
     # Initialize text to display
-    rules_title_font = pygame.font.Font(None, int((screen.width * 0.2)))
+    rules_title_font = pygame.font.Font(None, int((screen.width * 0.1)))
     rules_title_text = rules_title_font.render("Game Rules", 1, color_pallete.grey50)
     rules_title_text_position = rules_title_text.get_rect()
     rules_title_text_position.centerx = background.get_rect().centerx
-    rules_title_text_position.centery = background.get_rect().centery - (screen.height * 0.25)
+    rules_title_text_position.centery =  (screen.height * 0.1)
     background.blit(rules_title_text, rules_title_text_position)
 
+    # The rules
+    rules = [
+        "There is only one player allowed in a hole",
+        "If a player ends up on another players hole,",
+        "the player who was already on that hole throws a dice",
+        "The number given after throwing the dice",
+        "(numbers 1 to 6) is the number the player has to go down."
+    ]
     rules_body_font = pygame.font.Font(None, 30)
-    rules_body_text = rules_body_font.render("The winner is..... \n TEst",1, color_pallete.grey50)
-    rules_body_text_position = rules_body_text.get_rect()
-    rules_body_text_position.centerx = background.get_rect().centerx
-    rules_body_text_position.centery = rules_title_text_position.centery + 100
-    background.blit(rules_body_text, rules_body_text_position)
+    # Generate surfaces
+    text_surfaces = [rules_body_font.render(rule, 1, color_pallete.grey50) for rule in rules]
+
+    # Blit the text surfaces
+    for index, surface in enumerate(text_surfaces):
+        background.blit(surface, ((background.get_rect().centerx / 2), (index * surface.get_height()) + (int(screen.height * 0.2))))
 
     # Run menu loop
     run_rules_screen = True
