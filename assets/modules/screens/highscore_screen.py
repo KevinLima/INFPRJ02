@@ -20,14 +20,6 @@ def highscore_screen():
     highscore_title_text_position.centery = (screen.height * 0.1)
     background.blit(highscore_title_text, highscore_title_text_position)
 
-    # The rules
-    rules = [
-        "There is only one player allowed in a hole",
-        "If a player ends up on another players hole,",
-        "the player who was already on that hole throws a dice",
-        "The number given after throwing the dice",
-        "(numbers 1 to 6) is the number the player has to go down."
-    ]
     dummy_scores =[
         ["kevin", 1],
         ["Kevin", 2],
@@ -39,7 +31,6 @@ def highscore_screen():
         ["Frank", 3],
         ["arnold", 3],
         ["MITCHELL", 3]
-
     ]
 
     highscore_body_font = pygame.font.Font('Courier.dfont', 30)
