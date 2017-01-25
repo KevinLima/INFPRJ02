@@ -2,6 +2,7 @@ from assets.modules.screens.win_screen import *
 from assets.modules.screens.rules_screen import *
 from assets.modules.screens.highscore_screen import *
 from .menu import *
+from .gui import *
 
 # Set fps
 fps = 30  # frames per second setting
@@ -13,23 +14,35 @@ pygame.display.set_caption("INFPRJ02")
 
 def gameplay():
     # Initialize buttons
-    quit_button = Button("QUIT",  (screen.width * 0.075), (screen.height * 0.05), (screen.width * 0.125), (screen.height * 0.05))
-    rules_button = Button("RULES", (screen.width * 0.75), (screen.height * 0.05), (screen.width * 0.125),
-                         (screen.height * 0.05))
-    dice_button = Button("ROLL DICE", (screen.width * 0.925), (screen.height * 0.75), (screen.width * 0.125), (screen.height * 0.05))
-    next_turn = Button("NEXT TURN", (screen.width * 0.925), (screen.height * 0.85), (screen.width * 0.125), (screen.height * 0.05))
-    direction_button = Button("DIRECTION", (screen.width * 0.925), (screen.height * 0.95), (screen.width * 0.125), (screen.height * 0.05))
+    quit_button = Button("QUIT", screen.size.width * 0.075, screen.size.height * 0.05,
+                        "large")
+
+    rules_button = Button("Rules", screen.size.width * 0.75, screen.size.height * 0.05,
+                          "large")
+
+    dice_button = Button("ROLL DICE", screen.size.width * 0.925,
+                         screen.size.height * 0.75, "large")
+
+    next_turn = Button("NEXT TURN", screen.size.width * 0.925, screen.size.height * 0.85,
+                       "large")
+
+    direction_button = Button("DIRECTION", screen.size.width * 0.925,
+                              screen.size.height * 0.95, "large")
 
     # Initialize whose turn
     turn = 0
-    number_of_players = 2 # Number of players
+    number_of_players = 2
 
     # Initialize direction
     direction = 1
 
     # Initialize Players
-    player_1 = Player(color_pallete.green500, (screen.width * 0.25), (screen.height * 0.75), (screen.width * 0.0125), (screen.height * 0.05), "Player 1")
-    player_2 = Player(color_pallete.blue500, (screen.width * 0.3), (screen.height * 0.75), (screen.width * 0.0125), (screen.height * 0.05), "Player 2")
+    player_1 = Player("Player 1", color_pallete.green500, screen.size.width * 0.25,
+                      screen.size.height * 0.75, screen.size.width * 0.0125,
+                      screen.size.height * 0.05)
+    player_2 = Player("Player 2", color_pallete.blue500, screen.size.width * 0.3,
+                      screen.size.height * 0.75, screen.size.width * 0.0125,
+                      screen.size.height * 0.05)
 
 
     # GAME
@@ -46,7 +59,7 @@ def gameplay():
 
         # IF YOU PRESS OPTIONS, RUN STARTMENU
         if quit_button.action:
-            intro_menu()
+            title_screen()
 
         # Show the rules screen
         if rules_button.action:
@@ -62,38 +75,38 @@ def gameplay():
         quit_button.track_mouse()
 
         # quit_button.display()
-        pygame.draw.rect(screen.screen, quit_button.color, (quit_button.position.x - quit_button.width * 0.5,
-                                                            quit_button.position.y - quit_button.height * 0.5,
-                                                            quit_button.width, quit_button.height))
+        pygame.draw.rect(screen.screen, quit_button.color, (quit_button.position.x - quit_button.size.width * 0.5,
+                                                            quit_button.position.y - quit_button.size.height * 0.5,
+                                                            quit_button.size.width, quit_button.size.height))
         screen.screen.blit(quit_button.textSurfaceObj, quit_button.textRectObj)
 
         # button update
         rules_button.track_mouse()
         # rules_button.display()
-        pygame.draw.rect(screen.screen, rules_button.color, (rules_button.position.x - rules_button.width * 0.5,
-                                                             rules_button.position.y - rules_button.height * 0.5,
-                                                             rules_button.width, rules_button.height))
+        pygame.draw.rect(screen.screen, rules_button.color, (rules_button.position.x - rules_button.size.width * 0.5,
+                                                             rules_button.position.y - rules_button.size.height * 0.5,
+                                                             rules_button.size.width, rules_button.size.height))
         screen.screen.blit(rules_button.textSurfaceObj, rules_button.textRectObj)
 
         # Dice button
         # button update
         dice_button.track_mouse()
         pygame.draw.rect(screen.screen, dice_button.color, (
-            dice_button.position.x - dice_button.width * 0.5, dice_button.position.y - dice_button.height * 0.5,
-            dice_button.width, dice_button.height))
+            dice_button.position.x - dice_button.size.width * 0.5, dice_button.position.y - dice_button.size.height * 0.5,
+            dice_button.size.width, dice_button.size.height))
         screen.screen.blit(dice_button.textSurfaceObj, dice_button.textRectObj)
 
         next_turn.track_mouse()
         pygame.draw.rect(screen.screen, next_turn.color, (
-            next_turn.position.x - next_turn.width * 0.5, next_turn.position.y - next_turn.height * 0.5,
-            next_turn.width, next_turn.height))
+            next_turn.position.x - next_turn.size.width * 0.5, next_turn.position.y - next_turn.size.height * 0.5,
+            next_turn.size.width, next_turn.size.height))
         screen.screen.blit(next_turn.textSurfaceObj, next_turn.textRectObj)
 
         direction_button.track_mouse()
         pygame.draw.rect(screen.screen, direction_button.color, (
-            direction_button.position.x - direction_button.width * 0.5,
-            direction_button.position.y - direction_button.height * 0.5,
-            direction_button.width, direction_button.height))
+            direction_button.position.x - direction_button.size.width * 0.5,
+            direction_button.position.y - direction_button.size.height * 0.5,
+            direction_button.size.width, direction_button.size.height))
         screen.screen.blit(direction_button.textSurfaceObj, direction_button.textRectObj)
 
         if direction_button.action:

@@ -10,7 +10,7 @@ def main():
     # Uncomment te following line to demo the highscore screen
     #highscore_screen()
 
-    intro_menu()
+    title_screen()
     gameplay()
 
 main()
