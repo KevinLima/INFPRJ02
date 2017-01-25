@@ -1,6 +1,7 @@
 from .events_helper import *
 from .gui import *
 from assets.modules.screens.rules_screen import *
+from assets.modules.screens.highscore_screen import *
 
 # Set fps
 fps = 30  # frames per second setting
@@ -9,9 +10,28 @@ fps_clock = pygame.time.Clock()
 
 def intro_menu():
     # Initialize buttons
-    start_button = Button("START", (screen.width * 0.5), (screen.height * 0.5), (screen.width * 0.25), (screen.height * 0.1))
-    rules_button = Button("RULES",  (screen.width * 0.5), (screen.height * 0.5 + screen.height * 0.125), (screen.width * 0.25), (screen.height * 0.1))
-    exit_button = Button("EXIT", (screen.width * 0.5), (screen.height * 0.5 + screen.height * 0.25), (screen.width * 0.25), (screen.height * 0.1))
+    start_button = Button("START",
+                          (screen.width * 0.5),
+                          (screen.height * 0.5),
+                          (screen.width * 0.25),
+                          (screen.height * 0.1))
+
+    rules_button = Button("RULES",
+                          (screen.width * 0.5),
+                          (screen.height * 0.5 + screen.height * 0.125),
+                          (screen.width * 0.25), (screen.height * 0.1))
+
+    highscore_button = Button("HIGHSCORE",
+                          (screen.width * 0.5),
+                          (screen.height * 0.5 + screen.height * 0.25),
+                          (screen.width * 0.25),
+                            (screen.height * 0.1))
+
+    exit_button = Button("EXIT",
+                         (screen.width * 0.5),
+                         (screen.height * 0.5 + screen.height * 0.375),
+                         (screen.width * 0.25),
+                         (screen.height * 0.1))
 
     # Initialize background
     background = pygame.Surface(screen.screen.get_size())
@@ -45,13 +65,17 @@ def intro_menu():
 
         if rules_button.action:
             rules_screen()
+        if highscore_button.action:
+            highscore_screen()
 
         # Display background
         screen.screen.blit(background, (0, 0))
 
+
         # Update menu buttons
         start_button.track_mouse()
         rules_button.track_mouse()
+        highscore_button.track_mouse()
         exit_button.track_mouse()
 
         # Display buttons
@@ -67,6 +91,13 @@ def intro_menu():
                           rules_button.position.y - rules_button.height * 0.5,
                           rules_button.width, rules_button.height))
         screen.screen.blit(rules_button.textSurfaceObj, rules_button.textRectObj)
+
+        # highscore_button.display()
+        pygame.draw.rect(screen.screen, highscore_button.color,
+                         (highscore_button.position.x - highscore_button.width * 0.5,
+                          highscore_button.position.y - highscore_button.height * 0.5,
+                          highscore_button.width, highscore_button.height))
+        screen.screen.blit(highscore_button.textSurfaceObj, highscore_button.textRectObj)
 
         # exit_button.display()
         pygame.draw.rect(screen.screen, exit_button.color, (exit_button.position.x - exit_button.width * 0.5,
