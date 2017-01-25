@@ -1,7 +1,7 @@
 from assets.modules.events_helper import event_exist
 from assets.modules.gui import *
 
-def rules_screen():
+def highscore_screen():
     # Initialize buttons
     back_button = Button("BACK", (screen.width * 0.5),
                          (screen.height - (screen.height * 0.1)),
@@ -13,12 +13,12 @@ def rules_screen():
     background.fill(color_pallete.grey900)
 
     # Initialize text to display
-    rules_title_font = pygame.font.Font(None, int((screen.width * 0.1)))
-    rules_title_text = rules_title_font.render("Game Rules", 1, color_pallete.grey50)
-    rules_title_text_position = rules_title_text.get_rect()
-    rules_title_text_position.centerx = background.get_rect().centerx
-    rules_title_text_position.centery =  (screen.height * 0.1)
-    background.blit(rules_title_text, rules_title_text_position)
+    highscore_title_font = pygame.font.Font(None, int((screen.width * 0.1)))
+    highscore_title_text = highscore_title_font.render("Highscore", 1, color_pallete.grey50)
+    highscore_title_text_position = highscore_title_text.get_rect()
+    highscore_title_text_position.centerx = background.get_rect().centerx
+    highscore_title_text_position.centery = (screen.height * 0.1)
+    background.blit(highscore_title_text, highscore_title_text_position)
 
     # The rules
     rules = [
@@ -28,9 +28,27 @@ def rules_screen():
         "The number given after throwing the dice",
         "(numbers 1 to 6) is the number the player has to go down."
     ]
-    rules_body_font = pygame.font.Font(None, 30)
+    dummy_scores =[
+        ["kevin", 1],
+        ["Kevin", 2],
+        ["robert", 999],
+        ["carlos", 3],
+        ["Donny", 3],
+        ["Mo", 3],
+        ["Rich", 3],
+        ["Frank", 3],
+        ["arnold", 3],
+        ["MITCHELL", 3]
+
+    ]
+
+    highscore_body_font = pygame.font.Font('Courier.dfont', 30)
+
     # Generate surfaces
-    text_surfaces = [rules_body_font.render(rule, 1, color_pallete.grey50) for rule in rules]
+    text_surfaces = [highscore_body_font.render("{:>3d}. {:<10} - {:>4d}".format((dummy_scores.index(score)+1),
+                                                                                 score[0],
+                                                                                 score[1]),
+                                                1, color_pallete.grey50) for score in dummy_scores]
 
     # Blit the text surfaces
     for index, surface in enumerate(text_surfaces):
@@ -38,9 +56,9 @@ def rules_screen():
                                   (index * surface.get_height()) + (int(screen.height * 0.2))))
 
     # Run menu loop
-    run_rules_screen = True
+    run_highscore_screen = True
 
-    while run_rules_screen:
+    while run_highscore_screen:
         events = pygame.event.get()
         if event_exist(events, pygame.QUIT):
             print("quit button pressed")
@@ -48,7 +66,7 @@ def rules_screen():
             exit()
         if back_button.action:
             print("back button pressed")
-            run_rules_screen = False
+            run_highscore_screen = False
 
         # Display background
         screen.screen.blit(background, (0, 0))
