@@ -14,7 +14,7 @@ def rules_screen():
 
     # Initialize text to display
     rules_title_font = pygame.font.Font(None, int((screen.width * 0.1)))
-    rules_title_text = rules_title_font.render("Game Rules", 1, color_pallete.grey50)
+    rules_title_text = rules_title_font.render("INSTRUCTIONS", 1, color_pallete.grey50)
     rules_title_text_position = rules_title_text.get_rect()
     rules_title_text_position.centerx = background.get_rect().centerx
     rules_title_text_position.centery =  (screen.height * 0.1)

@@ -10,13 +10,13 @@ fps_clock = pygame.time.Clock()
 
 def intro_menu():
     # Initialize buttons
-    start_button = Button("START",
+    start_button = Button("PLAY",
                           (screen.width * 0.5),
                           (screen.height * 0.5),
                           (screen.width * 0.25),
                           (screen.height * 0.1))
 
-    rules_button = Button("RULES",
+    rules_button = Button("INSTRUCTIONS",
                           (screen.width * 0.5),
                           (screen.height * 0.5 + screen.height * 0.125),
                           (screen.width * 0.25), (screen.height * 0.1))
@@ -40,7 +40,7 @@ def intro_menu():
 
     # Initialize text to display
     font = pygame.font.Font(None, int((screen.width * 0.2)))
-    text = font.render("INFPRJ02", 1, color_pallete.grey50)
+    text = font.render("EUROMAST", 1, color_pallete.grey50)
     textpos = text.get_rect()
     textpos.centerx = background.get_rect().centerx
     textpos.centery = background.get_rect().centery - (screen.height * 0.25)
