@@ -3,7 +3,10 @@ from assets.modules.gui import *
 
 def win_screen(winners_name):
     # Initialize buttons
-    exit_button = Button("EXIT", (screen.width * 0.5), (screen.height * 0.5 + screen.height * 0.25),(screen.width * 0.25), (screen.height * 0.1))
+    exit_button = Button("EXIT",
+                         (screen.width * 0.5),
+                         (screen.height * 0.5 + screen.height * 0.25),
+                         (screen.width * 0.25), (screen.height * 0.1))
 
     # Initialize background
     background = pygame.Surface(screen.screen.get_size())
