@@ -33,7 +33,7 @@ def highscore_screen():
         ["MITCHELL", 3]
     ]
 
-    highscore_body_font = pygame.font.Font('Courier.dfont', 30)
+    highscore_body_font = pygame.font.Font('roboto-mono-regular.ttf', 30)
 
     # Generate surfaces
     text_surfaces = [highscore_body_font.render("{:>3d}. {:<10} - {:>4d}".format((dummy_scores.index(score)+1),

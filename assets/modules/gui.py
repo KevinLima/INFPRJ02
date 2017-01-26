@@ -1,5 +1,4 @@
 import pygame
-from .mechanics import *
 
 class Button:
     def __init__(self, text, x, y, size):
@@ -10,7 +9,7 @@ class Button:
         elif size == "medium":
             self.size = Size(screen.size.width * 0.125, screen.size.height * 0.05)
         elif size == "large":
-            self.size = Size(screen.size.width * 0.125, screen.size.height * 0.05)
+            self.size = Size(screen.size.width * 0.25, screen.size.height * 0.1)
 
         self.hover = False
         self.color = color_pallete.red500
@@ -62,6 +61,15 @@ class ColorPalette:
 
 color_pallete = ColorPalette()
 
+class Size:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+class Position:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
 
 class Screen():
     def __init__(self):
@@ -69,3 +77,5 @@ class Screen():
         self.screen = pygame.display.set_mode((self.size.width, self.size.height))
 
 screen = Screen()
+
+

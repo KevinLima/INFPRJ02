@@ -3,6 +3,7 @@ from assets.modules.screens.rules_screen import *
 from assets.modules.screens.highscore_screen import *
 from .menu import *
 from .gui import *
+from .mechanics import Dice, Player
 
 # Set fps
 fps = 30  # frames per second setting
@@ -15,19 +16,19 @@ pygame.display.set_caption("INFPRJ02")
 def gameplay():
     # Initialize buttons
     quit_button = Button("QUIT", screen.size.width * 0.075, screen.size.height * 0.05,
-                        "large")
+                        "medium")
 
     rules_button = Button("Rules", screen.size.width * 0.75, screen.size.height * 0.05,
-                          "large")
+                          "medium")
 
     dice_button = Button("ROLL DICE", screen.size.width * 0.925,
-                         screen.size.height * 0.75, "large")
+                         screen.size.height * 0.75, "medium")
 
     next_turn = Button("NEXT TURN", screen.size.width * 0.925, screen.size.height * 0.85,
-                       "large")
+                       "medium")
 
     direction_button = Button("DIRECTION", screen.size.width * 0.925,
-                              screen.size.height * 0.95, "large")
+                              screen.size.height * 0.95, "medium")
 
     # Initialize whose turn
     turn = 0
