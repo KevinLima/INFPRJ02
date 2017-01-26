@@ -1,5 +1,6 @@
 from random import randint
 
+
 class Questions:
 
     def __init__(self):
@@ -63,7 +64,6 @@ class Questions:
         else:
             print("Can't find question")
 
-
     def get_question(self, category_name):
         if category_name in self.categories:
             # Get a list of questions that have the right category AND have not been used.
@@ -97,5 +97,4 @@ class Questions:
             return  categories[randint(0,(amount -1))]
         else:
             print("GAME OVER: all the questions have been used")
-            #TODO: end the game
-
+            # TODO: end the game
