@@ -2,8 +2,9 @@
 
 class Questions:
 
-    def __int__(self):
+    def __init__(self):
         self.get_questions()
+        print(self.is_answer_correct(0,2))
 
     def get_questions(self):
 
@@ -20,5 +21,18 @@ class Questions:
             ]
         ]
 
-    def is_answer_correct(self, question_id, answer_id):
-        question = next((y for x in self.question_list if ))
+    def is_answer_correct(self, question_id, answer_index):
+
+        # Selects a question with question_id as first index
+        question = next((x for x in self.question_list if x[0] == question_id), None)
+        print(question)
+
+        # Is there a question w/ that question id?
+        if question is not None:
+            # Is the answer_index (the answer the player chose), the same as the correct answer?
+            if answer_index == question[4]:
+                return True
+            else:
+                return False
+        else:
+            print("Can't find question")
