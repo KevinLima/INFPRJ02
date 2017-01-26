@@ -1,5 +1,5 @@
 import random
-
+from .gui import Position, Size
 
 class Dice:
     def __init__(self):
@@ -9,14 +9,13 @@ class Dice:
         self.number = random.randint(1, 6)
         return self.number
 
-
 class Player:
-    def __init__(self, color, x, y, width, height, name):
+    def __init__(self, name, color, x, y, width, height):
+        self.name = name
         self.color = color
         self.position = Position(x, y)
         self.width = width
         self.height = height
-        self.name = name
 
     def update(self):
         if self.position.y <= 0:
@@ -24,7 +23,3 @@ class Player:
             self.position.y = 550
 
 
-class Position:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y

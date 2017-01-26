@@ -7,31 +7,19 @@ from assets.modules.screens.highscore_screen import *
 fps = 30  # frames per second setting
 fps_clock = pygame.time.Clock()
 
-
-def intro_menu():
+def title_screen():
     # Initialize buttons
-    start_button = Button("PLAY",
-                          (screen.width * 0.5),
-                          (screen.height * 0.5),
-                          (screen.width * 0.25),
-                          (screen.height * 0.1))
-
-    rules_button = Button("INSTRUCTIONS",
-                          (screen.width * 0.5),
-                          (screen.height * 0.5 + screen.height * 0.125),
-                          (screen.width * 0.25), (screen.height * 0.1))
-
-    highscore_button = Button("HIGHSCORE",
-                          (screen.width * 0.5),
-                          (screen.height * 0.5 + screen.height * 0.25),
-                          (screen.width * 0.25),
-                            (screen.height * 0.1))
-
-    exit_button = Button("EXIT",
-                         (screen.width * 0.5),
-                         (screen.height * 0.5 + screen.height * 0.375),
-                         (screen.width * 0.25),
-                         (screen.height * 0.1))
+    start_button = Button(" Play", screen.size.width * 0.5, screen.size.height * 0.5,
+                          "large")
+    rules_button = Button(" Help", screen.size.width * 0.5,
+                          screen.size.height * 0.5 + screen.size.height * 0.125,
+                          "large")
+    highscore_button = Button("Highscores", screen.size.width * 0.5,
+                              screen.size.height * 0.5 + screen.size.height * 0.25,
+                              "large")
+    exit_button = Button("Quit", screen.size.width * 0.5,
+                         screen.size.height * 0.5 + screen.size.height * 0.375,
+                         "large")
 
     # Initialize background
     background = pygame.Surface(screen.screen.get_size())
@@ -39,17 +27,17 @@ def intro_menu():
     background.fill(color_pallete.grey900)
 
     # Initialize text to display
-    font = pygame.font.Font(None, int((screen.width * 0.2)))
+    font = pygame.font.Font(None, int((screen.size.width * 0.2)))
     text = font.render("EUROMAST", 1, color_pallete.grey50)
     textpos = text.get_rect()
     textpos.centerx = background.get_rect().centerx
-    textpos.centery = background.get_rect().centery - (screen.height * 0.25)
+    textpos.centery = background.get_rect().centery - (screen.size.height * 0.25)
     background.blit(text, textpos)
 
     # Run menu loop
-    run_intro_menu = True
+    run_title_screen = True
 
-    while run_intro_menu:
+    while run_title_screen:
         events = pygame.event.get()
         if event_exist(events, pygame.QUIT):
             print("quit button pressed")
@@ -61,7 +49,7 @@ def intro_menu():
             #exit()
 
         if start_button.action:
-            run_intro_menu = False
+            run_title_screen = False
 
         if rules_button.action:
             rules_screen()
@@ -80,29 +68,29 @@ def intro_menu():
 
         # Display buttons
         # start_button.display()
-        pygame.draw.rect(screen.screen, start_button.color, ((start_button.position.x - start_button.width * 0.5),
-                                                             (start_button.position.y - start_button.height * 0.5),
-                                                             start_button.width, start_button.height))
+        pygame.draw.rect(screen.screen, start_button.color, ((start_button.position.x - start_button.size.width * 0.5),
+                                                             (start_button.position.y - start_button.size.height * 0.5),
+                                                             start_button.size.width, start_button.size.height))
         screen.screen.blit(start_button.textSurfaceObj, start_button.textRectObj)
 
         # rules_button.display()
         pygame.draw.rect(screen.screen, rules_button.color,
-                         (rules_button.position.x - rules_button.width * 0.5,
-                          rules_button.position.y - rules_button.height * 0.5,
-                          rules_button.width, rules_button.height))
+                         (rules_button.position.x - rules_button.size.width * 0.5,
+                          rules_button.position.y - rules_button.size.height * 0.5,
+                          rules_button.size.width, rules_button.size.height))
         screen.screen.blit(rules_button.textSurfaceObj, rules_button.textRectObj)
 
         # highscore_button.display()
         pygame.draw.rect(screen.screen, highscore_button.color,
-                         (highscore_button.position.x - highscore_button.width * 0.5,
-                          highscore_button.position.y - highscore_button.height * 0.5,
-                          highscore_button.width, highscore_button.height))
+                         (highscore_button.position.x - highscore_button.size.width * 0.5,
+                          highscore_button.position.y - highscore_button.size.height * 0.5,
+                          highscore_button.size.width, highscore_button.size.height))
         screen.screen.blit(highscore_button.textSurfaceObj, highscore_button.textRectObj)
 
         # exit_button.display()
-        pygame.draw.rect(screen.screen, exit_button.color, (exit_button.position.x - exit_button.width * 0.5,
-                                                            exit_button.position.y - exit_button.height * 0.5,
-                                                            exit_button.width, exit_button.height))
+        pygame.draw.rect(screen.screen, exit_button.color, (exit_button.position.x - exit_button.size.width * 0.5,
+                                                            exit_button.position.y - exit_button.size.height * 0.5,
+                                                            exit_button.size.width, exit_button.size.height))
         screen.screen.blit(exit_button.textSurfaceObj, exit_button.textRectObj)
 
         pygame.display.update()
