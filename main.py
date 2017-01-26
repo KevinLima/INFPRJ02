@@ -1,5 +1,4 @@
 from assets.modules.game import *
-from assets.modules.questions import Questions
 
 pygame.init()
 
