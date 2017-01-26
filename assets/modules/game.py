@@ -13,6 +13,40 @@ fps_clock = pygame.time.Clock()
 pygame.display.set_caption("INFPRJ02")
 
 
+class Space:
+    def __init__(self, color):
+        self.empty = True
+        self.player = None
+        self.color = color
+
+    def occupy(self, player):
+        self.empty = False
+        self.player = player
+    def vacate(self):
+        self.empty = True
+        self.player = None
+
+    def __repr__(self):
+        return "Space Obj\n Empty: {}\n Color: {}".format(self.empty, self.color)
+
+
+
+#Grid
+grid = []
+
+
+for x in range(0,4):
+    space = Space(color_pallete.grid_colors[x])
+    grid.append(
+        [space for x in range(0,15)]
+    )
+
+print(len(grid))
+print(len(grid[1]))
+obj = grid[0]
+object = obj[0]
+print(object)
+
 def gameplay():
     # Initialize buttons
     quit_button = Button("QUIT", screen.size.width * 0.075, screen.size.height * 0.05,
@@ -49,7 +83,7 @@ def gameplay():
     # GAME
     background = pygame.Surface(screen.screen.get_size())
     background = background.convert()
-    background.fill(color_pallete.indigo500)
+    background.fill(color_pallete.purple500)
 
     # MAIN GAME LOOP
     while True:
