@@ -14,7 +14,7 @@ def highscore_screen():
 
     # Initialize text to display
     highscore_title_font = pygame.font.Font(None, int((screen.size.width * 0.1)))
-    highscore_title_text = highscore_title_font.render("Highscore", 1, color_pallete.grey50)
+    highscore_title_text = highscore_title_font.render("Highscores", 1, color_pallete.grey50)
     highscore_title_text_position = highscore_title_text.get_rect()
     highscore_title_text_position.centerx = background.get_rect().centerx
     highscore_title_text_position.centery = (screen.size.height * 0.1)

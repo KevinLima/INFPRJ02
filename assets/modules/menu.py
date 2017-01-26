@@ -1,10 +1,8 @@
-from .events_helper import *
-from .gui import *
-from assets.modules.screens.rules_screen import *
 from assets.modules.screens.highscore_screen import *
+from assets.modules.screens.rules_screen import *
 
 # Set fps
-fps = 30  # frames per second setting
+fps = 60  # frames per second setting
 fps_clock = pygame.time.Clock()
 
 def title_screen():
@@ -58,7 +56,6 @@ def title_screen():
 
         # Display background
         screen.screen.blit(background, (0, 0))
-
 
         # Update menu buttons
         start_button.track_mouse()
