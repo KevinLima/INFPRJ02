@@ -41,11 +41,22 @@ for x in range(0,4):
         [space for x in range(0,15)]
     )
 
+"""""
 print(len(grid))
 print(len(grid[1]))
 obj = grid[0]
 object = obj[0]
 print(object)
+
+
+def create_grid():
+    #Rect((left, top), (width, height)) -> Rect
+    pygame.draw.rect(screen.screen,
+                     color_pallete.grid_colors[2],
+                     ((30, 100),
+                      (20, 20)))
+    screen.screen.blit()
+    """
 
 def gameplay():
     # Initialize buttons
