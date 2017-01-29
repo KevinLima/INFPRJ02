@@ -1,6 +1,8 @@
+# Import PyGame module
 import pygame
 from pygame.locals import *
 
+# Initialize PyGame
 pygame.init()
 
 class Screen:

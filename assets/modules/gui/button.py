@@ -1,9 +1,13 @@
+# Import PyGame module
 import pygame
 from pygame.locals import *
+
+# Import required modules
 from assets.modules.gui.color_pallete import *
 from assets.modules.gui.position import *
 from assets.modules.gui.screen import *
 
+# Initialize PyGame
 pygame.init()
 
 class Button:
