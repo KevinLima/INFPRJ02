@@ -7,53 +7,38 @@ from assets.modules.gui.screen import *
 pygame.init()
 
 class Button:
-    def __init__(self, text, x, y, size):
+    def __init__(self, text):
         self.text = text
-        self.position = Position(x, y)
-        if size == "small":
-            self.width = screen.width * 0.125
-            self.height = screen.height * 0.05
+        self.is_hover = False
+        self.default_color = color_pallete.grey900
+        self.hover_color = color_pallete.grey700
+        self.font_color = color_pallete.grey50
+        self.obj = None
 
-        elif size == "medium":
-            self.width = screen.width * 0.125
-            self.height = screen.height * 0.05
+    def label(self):
+        '''button label font'''
+        font = pygame.font.Font("roboto-bold.ttf", int(screen.width * 0.025))
+        return font.render(self.text, 1, self.font_color)
 
-        elif size == "large":
-            self.width = screen.width * 0.25
-            self.height = screen.height * 0.1
-
-        self.hover = False
-        self.color = color_pallete.red500
-        self.action = False
-
-        self.fontObj = pygame.font.Font("roboto-regular.ttf", int(self.width * 0.175))
-        self.textSurfaceObj = self.fontObj.render(self.text, True, color_pallete.grey50, ())
-        self.textRectObj = self.textSurfaceObj.get_rect()
-        self.textRectObj.center = (self.position.x, self.position.y)
-
-    # Detect if hover, and if mousepressed
-    def update_text(self):
-        self.fontObj = pygame.font.Font(None, int(self.width * 0.175))
-        self.textSurfaceObj = self.fontObj.render(self.text, True, color_pallete.grey50, ())
-        self.textRectObj = self.textSurfaceObj.get_rect()
-        self.textRectObj.center = (self.position.x, self.position.y)
-
-    def track_mouse(self):
-        # Get mouse values
-        mouse_position_x, mouse_position_y = pygame.mouse.get_pos()
-        mouse_pressed_1, mouse_pressed_2, mouse_pressed_3 = pygame.mouse.get_pressed()
-
-        if (mouse_position_x > self.position.x - self.width * 0.5 and
-                    mouse_position_x < self.position.x + self.width * 0.5 and
-                    mouse_position_y > self.position.y - self.height * 0.5 and
-                    mouse_position_y < self.position.y + self.height * 0.5):
-            self.hover = True
-            self.color = color_pallete.grey800
-            if (mouse_pressed_1):
-                self.color = color_pallete.red500
-                self.action = not self.action
-                ## ENTER AN ACTION HERE
+    def color(self):
+        '''change color when hovering'''
+        if self.is_hover:
+            return self.hover_color
         else:
-            self.hover = False
-            self.color = color_pallete.grey700
-            self.action = False
+            return self.default_color
+
+    def draw(self, screen, mouse, rectcoord, labelcoord):
+        '''create rect obj, draw, and change color based on input'''
+        self.obj = pygame.draw.rect(screen.surface, self.color(), rectcoord)
+        screen.surface.blit(self.label(), labelcoord)
+
+        #change color if mouse over button
+        self.check_hover(mouse)
+
+    def check_hover(self, mouse):
+        '''adjust is_hover value based on mouse over button - to change hover color'''
+        if self.obj.collidepoint(mouse):
+            self.is_hover = True
+        else:
+            self.is_hover = False
+

@@ -15,7 +15,7 @@ class Screen:
         self.background = self.background.convert()
         self.background.fill(color)
         self.surface.blit(self.background, (0, 0))
-        pygame.display.flip()
+        pygame.display.update()
 
     def set_caption(self, caption):
         self.caption = pygame.display.set_caption(caption)
