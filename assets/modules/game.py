@@ -2,7 +2,7 @@ from assets.modules.screens.win_screen import *
 from assets.modules.screens.rules_screen import *
 from assets.modules.screens.highscore_screen import *
 from .menu import *
-from .gui import *
+from .gui2 import *
 from .mechanics import Dice, Player
 
 # Set fps

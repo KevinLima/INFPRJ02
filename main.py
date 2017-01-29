@@ -1,6 +1,6 @@
 from assets.modules.game import *
 
-pygame.init()
+
 
 
 def main():

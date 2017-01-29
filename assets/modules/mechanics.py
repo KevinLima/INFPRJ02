@@ -1,5 +1,5 @@
 import random
-from .gui import Position, Size
+from .gui2 import Position, Size
 
 class Dice:
     def __init__(self):
