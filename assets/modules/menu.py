@@ -7,9 +7,9 @@ fps_clock = pygame.time.Clock()
 
 def title_screen():
     # Initialize buttons
-    start_button = Button(" Play", screen.size.width * 0.5, screen.size.height * 0.5,
+    start_button = Button("Play", screen.size.width * 0.5, screen.size.height * 0.5,
                           "large")
-    rules_button = Button(" Help", screen.size.width * 0.5,
+    rules_button = Button("Help", screen.size.width * 0.5,
                           screen.size.height * 0.5 + screen.size.height * 0.125,
                           "large")
     highscore_button = Button("Highscores", screen.size.width * 0.5,
