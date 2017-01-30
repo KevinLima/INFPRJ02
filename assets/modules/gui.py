@@ -1,15 +1,23 @@
-import pygame
+# Import PyGame & Sys modules
+import pygame, sys
+from pygame.locals import *
+
+# Import required modules
+from assets.modules.gui2.screen import *
+
+# Initialize PyGame
+pygame.init()
 
 class Button:
     def __init__(self, text, x, y, size):
         self.text = text
         self.position = Position(x, y)
         if size == "small":
-            self.size = Size(screen.size.width * 0.125, screen.size.height * 0.05)
+            self.size = Size(screen.width * 0.125, screen.height * 0.05)
         elif size == "medium":
-            self.size = Size(screen.size.width * 0.125, screen.size.height * 0.05)
+            self.size = Size(screen.width * 0.125, screen.height * 0.05)
         elif size == "large":
-            self.size = Size(screen.size.width * 0.25, screen.size.height * 0.1)
+            self.size = Size(screen.width * 0.25, screen.height * 0.1)
 
         self.hover = False
         self.color = color_pallete.red500
@@ -82,12 +90,12 @@ class Position:
         self.y = y
     def __repr__(self):
         return "Position Obj\n x: {}\n y: {}".format(self.x, self.y)
-
+"""
 class Screen():
     def __init__(self):
         self.size = Size(1280, 720)
         self.screen = pygame.display.set_mode((self.size.width, self.size.height))
 
 screen = Screen()
-
+"""
 

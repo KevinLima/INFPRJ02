@@ -5,6 +5,9 @@ from .menu import *
 from .gui import *
 from .mechanics import Dice, Player
 
+# Import required modules
+from assets.modules.gui2.screen import *
+
 # Set fps
 fps = 30  # frames per second setting
 fps_clock = pygame.time.Clock()
@@ -52,7 +55,7 @@ def create_grid():
     for x in grid:
         for y in x:
             square.fill(y.color)
-            screen.screen.blit(square, (square_x, square_y))
+            screen.surface.blit(square, (square_x, square_y))
             square_y += 40
         square_y = 60
         square_x += 40
@@ -61,20 +64,20 @@ def create_grid():
 
 def gameplay():
     # Initialize buttons
-    quit_button = Button("QUIT", screen.size.width * 0.075, screen.size.height * 0.05,
+    quit_button = Button("QUIT", screen.width * 0.075, screen.height * 0.05,
                         "medium")
 
-    rules_button = Button("Rules", screen.size.width * 0.75, screen.size.height * 0.05,
+    rules_button = Button("Rules", screen.width * 0.75, screen.height * 0.05,
                           "medium")
 
-    dice_button = Button("ROLL DICE", screen.size.width * 0.925,
-                         screen.size.height * 0.75, "medium")
+    dice_button = Button("ROLL DICE", screen.width * 0.925,
+                         screen.height * 0.75, "medium")
 
-    next_turn = Button("NEXT TURN", screen.size.width * 0.925, screen.size.height * 0.85,
+    next_turn = Button("NEXT TURN", screen.width * 0.925, screen.height * 0.85,
                        "medium")
 
-    direction_button = Button("DIRECTION", screen.size.width * 0.925,
-                              screen.size.height * 0.95, "medium")
+    direction_button = Button("DIRECTION", screen.width * 0.925,
+                              screen.height * 0.95, "medium")
 
     # Initialize whose turn
     turn = 0
@@ -84,16 +87,16 @@ def gameplay():
     direction = 1
 
     # Initialize Players
-    player_1 = Player("Player 1", color_pallete.green500, screen.size.width * 0.25,
-                      screen.size.height * 0.75, screen.size.width * 0.0125,
-                      screen.size.height * 0.05)
-    player_2 = Player("Player 2", color_pallete.blue500, screen.size.width * 0.3,
-                      screen.size.height * 0.75, screen.size.width * 0.0125,
-                      screen.size.height * 0.05)
+    player_1 = Player("Player 1", color_pallete.green500, screen.width * 0.25,
+                      screen.height * 0.75, screen.width * 0.0125,
+                      screen.height * 0.05)
+    player_2 = Player("Player 2", color_pallete.blue500, screen.width * 0.3,
+                      screen.height * 0.75, screen.width * 0.0125,
+                      screen.height * 0.05)
 
 
     # GAME
-    background = pygame.Surface(screen.screen.get_size())
+    background = pygame.Surface(screen.surface.get_size())
     background = background.convert()
     background.fill(color_pallete.purple500)
 
@@ -116,45 +119,45 @@ def gameplay():
         mouse_position_x, mouse_position_y = pygame.mouse.get_pos()
         mouse_pressed_1, mouse_pressed_2, mouse_pressed_3 = pygame.mouse.get_pressed()
 
-        screen.screen.blit(background, (0, 0))
+        screen.surface.blit(background, (0, 0))
 
         # button update
         quit_button.track_mouse()
 
         # quit_button.display()
-        pygame.draw.rect(screen.screen, quit_button.color, (quit_button.position.x - quit_button.size.width * 0.5,
+        pygame.draw.rect(screen.surface, quit_button.color, (quit_button.position.x - quit_button.size.width * 0.5,
                                                             quit_button.position.y - quit_button.size.height * 0.5,
                                                             quit_button.size.width, quit_button.size.height))
-        screen.screen.blit(quit_button.textSurfaceObj, quit_button.textRectObj)
+        screen.surface.blit(quit_button.textSurfaceObj, quit_button.textRectObj)
 
         # button update
         rules_button.track_mouse()
         # rules_button.display()
-        pygame.draw.rect(screen.screen, rules_button.color, (rules_button.position.x - rules_button.size.width * 0.5,
+        pygame.draw.rect(screen.surface, rules_button.color, (rules_button.position.x - rules_button.size.width * 0.5,
                                                              rules_button.position.y - rules_button.size.height * 0.5,
                                                              rules_button.size.width, rules_button.size.height))
-        screen.screen.blit(rules_button.textSurfaceObj, rules_button.textRectObj)
+        screen.surface.blit(rules_button.textSurfaceObj, rules_button.textRectObj)
 
         # Dice button
         # button update
         dice_button.track_mouse()
-        pygame.draw.rect(screen.screen, dice_button.color, (
+        pygame.draw.rect(screen.surface, dice_button.color, (
             dice_button.position.x - dice_button.size.width * 0.5, dice_button.position.y - dice_button.size.height * 0.5,
             dice_button.size.width, dice_button.size.height))
-        screen.screen.blit(dice_button.textSurfaceObj, dice_button.textRectObj)
+        screen.surface.blit(dice_button.textSurfaceObj, dice_button.textRectObj)
 
         next_turn.track_mouse()
-        pygame.draw.rect(screen.screen, next_turn.color, (
+        pygame.draw.rect(screen.surface, next_turn.color, (
             next_turn.position.x - next_turn.size.width * 0.5, next_turn.position.y - next_turn.size.height * 0.5,
             next_turn.size.width, next_turn.size.height))
-        screen.screen.blit(next_turn.textSurfaceObj, next_turn.textRectObj)
+        screen.surface.blit(next_turn.textSurfaceObj, next_turn.textRectObj)
 
         direction_button.track_mouse()
-        pygame.draw.rect(screen.screen, direction_button.color, (
+        pygame.draw.rect(screen.surface, direction_button.color, (
             direction_button.position.x - direction_button.size.width * 0.5,
             direction_button.position.y - direction_button.size.height * 0.5,
             direction_button.size.width, direction_button.size.height))
-        screen.screen.blit(direction_button.textSurfaceObj, direction_button.textRectObj)
+        screen.surface.blit(direction_button.textSurfaceObj, direction_button.textRectObj)
         create_grid()
 
         if direction_button.action:
@@ -217,13 +220,13 @@ def gameplay():
         player_1.update()
         player_2.update()
         ## draw player_1
-        pygame.draw.rect(screen.screen, player_1.color, (
+        pygame.draw.rect(screen.surface, player_1.color, (
         player_1.position.x - player_1.width * 0.5, player_1.position.y - player_1.height * 0.5, player_1.width, player_1.height))
-        pygame.draw.rect(screen.screen, player_2.color, (
+        pygame.draw.rect(screen.surface, player_2.color, (
         player_2.position.x - player_2.width * 0.5, player_2.position.y - player_2.height * 0.5, player_2.width, player_2.height))
-        # pygame.draw.rect(screen.screen, player_1.color, (200, 200, 100, 100))
+        # pygame.draw.rect(screen.surface, player_1.color, (200, 200, 100, 100))
 
-        # Display screen.screen, according to framerate
+        # Display screen.surface, according to framerate
         pygame.display.update()
         fps_clock.tick(fps)
 
