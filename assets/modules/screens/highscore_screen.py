@@ -1,23 +1,24 @@
 from assets.modules.events_helper import event_exist
 from assets.modules.gui import *
-
+# Import required modules
+from assets.modules.gui2.screen import *
 def highscore_screen():
     # Initialize buttons
-    back_button = Button("BACK", (screen.size.width * 0.5),
-                         (screen.size.height - (screen.size.height * 0.1)),
+    back_button = Button("BACK", (screen.width * 0.5),
+                         (screen.height - (screen.height * 0.1)),
                          "large")
 
     # Initialize background
-    background = pygame.Surface(screen.screen.get_size())
+    background = pygame.Surface(screen.surface.get_size())
     background = background.convert()
     background.fill(color_pallete.grey900)
 
     # Initialize text to display
-    highscore_title_font = pygame.font.Font(None, int((screen.size.width * 0.1)))
+    highscore_title_font = pygame.font.Font(None, int((screen.width * 0.1)))
     highscore_title_text = highscore_title_font.render("Highscores", 1, color_pallete.grey50)
     highscore_title_text_position = highscore_title_text.get_rect()
     highscore_title_text_position.centerx = background.get_rect().centerx
-    highscore_title_text_position.centery = (screen.size.height * 0.1)
+    highscore_title_text_position.centery = (screen.height * 0.1)
     background.blit(highscore_title_text, highscore_title_text_position)
 
     dummy_scores =[
@@ -44,7 +45,7 @@ def highscore_screen():
     # Blit the text surfaces
     for index, surface in enumerate(text_surfaces):
         background.blit(surface, ((background.get_rect().centerx / 2),
-                                  (index * surface.get_height()) + (int(screen.size.height * 0.2))))
+                                  (index * surface.get_height()) + (int(screen.height * 0.2))))
 
     # Run menu loop
     run_highscore_screen = True
@@ -60,7 +61,7 @@ def highscore_screen():
             run_highscore_screen = False
 
         # Display background
-        screen.screen.blit(background, (0, 0))
+        screen.surface.blit(background, (0, 0))
 
         # Update menu buttons
         back_button.track_mouse()
@@ -68,9 +69,9 @@ def highscore_screen():
         # Display buttons
 
         # exit_button.display()
-        pygame.draw.rect(screen.screen, back_button.color, (back_button.position.x - back_button.size.width * 0.5,
+        pygame.draw.rect(screen.surface, back_button.color, (back_button.position.x - back_button.size.width * 0.5,
                                                             back_button.position.y - back_button.size.height * 0.5,
                                                             back_button.size.width, back_button.size.height))
-        screen.screen.blit(back_button.textSurfaceObj, back_button.textRectObj)
+        screen.surface.blit(back_button.textSurfaceObj, back_button.textRectObj)
 
         pygame.display.update()
