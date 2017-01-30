@@ -84,11 +84,11 @@ def create_grid():
 
 def gameplay():
     # Initialize buttons
-    quit_button = Button("QUIT", screen.width * 0.075, screen.height * 0.05,
-                        "medium")
+    quit_button = Button("X", screen.size.width * 0.98, screen.size.height * 0.05,
+                        "small")
 
-    rules_button = Button("Rules", screen.width * 0.75, screen.height * 0.05,
-                          "medium")
+    rules_button = Button("?", screen.size.width * 0.94, screen.size.height * 0.05,
+                          "small")
 
     dice_button = Button("ROLL DICE", screen.width * 0.925,
                          screen.height * 0.75, "medium")
