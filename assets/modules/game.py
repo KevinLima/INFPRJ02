@@ -35,28 +35,30 @@ class Space:
 grid = []
 
 
-for x in range(0,4):
+for x in range(4):
     space = Space(color_pallete.grid_colors[x])
-    grid.append(
-        [space for x in range(0,15)]
-    )
-
-"""""
-print(len(grid))
-print(len(grid[1]))
-obj = grid[0]
-object = obj[0]
-print(object)
-
+    list = []
+    for y in range(16):
+        list.append(space)
+    grid.append(list)
 
 def create_grid():
     #Rect((left, top), (width, height)) -> Rect
-    pygame.draw.rect(screen.screen,
-                     color_pallete.grid_colors[2],
-                     ((30, 100),
-                      (20, 20)))
-    screen.screen.blit()
-    """
+    square = pygame.Surface((30,30))
+    square = square.convert()
+
+    square_x = 40
+    square_y = 60
+    for x in grid:
+        for y in x:
+            square.fill(y.color)
+            screen.screen.blit(square, (square_x, square_y))
+            square_y += 40
+        square_y = 60
+        square_x += 40
+
+
+
 
 def gameplay():
     # Initialize buttons
@@ -154,6 +156,7 @@ def gameplay():
             direction_button.position.y - direction_button.size.height * 0.5,
             direction_button.size.width, direction_button.size.height))
         screen.screen.blit(direction_button.textSurfaceObj, direction_button.textRectObj)
+        create_grid()
 
         if direction_button.action:
             pygame.time.wait(100)
