@@ -30,18 +30,63 @@ class Questions:
             ],
             [
                 2,  # ID
-                "Geography",  # Category
-                "Rotterdam is de hoofdstad van Nederland. ",  # Question
+                "Geografie",  # Category
+                "Rotterdam is de hoofdstad van Nederland.",  # Question
                 ["WAAR",
                  "NIET WAAR"],  # Answers
                 1  # Index of the correct answer
+            ],
+            [
+                3,  # ID
+                "Geografie",  # Category
+                "Hoeveel millimeter regen valt er gemiddeld per jaar in Rotterdam?",  # Question
+                ["760 tot 780 mm",
+                 "780 tot 800mm",
+                 "800 tot 820mm"],  # Answers
+                3  # Index of the correct answer
+            ],
+            [
+                4,  # ID
+                "Sport",  # Category
+                "Wat is een hockeyclub uit Rotterdam?",  # Question
+                ["HC Rotterdam",
+                 "Focus",
+                 "HVGR"],  # Answers
+                1  # Index of the correct answer
+            ],
+            [
+                5,  # ID
+                "Sport",  # Category
+                "Welke Olympiër groeide op in Rotterdam?",  # Question
+                ["Dorian van Rijsselberghe",
+                 "Marhinde Verkerk",
+                 "Edith Bosch"],  # Answers
+                2  # Index of the correct answer
+            ],
+            [
+                6,  # ID
+                "Geschiedenis",  # Category
+                "Wanneer is diergaarde Blijdorp geopend?",  # Question
+                ["1855",
+                 "1915",
+                 "1075"],  # Answers
+                1  # Index of the correct answer
+            ],
+            [
+                7,  # ID
+                "Geschiedenis",  # Category
+                "Waar dankt Rotterdam haar naam aan?",  # Question
+                ["Kooplieden hebben deze naam bedacht",
+                 "Aan de rivier de Rotte",
+                 "Er was een dam aangelegd in de Maas"],  # Answers
+                3  # Index of the correct answer
             ]
         ]
         self.categories = [
-            "Sports",
-            "Geography",
+            "Sport",
+            "Geografie",
             "Entertainment",
-            "History"
+            "Geschiedenis"
         ]
 
         # List with al the used questions
