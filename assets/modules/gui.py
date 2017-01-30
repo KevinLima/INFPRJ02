@@ -13,7 +13,7 @@ class Button:
         self.text = text
         self.position = Position(x, y)
         if size == "small":
-            self.size = Size(screen.size.width * 0.03, screen.size.height * 0.05)
+            self.size = Size(screen.width * 0.03, screen.height * 0.05)
         elif size == "medium":
             self.size = Size(screen.width * 0.125, screen.height * 0.05)
         elif size == "large":
