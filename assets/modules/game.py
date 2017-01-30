@@ -59,7 +59,6 @@ def create_grid():
 
 
 
-
 def gameplay():
     # Initialize buttons
     quit_button = Button("QUIT", screen.size.width * 0.075, screen.size.height * 0.05,
