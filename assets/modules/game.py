@@ -4,6 +4,8 @@ from assets.modules.screens.highscore_screen import *
 from .menu import *
 from .gui import *
 from .mechanics import Dice, Player
+from .space import *
+from .grid import *
 
 # Import required modules
 from assets.modules.gui2.screen import *
@@ -14,73 +16,6 @@ fps_clock = pygame.time.Clock()
 
 # Initialize screen
 pygame.display.set_caption("INFPRJ02")
-
-
-class Space:
-    def __init__(self, color):
-        self.empty = True
-        self.player = None
-        self.color = color
-
-    def occupy(self, player):
-        self.empty = False
-        self.player = player
-    def vacate(self):
-        self.empty = True
-        self.player = None
-
-    def __repr__(self):
-        return "Space Obj\n Empty: {}\n Color: {}".format(self.empty, self.color)
-
-
-
-#Grid
-grid = []
-
-
-for x in range(4):
-    space = Space(color_pallete.grid_colors[x])
-    xspace = Space(color_pallete.grid_colors[x])
-    xspace.empty = False
-
-    list = []
-    for y in range(16):
-        if y == 2:
-            list.append(xspace)
-        else:
-            list.append(space)
-    grid.append(list)
-
-def create_grid():
-    #Rect((left, top), (width, height)) -> Rect
-    square = pygame.Surface((30,30))
-    square = square.convert()
-
-    square_x = 40
-    square_y = 60
-
-    square_font = pygame.font.Font(None, 30)
-
-
-
-    for x in grid:
-        for y in x:
-            square.fill(y.color)
-            if y.empty == False:
-                square_text = square_font.render("P1", 1, (0,0,0))
-                square_position = square_text.get_rect()
-                square_position.centerx = (square_x + 15)
-                square_position.centery = (square_y+ 15)
-
-                screen.surface.blit(square, (square_x, square_y))
-                screen.surface.blit(square_text, square_position)
-            else:
-                screen.surface.blit(square, (square_x, square_y))
-            square_y += 40
-        square_y = 60
-        square_x += 40
-
-
 
 def gameplay():
     # Initialize buttons
@@ -109,16 +44,17 @@ def gameplay():
     # Initialize Players
     player_1 = Player("Player 1", color_pallete.green500, screen.width * 0.25,
                       screen.height * 0.75, screen.width * 0.0125,
-                      screen.height * 0.05)
+                      screen.height * 0.05, "P1")
     player_2 = Player("Player 2", color_pallete.blue500, screen.width * 0.3,
                       screen.height * 0.75, screen.width * 0.0125,
-                      screen.height * 0.05)
+                      screen.height * 0.05, "P2")
 
 
     # GAME
     background = pygame.Surface(screen.surface.get_size())
     background = background.convert()
     background.fill(color_pallete.purple500)
+    grid = Grid()
 
     # MAIN GAME LOOP
     while True:
@@ -178,7 +114,7 @@ def gameplay():
             direction_button.position.y - direction_button.size.height * 0.5,
             direction_button.size.width, direction_button.size.height))
         screen.surface.blit(direction_button.textSurfaceObj, direction_button.textRectObj)
-        create_grid()
+        grid.create_grid()
 
         if direction_button.action:
             pygame.time.wait(100)
