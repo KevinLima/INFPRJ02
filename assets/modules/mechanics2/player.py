@@ -1,13 +1,4 @@
-import random
-from .gui import Position, Size
-
-class Dice:
-    def __init__(self):
-        self.name = "Dice"
-
-    def number(self):
-        self.number = random.randint(1, 6)
-        return self.number
+from assets.modules.gui.position import *
 
 class Player:
     def __init__(self, name, color, x, y, width, height):
@@ -21,6 +12,4 @@ class Player:
         if self.position.y <= 0:
             print(self.name + " won!")
             self.position.y = 550
-    def __repr__(self):
-        return "Player Obj\n Name: {}\n Color: {}\n".format(self.name, self.color)
 

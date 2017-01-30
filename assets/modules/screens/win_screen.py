@@ -1,27 +1,28 @@
 from assets.modules.events_helper import event_exist
 from assets.modules.gui import *
-
+# Import required modules
+from assets.modules.gui2.screen import *
 def win_screen(winners_name):
     # Initialize buttons
 
-    exit_button = Button("EXIT",(screen.size.width * 0.5),
-                         (screen.size.height - (screen.size.height * 0.1)),
+    exit_button = Button("EXIT",(screen.width * 0.5),
+                         (screen.height - (screen.height * 0.1)),
                          "large")
 
     # Initialize background
-    background = pygame.Surface(screen.screen.get_size())
+    background = pygame.Surface(screen.surface.get_size())
     background = background.convert()
     background.fill(color_pallete.grey900)
 
     # Initialize text to display
-    font = pygame.font.Font(None, int((screen.size.width * 0.2)))
+    font = pygame.font.Font(None, int((screen.width * 0.2)))
     game_over_text = font.render("Game Over", 1, color_pallete.grey50)
     game_over_text_position = game_over_text.get_rect()
     game_over_text_position.centerx = background.get_rect().centerx
-    game_over_text_position.centery = background.get_rect().centery - (screen.size.height * 0.25)
+    game_over_text_position.centery = background.get_rect().centery - (screen.height * 0.25)
     background.blit(game_over_text, game_over_text_position)
 
-    winner_font = pygame.font.Font(None, int((screen.size.width * 0.1)))
+    winner_font = pygame.font.Font(None, int((screen.width * 0.1)))
     winner_text = winner_font.render("The winner is..... {}".format(winners_name),1, color_pallete.grey50)
     winner_text_position = winner_text.get_rect()
     winner_text_position.centerx = background.get_rect().centerx
@@ -44,7 +45,7 @@ def win_screen(winners_name):
             exit()
 
         # Display background
-        screen.screen.blit(background, (0, 0))
+        screen.surface.blit(background, (0, 0))
 
         # Update menu buttons
         exit_button.track_mouse()
@@ -52,10 +53,10 @@ def win_screen(winners_name):
         # Display buttons
 
         # exit_button.display()
-        pygame.draw.rect(screen.screen, exit_button.color, (exit_button.position.x - exit_button.size.width * 0.5,
+        pygame.draw.rect(screen.surface, exit_button.color, (exit_button.position.x - exit_button.size.width * 0.5,
                                                             exit_button.position.y - exit_button.size.height * 0.5,
                                                             exit_button.size.width, exit_button.size.height))
-        screen.screen.blit(exit_button.textSurfaceObj, exit_button.textRectObj)
+        screen.surface.blit(exit_button.textSurfaceObj, exit_button.textRectObj)
 
 
         pygame.display.update()

@@ -1,9 +1,17 @@
+# Import PyGame & Sys modules
+import pygame, sys
+from pygame.locals import *
+
+# Import required modules
+from assets.modules.gui2.button import *
+from assets.modules.gui2.color_pallete import *
+from assets.modules.gui2.screen import *
+from assets.modules.gui2.text import *
 from assets.modules.screens.highscore_screen import *
 from assets.modules.screens.rules_screen import *
 
-# Import required modules
-from assets.modules.gui2.color_pallete import *
-from assets.modules.gui2.screen import *
+# Initialize PyGame
+pygame.init()
 
 # Set fps
 fps = 60  # frames per second setting
@@ -34,7 +42,6 @@ def title_screen():
     textpos.centerx = screen.background.get_rect().centerx
     textpos.centery = screen.background.get_rect().centery - (screen.height * 0.25)
     screen.background.blit(text, textpos)
-
     # Run menu loop
     run_title_screen = True
 
