@@ -58,6 +58,16 @@ class ColorPalette:
         self.grey900 = (33, 33, 33)
         self.indigo500 = (63, 81, 181)
         self.red500 = (244, 67, 54)
+        self.yellow500 = (255, 233, 59)
+        self.purple500 = (142, 36, 170)
+
+        #Colors for the grid
+        self.grid_colors =[
+            self.blue500,
+            self.green500,
+            self.red500,
+            self.yellow500
+        ]
 
 color_pallete = ColorPalette()
 
@@ -70,6 +80,8 @@ class Position:
     def __init__(self, x, y):
         self.x = x
         self.y = y
+    def __repr__(self):
+        return "Position Obj\n x: {}\n y: {}".format(self.x, self.y)
 
 class Screen():
     def __init__(self):

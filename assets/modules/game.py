@@ -13,6 +13,53 @@ fps_clock = pygame.time.Clock()
 pygame.display.set_caption("INFPRJ02")
 
 
+class Space:
+    def __init__(self, color):
+        self.empty = True
+        self.player = None
+        self.color = color
+
+    def occupy(self, player):
+        self.empty = False
+        self.player = player
+    def vacate(self):
+        self.empty = True
+        self.player = None
+
+    def __repr__(self):
+        return "Space Obj\n Empty: {}\n Color: {}".format(self.empty, self.color)
+
+
+
+#Grid
+grid = []
+
+
+for x in range(4):
+    space = Space(color_pallete.grid_colors[x])
+    list = []
+    for y in range(16):
+        list.append(space)
+    grid.append(list)
+
+def create_grid():
+    #Rect((left, top), (width, height)) -> Rect
+    square = pygame.Surface((30,30))
+    square = square.convert()
+
+    square_x = 40
+    square_y = 60
+    for x in grid:
+        for y in x:
+            square.fill(y.color)
+            screen.screen.blit(square, (square_x, square_y))
+            square_y += 40
+        square_y = 60
+        square_x += 40
+
+
+
+
 def gameplay():
     # Initialize buttons
     quit_button = Button("QUIT", screen.size.width * 0.075, screen.size.height * 0.05,
@@ -49,7 +96,7 @@ def gameplay():
     # GAME
     background = pygame.Surface(screen.screen.get_size())
     background = background.convert()
-    background.fill(color_pallete.indigo500)
+    background.fill(color_pallete.purple500)
 
     # MAIN GAME LOOP
     while True:
@@ -109,6 +156,7 @@ def gameplay():
             direction_button.position.y - direction_button.size.height * 0.5,
             direction_button.size.width, direction_button.size.height))
         screen.screen.blit(direction_button.textSurfaceObj, direction_button.textRectObj)
+        create_grid()
 
         if direction_button.action:
             pygame.time.wait(100)
