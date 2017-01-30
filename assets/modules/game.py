@@ -54,7 +54,7 @@ def gameplay():
     background = pygame.Surface(screen.surface.get_size())
     background = background.convert()
     background.fill(color_pallete.purple500)
-    grid = Grid()
+    grid = Grid(player_1, player_2)
 
     # MAIN GAME LOOP
     while True:
@@ -114,6 +114,7 @@ def gameplay():
             direction_button.position.y - direction_button.size.height * 0.5,
             direction_button.size.width, direction_button.size.height))
         screen.surface.blit(direction_button.textSurfaceObj, direction_button.textRectObj)
+
         grid.create_grid()
 
         if direction_button.action:
