@@ -40,9 +40,15 @@ grid = []
 
 for x in range(4):
     space = Space(color_pallete.grid_colors[x])
+    xspace = Space(color_pallete.grid_colors[x])
+    xspace.empty = False
+
     list = []
     for y in range(16):
-        list.append(space)
+        if y == 2:
+            list.append(xspace)
+        else:
+            list.append(space)
     grid.append(list)
 
 def create_grid():
@@ -52,10 +58,24 @@ def create_grid():
 
     square_x = 40
     square_y = 60
+
+    square_font = pygame.font.Font(None, 30)
+
+
+
     for x in grid:
         for y in x:
             square.fill(y.color)
-            screen.surface.blit(square, (square_x, square_y))
+            if y.empty == False:
+                square_text = square_font.render("P1", 1, (0,0,0))
+                square_position = square_text.get_rect()
+                square_position.centerx = (square_x + 15)
+                square_position.centery = (square_y+ 15)
+
+                screen.screen.blit(square, (square_x, square_y))
+                screen.screen.blit(square_text, square_position)
+            else:
+                screen.screen.blit(square, (square_x, square_y))
             square_y += 40
         square_y = 60
         square_x += 40
