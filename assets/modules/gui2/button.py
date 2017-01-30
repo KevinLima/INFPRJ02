@@ -10,12 +10,12 @@ from assets.modules.gui2.screen import *
 # Initialize PyGame
 pygame.init()
 
-class Button:
-    def __init__(self, text):
+class Button999:
+    def __init__(self, text, color, color_hover):
         self.text = text
         self.is_hover = False
-        self.default_color = color_pallete.grey900
-        self.hover_color = color_pallete.grey700
+        self.default_color = color
+        self.hover_color = color_hover
         self.font_color = color_pallete.grey50
         self.obj = None
 

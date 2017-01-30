@@ -43,7 +43,7 @@ def rules_screen():
         "If the player gives a wrong answer, doesn’t understand the question or doesn’t give an ",
         "answer within 50 seconds it will be considered wrong and the turn goes to the next player."
     ]
-    rules_body_font = pygame.font.Font(None, 30)
+    rules_body_font = pygame.font.Font("assets/fonts/roboto-regular.ttf", int((screen.width * 0.0175)))
     # Generate surfaces
     text_surfaces = [rules_body_font.render(rule, 1, color_pallete.grey50) for rule in rules]
 
@@ -64,7 +64,6 @@ def rules_screen():
         if back_button.action:
             print("back button pressed")
             run_rules_screen = False
-
         # Display background
         screen.surface.blit(background, (0, 0))
 

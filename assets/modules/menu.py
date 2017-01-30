@@ -19,21 +19,21 @@ fps_clock = pygame.time.Clock()
 
 def title_screen():
     # Set background
-    screen.set_background(color_pallete.grey900)
+    screen.set_background_color(color_pallete.grey900)
+    title_screen_background = pygame.image.load("assets/images/title_screen_background.png")
+
     # Initialize buttons
-    start_button = Button("Play", screen.width * 0.5, screen.height * 0.5,
+    start_button = Button("Play", screen.width * 0.2, screen.height * 0.3,
                           "large")
-    rules_button = Button("Help", screen.width * 0.5,
-                          screen.height * 0.5 + screen.height * 0.125,
+    rules_button = Button("Help", screen.width * 0.2,
+                          screen.height * 0.3 + screen.height * 0.125,
                           "large")
-    highscore_button = Button("Highscores", screen.width * 0.5,
-                              screen.height * 0.5 + screen.height * 0.25,
+    highscore_button = Button("Highscores", screen.width * 0.2,
+                              screen.height * 0.3 + screen.height * 0.25,
                               "large")
-    exit_button = Button("Quit", screen.width * 0.5,
-                         screen.height * 0.5 + screen.height * 0.375,
+    exit_button = Button("Quit", screen.width * 0.8,
+                         screen.height * 0.875,
                          "large")
-
-
 
     # Initialize text to display
     font = pygame.font.Font(None, int((screen.width * 0.2)))
@@ -65,7 +65,7 @@ def title_screen():
             highscore_screen()
 
         # Display background
-        screen.surface.blit(screen.background, (0, 0))
+        screen.surface.blit(title_screen_background, (0, 0))
 
         # Update menu buttons
         start_button.track_mouse()
@@ -102,4 +102,72 @@ def title_screen():
 
         pygame.display.update()
         fps_clock.tick(fps)
+
+# Title screen
+def title_screen2():
+    # Set background image
+    screen.set_background_image("assets/images/title_screen_background.png")
+
+    # Initialize buttons
+    play_button = Button999("Play", color_pallete.pink300, color_pallete.pink500)
+    highscores_button = Button999("Highscores", color_pallete.pink300, color_pallete.pink500)
+    help_button = Button999("Help", color_pallete.pink300, color_pallete.pink500)
+    quit_button = Button999("Quit", color_pallete.pink300, color_pallete.pink500)
+
+    clock = pygame.time.Clock()
+
+    # Title screen loop
+    while True:
+        mouse = pygame.mouse.get_pos()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if play_button.obj.collidepoint(mouse):
+                    print("Play button clicked")
+                    return
+
+                elif highscores_button.obj.collidepoint(mouse):
+                    highscore_screen()
+                    screen.set_background_image("assets/images/title_screen_background.png")
+
+                elif help_button.obj.collidepoint(mouse):
+                    rules_screen()
+                    screen.set_background_image("assets/images/title_screen_background.png")
+
+                elif quit_button.obj.collidepoint(mouse):
+                    print("Quit button clicked")
+                    pygame.quit()
+                    sys.exit()
+
+        # Draw buttons
+        play_button.draw(screen, mouse, (screen.width * 0.05,
+                                         screen.height * 0.25,
+                                         screen.width * 0.375,
+                                         screen.height * 0.075),
+                                         (screen.width * 0.05,
+                                          screen.height * 0.25))
+        highscores_button.draw(screen, mouse, (screen.width * 0.05,
+                                               screen.height * 0.35,
+                                               screen.width * 0.375,
+                                               screen.height * 0.075),
+                                               (screen.width * 0.05,
+                                                screen.height * 0.35))
+        help_button.draw(screen, mouse, (screen.width * 0.05,
+                                         screen.height * 0.45,
+                                         screen.width * 0.375,
+                                         screen.height * 0.075),
+                                         (screen.width * 0.05,
+                                          screen.height * 0.45))
+        quit_button.draw(screen, mouse, (screen.width * 0.8,
+                                         screen.height * 0.9,
+                                         screen.width * 0.15,
+                                         screen.height * 0.075),
+                                         (screen.width * 0.8,
+                                          screen.height * 0.9))
+
+        pygame.display.update()
+        clock.tick(30)
 

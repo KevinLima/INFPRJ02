@@ -11,7 +11,7 @@ pygame.init()
 
 class Text:
     def __init__(self, text, color, size, x, y):
-        self.font = pygame.font.SysFont("roboto-regular", int(size))
+        self.font = pygame.font.SysFont("assets/fonts/roboto-regular.ttf", int(size))
         self.text = self.font.render(text, 1, color)
         self.position = Position(x, y)
         screen.surface.blit(self.text, (self.position.x, self.position.y))

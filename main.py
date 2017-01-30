@@ -7,7 +7,7 @@ def main():
     # Uncomment te following line to demo the win screen
     #win_screen("John Doe")
 
-    title_screen()
+    title_screen2()
     gameplay()
 
 main()
