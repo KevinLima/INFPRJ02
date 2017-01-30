@@ -64,7 +64,6 @@ def rules_screen():
         if back_button.action:
             print("back button pressed")
             run_rules_screen = False
-
         # Display background
         screen.surface.blit(background, (0, 0))
 
