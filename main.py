@@ -7,6 +7,7 @@ from assets.modules.gui.button import *
 from assets.modules.gui.color_pallete import *
 from assets.modules.gui.screen import *
 from assets.modules.gui.text import *
+# from assets.modules.screens.game_screen import *
 from assets.modules.screens.help_screen import *
 from assets.modules.screens.highscores_screen import *
 
@@ -42,7 +43,7 @@ def main():
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if play_button.obj.collidepoint(mouse):
                     print("Play button clicked")
-                    # play_screen()
+                    # game_screen()
 
                 elif highscores_button.obj.collidepoint(mouse):
                     highscores_screen()

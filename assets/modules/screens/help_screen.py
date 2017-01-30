@@ -53,6 +53,8 @@ def help_screen():
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if back_button.obj.collidepoint(mouse):
                     print("Back button clicked")
+                    # Set background
+                    screen.set_background(color_pallete.indigo500)
                     return
 
         # Draw buttons

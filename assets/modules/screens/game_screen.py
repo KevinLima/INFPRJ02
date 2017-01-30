@@ -1,8 +1,12 @@
+# Import PyGame & Sys modules
+import pygame, sys
+from pygame.locals import *
+
+# Import required modules
+
 from assets.modules.screens.win_screen import *
 from assets.modules.screens.rules_screen import *
 from assets.modules.screens.highscore_screen import *
-from .menu import *
-from .gui2 import *
 from assets.modules.mechanics.dice import *
 from assets.modules.mechanics.player import *
 
