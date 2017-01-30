@@ -1,36 +1,39 @@
 from assets.modules.screens.highscore_screen import *
 from assets.modules.screens.rules_screen import *
 
+# Import required modules
+from assets.modules.gui2.color_pallete import *
+from assets.modules.gui2.screen import *
+
 # Set fps
 fps = 60  # frames per second setting
 fps_clock = pygame.time.Clock()
 
 def title_screen():
+    # Set background
+    screen.set_background(color_pallete.grey900)
     # Initialize buttons
-    start_button = Button(" Play", screen.size.width * 0.5, screen.size.height * 0.5,
+    start_button = Button("Play", screen.width * 0.5, screen.height * 0.5,
                           "large")
-    rules_button = Button(" Help", screen.size.width * 0.5,
-                          screen.size.height * 0.5 + screen.size.height * 0.125,
+    rules_button = Button("Help", screen.width * 0.5,
+                          screen.height * 0.5 + screen.height * 0.125,
                           "large")
-    highscore_button = Button("Highscores", screen.size.width * 0.5,
-                              screen.size.height * 0.5 + screen.size.height * 0.25,
+    highscore_button = Button("Highscores", screen.width * 0.5,
+                              screen.height * 0.5 + screen.height * 0.25,
                               "large")
-    exit_button = Button("Quit", screen.size.width * 0.5,
-                         screen.size.height * 0.5 + screen.size.height * 0.375,
+    exit_button = Button("Quit", screen.width * 0.5,
+                         screen.height * 0.5 + screen.height * 0.375,
                          "large")
 
-    # Initialize background
-    background = pygame.Surface(screen.screen.get_size())
-    background = background.convert()
-    background.fill(color_pallete.grey900)
+
 
     # Initialize text to display
-    font = pygame.font.Font(None, int((screen.size.width * 0.2)))
+    font = pygame.font.Font(None, int((screen.width * 0.2)))
     text = font.render("EUROMAST", 1, color_pallete.grey50)
     textpos = text.get_rect()
-    textpos.centerx = background.get_rect().centerx
-    textpos.centery = background.get_rect().centery - (screen.size.height * 0.25)
-    background.blit(text, textpos)
+    textpos.centerx = screen.background.get_rect().centerx
+    textpos.centery = screen.background.get_rect().centery - (screen.height * 0.25)
+    screen.background.blit(text, textpos)
 
     # Run menu loop
     run_title_screen = True
@@ -55,7 +58,7 @@ def title_screen():
             highscore_screen()
 
         # Display background
-        screen.screen.blit(background, (0, 0))
+        screen.surface.blit(screen.background, (0, 0))
 
         # Update menu buttons
         start_button.track_mouse()
@@ -65,30 +68,30 @@ def title_screen():
 
         # Display buttons
         # start_button.display()
-        pygame.draw.rect(screen.screen, start_button.color, ((start_button.position.x - start_button.size.width * 0.5),
+        pygame.draw.rect(screen.surface, start_button.color, ((start_button.position.x - start_button.size.width * 0.5),
                                                              (start_button.position.y - start_button.size.height * 0.5),
                                                              start_button.size.width, start_button.size.height))
-        screen.screen.blit(start_button.textSurfaceObj, start_button.textRectObj)
+        screen.surface.blit(start_button.textSurfaceObj, start_button.textRectObj)
 
         # rules_button.display()
-        pygame.draw.rect(screen.screen, rules_button.color,
+        pygame.draw.rect(screen.surface, rules_button.color,
                          (rules_button.position.x - rules_button.size.width * 0.5,
                           rules_button.position.y - rules_button.size.height * 0.5,
                           rules_button.size.width, rules_button.size.height))
-        screen.screen.blit(rules_button.textSurfaceObj, rules_button.textRectObj)
+        screen.surface.blit(rules_button.textSurfaceObj, rules_button.textRectObj)
 
         # highscore_button.display()
-        pygame.draw.rect(screen.screen, highscore_button.color,
+        pygame.draw.rect(screen.surface, highscore_button.color,
                          (highscore_button.position.x - highscore_button.size.width * 0.5,
                           highscore_button.position.y - highscore_button.size.height * 0.5,
                           highscore_button.size.width, highscore_button.size.height))
-        screen.screen.blit(highscore_button.textSurfaceObj, highscore_button.textRectObj)
+        screen.surface.blit(highscore_button.textSurfaceObj, highscore_button.textRectObj)
 
         # exit_button.display()
-        pygame.draw.rect(screen.screen, exit_button.color, (exit_button.position.x - exit_button.size.width * 0.5,
+        pygame.draw.rect(screen.surface, exit_button.color, (exit_button.position.x - exit_button.size.width * 0.5,
                                                             exit_button.position.y - exit_button.size.height * 0.5,
                                                             exit_button.size.width, exit_button.size.height))
-        screen.screen.blit(exit_button.textSurfaceObj, exit_button.textRectObj)
+        screen.surface.blit(exit_button.textSurfaceObj, exit_button.textRectObj)
 
         pygame.display.update()
         fps_clock.tick(fps)
