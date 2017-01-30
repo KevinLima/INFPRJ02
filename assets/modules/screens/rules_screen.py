@@ -21,11 +21,26 @@ def rules_screen():
 
     # The rules
     rules = [
-        "There is only one player allowed in a hole",
-        "If a player ends up on another players hole,",
-        "the player who was already on that hole throws a dice",
-        "The number given after throwing the dice",
-        "(numbers 1 to 6) is the number the player has to go down."
+        "Dice:",
+        "-numbers 1 and 2 = 1 step in chosen direction",
+        "-numbers 3 and 4 = 2 steps in chosen direction",
+        "-numbers 5 and 6 = 3 steps in chosen direction",
+        "                                             ",
+        "There is only one player allowed in a hole. If a player ends up on another players hole, the",
+        "player who was already on that hole throws a dice.",
+        "The number given after throwing the dice (numbers 1 to 6) is the number the player in",
+        "the hole has to go down.",
+        " ",
+        "There are four different categories, each with its own color and questions:",
+        "Blue = Sports",
+        "Green = Geography",
+        "Red = Entertainment",
+        "Yellow = History",
+        " ",
+        "If a category runs out of questions, move to the category on your right",
+        " ",
+        "If the player gives a wrong answer, doesn’t understand the question or doesn’t give an ",
+        "answer within 50 seconds it will be considered wrong and the turn goes to the next player."
     ]
     rules_body_font = pygame.font.Font(None, 30)
     # Generate surfaces
