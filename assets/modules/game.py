@@ -72,10 +72,10 @@ def create_grid():
                 square_position.centerx = (square_x + 15)
                 square_position.centery = (square_y+ 15)
 
-                screen.screen.blit(square, (square_x, square_y))
-                screen.screen.blit(square_text, square_position)
+                screen.surface.blit(square, (square_x, square_y))
+                screen.surface.blit(square_text, square_position)
             else:
-                screen.screen.blit(square, (square_x, square_y))
+                screen.surface.blit(square, (square_x, square_y))
             square_y += 40
         square_y = 60
         square_x += 40
