@@ -23,7 +23,7 @@ class Button:
         self.color = color_pallete.red500
         self.action = False
 
-        self.fontObj = pygame.font.Font("roboto-regular.ttf", int(self.size.width * 0.175))
+        self.fontObj = pygame.font.Font("assets/fonts/roboto-regular.ttf", int(self.size.width * 0.175))
         self.textSurfaceObj = self.fontObj.render(self.text, True, color_pallete.grey50, ())
         self.textRectObj = self.textSurfaceObj.get_rect()
         self.textRectObj.center = (self.position.x, self.position.y)

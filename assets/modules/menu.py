@@ -20,6 +20,8 @@ fps_clock = pygame.time.Clock()
 def title_screen():
     # Set background
     screen.set_background(color_pallete.grey900)
+    title_screen_background = pygame.image.load("assets/images/title_screen_background.png")
+
     # Initialize buttons
     start_button = Button("Play", screen.width * 0.5, screen.height * 0.5,
                           "large")
@@ -65,7 +67,7 @@ def title_screen():
             highscore_screen()
 
         # Display background
-        screen.surface.blit(screen.background, (0, 0))
+        screen.surface.blit(title_screen_background, (0, 0))
 
         # Update menu buttons
         start_button.track_mouse()
