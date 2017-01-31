@@ -10,11 +10,12 @@ class Dice:
         return self.number
 
 class Player:
-    def __init__(self, name, color, x, y, width, height, title):
+    def __init__(self, name, color, x, y, width, height, title, X, Z):
         self.name = name
         self.title = title
         self.color = color
         self.position = Position(x, y)
+        self.coordinates = Position(X, Z)
         self.width = width
         self.height = height
 

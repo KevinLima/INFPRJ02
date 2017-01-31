@@ -11,16 +11,13 @@ class Grid:
         self.grid = []
         for x in range(4):
             space = Space(color_pallete.grid_colors[x])
-            xspace = Space(color_pallete.grid_colors[x])
-            xspace.occupy(p1)
-
             list = []
             for y in range(16):
-                if y == 2 and x == 0:
-                    list.append(xspace)
-                else:
-                    list.append(space)
+                list.append(space)
             self.grid.append(list)
+        xsp = Space((255,255,255))
+        xsp.occupy(p1)
+        self.grid[0][2] = xsp
 
     def create_grid(self):
         # Rect((left, top), (width, height)) -> Rect
@@ -65,9 +62,8 @@ class Grid:
     def remove_player(self, x_axis, y_axis):
         for x in self.grid:
             for y in x:
-                if y.player.title == "P1":
-                    y.vacate()
-                    print("Vacate")
+                if y.empty == False:
+                    print(y.player)
 
 
 
