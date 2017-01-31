@@ -41,19 +41,30 @@ def gameplay():
     direction = 1
 
     # Initialize Players
-    player_1 = Player("Player 1", color_pallete.green500, screen.width * 0.25,
-                      screen.height * 0.75, screen.width * 0.0125,
-                      screen.height * 0.05, "P1")
-    player_2 = Player("Player 2", color_pallete.blue500, screen.width * 0.3,
-                      screen.height * 0.75, screen.width * 0.0125,
-                      screen.height * 0.05, "P2")
+    player_1 = Player("Player 1", color_pallete.green500,
+                      screen.width * 0.25,
+                      screen.height * 0.75,
+                      screen.width * 0.0125,
+                      screen.height * 0.05,
+                      "P1",
+                      0,15)
+
+    player_2 = Player("Player 2",
+                      color_pallete.blue500,
+                      screen.width * 0.3,
+                      screen.height * 0.75,
+                      screen.width * 0.0125,
+                      screen.height * 0.05,
+                      "P2",
+                      1, 14)
 
 
     # GAME
     background = pygame.Surface(screen.surface.get_size())
     background = background.convert()
     background.fill(color_pallete.purple500)
-    grid = Grid()
+    grid = Grid(player_1, player_2)
+    grid.move_player(player_2, 0, 1)
 
     # MAIN GAME LOOP
     while True:
@@ -113,6 +124,7 @@ def gameplay():
             direction_button.position.y - direction_button.size.height * 0.5,
             direction_button.size.width, direction_button.size.height))
         screen.surface.blit(direction_button.textSurfaceObj, direction_button.textRectObj)
+
         grid.create_grid()
 
         if direction_button.action:

@@ -10,11 +10,12 @@ class Dice:
         return self.number
 
 class Player:
-    def __init__(self, name, color, x, y, width, height, title):
+    def __init__(self, name, color, x, y, width, height, title, X, Z):
         self.name = name
         self.title = title
         self.color = color
         self.position = Position(x, y)
+        self.coordinates = Position(X, Z)
         self.width = width
         self.height = height
 
@@ -23,5 +24,5 @@ class Player:
             print(self.name + " won!")
             self.position.y = 550
     def __repr__(self):
-        return "Player Obj\n Name: {}\n Color: {}\n".format(self.name, self.color)
+        return "Player Obj\n Name: {}\n Color: {}\n Coordinates: {}\n".format(self.name, self.color, self.coordinates)
 
