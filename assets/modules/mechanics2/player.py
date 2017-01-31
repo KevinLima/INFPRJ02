@@ -7,6 +7,7 @@ class Player:
         self.position = Position(x, y)
         self.width = width
         self.height = height
+        self.direction = 1
 
     def update(self):
         if self.position.y <= 0:

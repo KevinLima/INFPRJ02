@@ -7,8 +7,8 @@ pygame.init()
 
 class Screen:
     def __init__(self):
-        self.width = 800
-        self.height = 600
+        self.width = 1280
+        self.height = 720
         self.surface = pygame.display.set_mode((self.width, self.height))
         # self.surface = pygame.display.set_mode((self.width, self.height),pygame.FULLSCREEN)
         self.caption = pygame.display.set_caption("INFPRJ02")

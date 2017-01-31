@@ -2,6 +2,7 @@ from assets.modules.events_helper import event_exist
 from assets.modules.gui import *
 # Import required modules
 from assets.modules.gui2.screen import *
+
 def rules_screen():
     # Initialize buttons
     back_button = Button("BACK", (screen.width * 0.5),

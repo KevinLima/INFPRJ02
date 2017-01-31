@@ -1,5 +1,5 @@
 from assets.modules.game import *
-
+from assets.modules.screens.title_screen import *
 pygame.init()
 
 
@@ -7,7 +7,7 @@ def main():
     # Uncomment te following line to demo the win screen
     #win_screen("John Doe")
 
-    title_screen2()
+    title_screen()
     gameplay()
 
 main()
