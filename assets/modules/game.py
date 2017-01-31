@@ -1,6 +1,5 @@
 from assets.modules.screens.win_screen import *
-from assets.modules.screens.rules_screen import *
-from assets.modules.screens.highscore_screen import *
+from assets.modules.screens.help_screen import *
 from assets.modules.screens.title_screen import *
 from .gui import *
 from .mechanics import Dice, Player
@@ -69,7 +68,7 @@ def gameplay():
 
         # Show the rules screen
         if rules_button.action:
-            rules_screen()
+            help_screen()
 
         # Get mouse values
         mouse_position_x, mouse_position_y = pygame.mouse.get_pos()

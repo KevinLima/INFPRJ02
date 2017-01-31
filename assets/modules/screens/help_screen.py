@@ -7,7 +7,6 @@ from assets.modules.gui2.button import *
 from assets.modules.gui2.color_pallete import *
 from assets.modules.gui2.heading import *
 from assets.modules.gui2.screen import *
-from assets.modules.screens.highscore_screen import *
 from assets.modules.screens.rules_screen import *
 
 # Initialize PyGame
