@@ -1,7 +1,7 @@
 from assets.modules.screens.win_screen import *
 from assets.modules.screens.rules_screen import *
 from assets.modules.screens.highscore_screen import *
-from .menu import *
+from assets.modules.screens.title_screen import *
 from .gui import *
 from .mechanics import Dice, Player
 from .space import *
@@ -65,7 +65,7 @@ def gameplay():
 
         # IF YOU PRESS OPTIONS, RUN STARTMENU
         if quit_button.action:
-            title_screen2()
+            title_screen()
 
         # Show the rules screen
         if rules_button.action:
@@ -175,6 +175,7 @@ def gameplay():
         # Update Players
         player_1.update()
         player_2.update()
+
         ## draw player_1
         pygame.draw.rect(screen.surface, player_1.color, (
         player_1.position.x - player_1.width * 0.5, player_1.position.y - player_1.height * 0.5, player_1.width, player_1.height))

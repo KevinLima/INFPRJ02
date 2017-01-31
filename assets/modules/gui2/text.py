@@ -9,16 +9,22 @@ from assets.modules.gui2.screen import *
 # Initialize PyGame
 pygame.init()
 
-class Text:
-    def __init__(self, text, color, size, x, y):
-        self.font = pygame.font.SysFont("assets/fonts/roboto-regular.ttf", int(size))
+class Text999:
+    def __init__(self, text, font, color, size, x, y):
+        if font == "material-icons-regular":
+            self.font = pygame.font.SysFont("assets/fonts/material-icons-regular.ttf", int(size))
+
+        elif font == "roboto-mono-regular":
+            self.font = pygame.font.SysFont("assets/fonts/roboto-mono-regular.ttf", int(size))
+
+        elif font == "roboto-regular":
+            self.font = pygame.font.SysFont("assets/fonts/roboto-regular.ttf", int(size))
+
+        elif font == "roboto-regular-bold":
+            self.font = pygame.font.SysFont("assets/fonts/roboto-bold.ttf", int(size))
+
         self.text = self.font.render(text, 1, color)
         self.position = Position(x, y)
         screen.surface.blit(self.text, (self.position.x, self.position.y))
         pygame.display.update()
-
-'''
-text = Text("Text", color_pallete.grey50, screen.width * 0.25,
-            screen.width * 0.25, screen.height * 0.25)
-'''
 

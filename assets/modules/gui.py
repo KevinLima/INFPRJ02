@@ -94,12 +94,3 @@ class Position:
         self.y = y
     def __repr__(self):
         return "Position Obj\n x: {}\n y: {}".format(self.x, self.y)
-"""
-class Screen():
-    def __init__(self):
-        self.size = Size(1280, 720)
-        self.screen = pygame.display.set_mode((self.size.width, self.size.height))
-
-screen = Screen()
-"""
-
