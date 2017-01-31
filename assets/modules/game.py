@@ -47,7 +47,8 @@ def gameplay():
                       screen.height * 0.75,
                       screen.width * 0.0125,
                       screen.height * 0.05,
-                      "P1")
+                      "P1",
+                      0,15)
 
     player_2 = Player("Player 2",
                       color_pallete.blue500,
@@ -55,7 +56,8 @@ def gameplay():
                       screen.height * 0.75,
                       screen.width * 0.0125,
                       screen.height * 0.05,
-                      "P2")
+                      "P2",
+                      1, 14)
 
 
     # GAME
@@ -63,6 +65,7 @@ def gameplay():
     background = background.convert()
     background.fill(color_pallete.purple500)
     grid = Grid(player_1, player_2)
+    grid.move_player(player_2, 0, 1)
 
     # MAIN GAME LOOP
     while True:

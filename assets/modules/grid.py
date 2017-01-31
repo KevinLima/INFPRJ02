@@ -6,8 +6,6 @@ from .space import *
 class Grid:
 
     def __init__(self, p1, p2):
-        self.p1 = p1
-        self.p2 = p2
         self.grid = []
         for x in range(4):
             space = Space(color_pallete.grid_colors[x])
@@ -15,9 +13,19 @@ class Grid:
             for y in range(16):
                 list.append(space)
             self.grid.append(list)
-        xsp = Space((255,255,255))
-        xsp.occupy(p1)
-        self.grid[0][2] = xsp
+
+
+        # Setting up after new game
+        p1_space = Space(color_pallete.grid_colors[(p1.coordinates.x)])
+        p1_space.occupy(p1)
+        p2_space = Space(color_pallete.grid_colors[(p2.coordinates.x)])
+        p2_space.occupy(p2)
+        self.insert_player(p1_space, p1.coordinates.x, p1.coordinates.y)
+        self.insert_player(p2_space, p2.coordinates.x, p2.coordinates.y)
+
+        #self.move_player(p2, 1, 0)
+
+
 
     def create_grid(self):
         # Rect((left, top), (width, height)) -> Rect
@@ -56,17 +64,18 @@ class Grid:
 
 
     def move_player(self, player, x, y):
-        pass
+        intx = player.coordinates.x + x
+        inty = player.coordinates.y + y
+        print(intx)
+        print(inty)
+        self.grid[intx][inty].occupy(player)
+
+        self.remove_player(player.coordinates.x, player.coordinates.y)
 
 
-    def remove_player(self, x_axis, y_axis):
-        for x in self.grid:
-            for y in x:
-                if y.empty == False:
-                    print(y.player)
+    def remove_player(self, x, y):
+        self.grid[x][y].vacate()
 
 
-
-
-    def insert_player(self, x, y):
-        pass
+    def insert_player(self, value, x, y):
+        self.grid[x][y] = value

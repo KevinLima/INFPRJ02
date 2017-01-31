@@ -24,5 +24,5 @@ class Player:
             print(self.name + " won!")
             self.position.y = 550
     def __repr__(self):
-        return "Player Obj\n Name: {}\n Color: {}\n".format(self.name, self.color)
+        return "Player Obj\n Name: {}\n Color: {}\n Coordinates: {}\n".format(self.name, self.color, self.coordinates)
 
