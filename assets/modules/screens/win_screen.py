@@ -1,63 +1,55 @@
-from assets.modules.events_helper import event_exist
-from assets.modules.gui import *
+# Import PyGame & Sys modules
+import pygame, sys
+from pygame.locals import *
+
 # Import required modules
+from assets.modules.gui2.button import *
+from assets.modules.gui2.color_pallete import *
+from assets.modules.gui2.heading import *
 from assets.modules.gui2.screen import *
-def win_screen(winners_name):
-    # Initialize buttons
+from assets.modules.gui2.text import *
+from assets.modules.screens.rules_screen import *
 
-    exit_button = Button("EXIT",(screen.width * 0.5),
-                         (screen.height - (screen.height * 0.1)),
-                         "large")
+# Initialize PyGame
+pygame.init()
 
-    # Initialize background
-    background = pygame.Surface(screen.surface.get_size())
-    background = background.convert()
-    background.fill(color_pallete.grey900)
+# Win screen
+def win_screen(winner_name):
+    # Set background image
+    screen.set_background_image("assets/images/help_screen_background.png")
 
-    # Initialize text to display
-    font = pygame.font.Font(None, int((screen.width * 0.2)))
-    game_over_text = font.render("Game Over", 1, color_pallete.grey50)
-    game_over_text_position = game_over_text.get_rect()
-    game_over_text_position.centerx = background.get_rect().centerx
-    game_over_text_position.centery = background.get_rect().centery - (screen.height * 0.25)
-    background.blit(game_over_text, game_over_text_position)
+    # Initialize back button
+    back_button = Button999("Back", color_pallete.pink300, color_pallete.pink500)
 
-    winner_font = pygame.font.Font(None, int((screen.width * 0.1)))
-    winner_text = winner_font.render("The winner is..... {}".format(winners_name),1, color_pallete.grey50)
-    winner_text_position = winner_text.get_rect()
-    winner_text_position.centerx = background.get_rect().centerx
-    winner_text_position.centery = game_over_text_position.centery + 100
-    background.blit(winner_text, winner_text_position)
-
-    # Run menu loop
-    run_win_screen = True
-
-    while run_win_screen:
-        events = pygame.event.get()
-        if event_exist(events, pygame.QUIT):
-            print("quit button pressed")
-            pygame.quit()
-            exit()
-
-        if exit_button.action:
-            print("exit button pressed")
-            pygame.quit()
-            exit()
-
-        # Display background
-        screen.surface.blit(background, (0, 0))
-
-        # Update menu buttons
-        exit_button.track_mouse()
-
-        # Display buttons
-
-        # exit_button.display()
-        pygame.draw.rect(screen.surface, exit_button.color, (exit_button.position.x - exit_button.size.width * 0.5,
-                                                            exit_button.position.y - exit_button.size.height * 0.5,
-                                                            exit_button.size.width, exit_button.size.height))
-        screen.surface.blit(exit_button.textSurfaceObj, exit_button.textRectObj)
+    winner = Text999("Winner: {}".format(winner_name), "roboto-regular", color_pallete.grey50, screen.width * 0.1, screen.width * 0.1, screen.height * 0.5)
 
 
+    heading = Heading("GAME OVER", screen.width * 0.125, screen.height * 0.05)
+
+    # Set PyGame clock
+    clock = pygame.time.Clock()
+
+    # Title screen loop
+    while True:
+        mouse = pygame.mouse.get_pos()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if back_button.obj.collidepoint(mouse):
+                    return
+
+        # Draw back button
+        back_button.draw(screen, mouse, (screen.width * 0.8,
+                                         screen.height * 0.9,
+                                         screen.width * 0.15,
+                                         screen.height * 0.075),
+                                         (screen.width * 0.8,
+                                          screen.height * 0.9))
+
+        # Update PyGame screen
         pygame.display.update()
+        clock.tick(30)
 

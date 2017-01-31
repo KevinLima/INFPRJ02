@@ -65,6 +65,7 @@ class ColorPalette:
         self.grey800 = (66, 66, 66)
         self.grey900 = (33, 33, 33)
         self.indigo500 = (63, 81, 181)
+        self.orange500 = (255,152,0)
         self.pink300 = (240,98,146)
         self.pink500 = (233,30,99)
         self.red500 = (244, 67, 54)
