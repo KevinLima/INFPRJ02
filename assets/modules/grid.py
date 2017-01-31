@@ -65,9 +65,9 @@ class Grid:
     def remove_player(self, x_axis, y_axis):
         for x in self.grid:
             for y in x:
-                if y == y_axis and x == x_axis:
+                if y.player.title == "P1":
                     y.vacate()
-                    print("vacate")
+                    print("Vacate")
 
 
 
