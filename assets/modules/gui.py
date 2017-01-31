@@ -13,7 +13,7 @@ class Button:
         self.text = text
         self.position = Position(x, y)
         if size == "small":
-            self.size = Size(screen.width * 0.125, screen.height * 0.05)
+            self.size = Size(screen.width * 0.03, screen.height * 0.05)
         elif size == "medium":
             self.size = Size(screen.width * 0.125, screen.height * 0.05)
         elif size == "large":
@@ -70,6 +70,8 @@ class ColorPalette:
         self.red500 = (244, 67, 54)
         self.yellow500 = (255, 233, 59)
         self.purple500 = (142, 36, 170)
+        self.black = (0,0,0)
+        self.white = (255,255,255)
 
         #Colors for the grid
         self.grid_colors =[
