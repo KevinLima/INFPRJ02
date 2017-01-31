@@ -8,6 +8,7 @@ from assets.modules.gui2.color_pallete import *
 from assets.modules.gui2.screen import *
 from assets.modules.screens.help_screen import *
 from assets.modules.screens.highscore_screen import *
+from assets.modules.screens.highscores_screen import *
 from assets.modules.screens.rules_screen import *
 
 # Initialize PyGame
@@ -41,7 +42,7 @@ def title_screen():
                     return
 
                 elif highscores_button.obj.collidepoint(mouse):
-                    highscore_screen()
+                    highscores_screen()
                     screen.set_background_image("assets/images/title_screen_background.png")
 
                 elif help_button.obj.collidepoint(mouse):
