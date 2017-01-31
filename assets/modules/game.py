@@ -64,7 +64,6 @@ def gameplay():
     background = background.convert()
     background.fill(color_pallete.purple500)
     grid = Grid(player_1, player_2)
-    grid.move_player(player_2, 0, 1)
 
     # MAIN GAME LOOP
     while True:
