@@ -41,7 +41,8 @@ def gameplay():
     direction = 1
 
     # Initialize Players
-    player_1 = Player("Player 1", color_pallete.green500,
+    player_1 = Player("Player 1",
+                      color_pallete.green500,
                       screen.width * 0.25,
                       screen.height * 0.75,
                       screen.width * 0.0125,
@@ -56,7 +57,7 @@ def gameplay():
                       screen.width * 0.0125,
                       screen.height * 0.05,
                       "P2",
-                      1, 14)
+                      2, 15)
 
 
     # GAME
@@ -150,29 +151,38 @@ def gameplay():
             dice_button.update_text()
             dice_button.action = False
 
-            if direction == 0:
-                if turn == 0:
-                    player_1.position.x -= player_1.height * dice_number
-                if turn == 1:
-                    player_2.position.x -= player_2.height * dice_number
 
-            if direction == 1:
+            if direction == 0: #LEFT
                 if turn == 0:
-                    player_1.position.y -= player_1.height * dice_number
+                    #player_1.position.x -= player_1.height * dice_number
+                    grid.move_player(player_1, -1, 0)
                 if turn == 1:
-                    player_2.position.y -= player_2.height * dice_number
+                    #player_2.position.x -= player_2.height * dice_number
+                    grid.move_player(player_2, -1, 0)
 
-            if direction == 2:
+            if direction == 1: #UP
                 if turn == 0:
-                    player_1.position.x += player_1.height * dice_number
+                    #player_1.position.y -= player_1.height * dice_number
+                    grid.move_player(player_1, 0, 1)
                 if turn == 1:
-                    player_2.position.x += player_2.height * dice_number
+                    #player_2.position.y -= player_2.height * dice_number
+                    grid.move_player(player_2, 0, 1)
 
-            if direction == 3:
+            if direction == 2:  #RIGHT
                 if turn == 0:
-                    player_1.position.y += player_1.height * dice_number
+                    #player_1.position.x += player_1.height * dice_number
+                    grid.move_player(player_1, 1, 0)
                 if turn == 1:
-                    player_2.position.y += player_2.height * dice_number
+                    #player_2.position.x += player_2.height * dice_number
+                    grid.move_player(player_2, 1, 0)
+
+            if direction == 3:  #DOWN
+                if turn == 0:
+                    #player_1.position.y += player_1.height * dice_number
+                    grid.move_player(player_1, 0, -1)
+                if turn == 1:
+                    #player_2.position.y += player_2.height * dice_number
+                    grid.move_player(player_2, 0, -1)
 
         if next_turn.action:
             pygame.time.wait(100)

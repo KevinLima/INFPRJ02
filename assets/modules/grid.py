@@ -23,8 +23,6 @@ class Grid:
         self.insert_player(p1_space, p1.coordinates.x, p1.coordinates.y)
         self.insert_player(p2_space, p2.coordinates.x, p2.coordinates.y)
 
-        #self.move_player(p2, 1, 0)
-
 
     # Creates a 2d list (4x16) of Space()
     def create_grid(self):
@@ -36,14 +34,16 @@ class Grid:
         square_y = 60
 
         square_font = pygame.font.Font(None, 30)
-        self.remove_player(2, 0)
 
         for x in self.grid:
             for y in x:
                 square.fill(y.color)
                 if y.empty == False:
+                    # This is the P1 or P2 text you see in the grid
                     square_text = square_font.render(y.player.title, 1, (0, 0, 0))
                     square_position = square_text.get_rect()
+
+                    # The center of the a grid space
                     square_position.centerx = (square_x + 15)
                     square_position.centery = (square_y + 15)
 
@@ -68,7 +68,17 @@ class Grid:
         # DO NOT use the parameters to give a position, only the change in position
         # You can use negative and positive numbers
     def move_player(self, player, x, y):
-        self.grid[(player.coordinates.x + x)][(player.coordinates.y + y)].occupy(player)
+
+        new_x = player.coordinates.x + x
+        new_y = player.coordinates.y + y
+
+        if new_x < 0: new_x = 0
+        if new_x > 3: new_x = 3
+
+        if new_y < 0: new_y = 0
+        if new_y > 14: new_y = 14
+
+        self.grid[new_x][new_y].occupy(player)
         self.remove_player(player.coordinates.x, player.coordinates.y)
 
     # This is used to remove a player that has been inserted in a other position

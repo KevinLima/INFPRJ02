@@ -92,3 +92,5 @@ ENV/
 .idea/markdown-navigator.xml
 
 .idea/markdown-navigator/profiles_settings.xml
+
+assets/.DS_Store
