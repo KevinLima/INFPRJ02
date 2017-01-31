@@ -21,7 +21,7 @@ class Button999:
 
     def label(self):
         '''button label font'''
-        font = pygame.font.Font("roboto-bold.ttf", int(screen.width * 0.025))
+        font = pygame.font.Font("assets/fonts/roboto-bold.ttf", int(screen.width * 0.025))
         return font.render(self.text, 1, self.font_color)
 
     def color(self):
