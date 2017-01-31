@@ -7,7 +7,6 @@ from assets.modules.gui2.button import *
 from assets.modules.gui2.color_pallete import *
 from assets.modules.gui2.screen import *
 from assets.modules.screens.help_screen import *
-from assets.modules.screens.highscore_screen import *
 from assets.modules.screens.highscores_screen import *
 from assets.modules.screens.rules_screen import *
 
