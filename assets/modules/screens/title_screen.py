@@ -6,6 +6,7 @@ from pygame.locals import *
 from assets.modules.gui2.button import *
 from assets.modules.gui2.color_pallete import *
 from assets.modules.gui2.screen import *
+from assets.modules.screens.help_screen import *
 from assets.modules.screens.highscore_screen import *
 from assets.modules.screens.rules_screen import *
 
@@ -44,11 +45,10 @@ def title_screen():
                     screen.set_background_image("assets/images/title_screen_background.png")
 
                 elif help_button.obj.collidepoint(mouse):
-                    rules_screen()
+                    help_screen()
                     screen.set_background_image("assets/images/title_screen_background.png")
 
                 elif quit_button.obj.collidepoint(mouse):
-                    print("Quit button clicked")
                     pygame.quit()
                     sys.exit()
 
