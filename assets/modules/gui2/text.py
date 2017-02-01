@@ -12,16 +12,16 @@ pygame.init()
 class Text999:
     def __init__(self, text, font, color, size, x, y):
         if font == "material-icons-regular":
-            self.font = pygame.font.SysFont("assets/fonts/material-icons-regular.ttf", int(size))
+            self.font = pygame.font.Font("assets/fonts/material-icons-regular.ttf", int(size))
 
         elif font == "roboto-mono-regular":
-            self.font = pygame.font.SysFont("assets/fonts/roboto-mono-regular.ttf", int(size))
+            self.font = pygame.font.Font("assets/fonts/roboto-mono-regular.ttf", int(size))
 
         elif font == "roboto-regular":
-            self.font = pygame.font.SysFont("assets/fonts/roboto-regular.ttf", int(size))
+            self.font = pygame.font.Font("assets/fonts/roboto-regular.ttf", int(size))
 
         elif font == "roboto-regular-bold":
-            self.font = pygame.font.SysFont("assets/fonts/roboto-bold.ttf", int(size))
+            self.font = pygame.font.Font("assets/fonts/roboto-bold.ttf", int(size))
 
         self.text = self.font.render(text, 1, color)
         self.position = Position(x, y)

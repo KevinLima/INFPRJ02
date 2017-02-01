@@ -6,6 +6,7 @@ from pygame.locals import *
 from assets.modules.gui2.button import *
 from assets.modules.gui2.color_pallete import *
 from assets.modules.gui2.screen import *
+from assets.modules.gui2.text import *
 from assets.modules.screens.help_screen import *
 from assets.modules.screens.highscores_screen import *
 from assets.modules.screens.rules_screen import *
@@ -57,26 +58,31 @@ def title_screen():
                                          screen.height * 0.25,
                                          screen.width * 0.375,
                                          screen.height * 0.075),
-                                         (screen.width * 0.05,
+                                         (screen.width * 0.1,
                                           screen.height * 0.25))
         highscores_button.draw(screen, mouse, (screen.width * 0.05,
                                                screen.height * 0.35,
                                                screen.width * 0.375,
                                                screen.height * 0.075),
-                                               (screen.width * 0.05,
+                                               (screen.width * 0.1,
                                                 screen.height * 0.35))
         help_button.draw(screen, mouse, (screen.width * 0.05,
                                          screen.height * 0.45,
                                          screen.width * 0.375,
                                          screen.height * 0.075),
-                                         (screen.width * 0.05,
+                                         (screen.width * 0.1,
                                           screen.height * 0.45))
         quit_button.draw(screen, mouse, (screen.width * 0.8,
                                          screen.height * 0.9,
                                          screen.width * 0.15,
                                          screen.height * 0.075),
-                                         (screen.width * 0.8,
+                                         (screen.width * 0.85,
                                           screen.height * 0.9))
+
+        play_icon = Text999("", "material-icons-regular", color_pallete.orange500, screen.width * 0.04, screen.width * 0.05, screen.height * 0.25)
+        highscores_icon = Text999("", "material-icons-regular", color_pallete.orange500, screen.width * 0.04, screen.width * 0.05, screen.height * 0.35)
+        help_icon = Text999("", "material-icons-regular", color_pallete.orange500, screen.width * 0.04, screen.width * 0.05, screen.height * 0.45)
+        quit_icon = Text999("", "material-icons-regular", color_pallete.orange500, screen.width * 0.04, screen.width * 0.8, screen.height * 0.9)
 
         # Update PyGame screen
         pygame.display.update()

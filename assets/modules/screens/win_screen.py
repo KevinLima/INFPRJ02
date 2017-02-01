@@ -16,7 +16,7 @@ pygame.init()
 # Win screen
 def win_screen(winner_name):
     # Set background image
-    screen.set_background_image("assets/images/help_screen_background.png")
+    screen.set_background_image("assets/images/background.png")
 
     # Initialize back button
     back_button = Button999("Back", color_pallete.pink300, color_pallete.pink500)

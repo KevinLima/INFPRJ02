@@ -18,7 +18,7 @@ pygame.init()
 # Title screen
 def question_screen(catagory):
     # Set background image
-    screen.set_background_image("assets/images/question_screen_background.png")
+    screen.set_background_image("assets/images/background.png")
 
     # Assign query to question variable
     question = questions.get_question(catagory)

@@ -82,7 +82,7 @@ def gameplay():
         screen.surface.blit(background, (0, 0))
 
         # Set background image
-        screen.set_background_image("assets/images/game_screen_background.png")
+        screen.set_background_image("assets/images/background.png")
 
         # button update
         quit_button.track_mouse()
