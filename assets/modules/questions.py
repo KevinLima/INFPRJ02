@@ -8,8 +8,9 @@ class Questions:
 
     def get_questions(self):
 
-        # Dummy questions
+        # The questions
         self.question_list = retrieve_questions()
+
         print(self.question_list)
         self.categories = [
             "Sport",

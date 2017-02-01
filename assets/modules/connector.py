@@ -22,22 +22,24 @@ def retrieve_questions():
     #if 0 <= index < len(list):
 
     for x in data:
-        if x[5] is not None:
+        if x[6] is not None:
             list = [
                 x[0],
                 x[1],
                 x[2],
-                [x[3],
-                 x[4],
-                 x[5]]
+                x[3],
+                [x[4],
+                 x[5],
+                 x[6]]
             ]
         else:
             list = [
                 x[0],
                 x[1],
                 x[2],
-                [x[3],
-                 x[4]]
+                x[3],
+                [x[4],
+                 x[5]]
             ]
         qlist.append(list)
 
