@@ -148,36 +148,44 @@ def gameplay():
                 dice_button.action = False
                 player_trew_dice = True
 
+                amount_of_steps = 0
+
+                if dice_number == 1 or dice_number == 2:
+                    amount_of_steps = 1
+                if dice_number == 3 or dice_number == 4:
+                    amount_of_steps = 2
+                if dice_number == 5 or dice_number == 6:
+                    amount_of_steps = 3
 
                 if direction == 0: #LEFT
                     if turn == 0:
-                        player_1.relocate(grid.move_player(player_1, (dice_number * -1), 0))
+                        player_1.relocate(grid.move_player(player_1, (amount_of_steps * -1), 0))
                     if turn == 1:
-                        player_2.relocate(grid.move_player(player_2, (dice_number * -1), 0))
+                        player_2.relocate(grid.move_player(player_2, (amount_of_steps * -1), 0))
 
 
                 if direction == 1: #UP
                     if turn == 0:
-                        player_1.relocate(grid.move_player(player_1, 0, (dice_number * -1)))
+                        player_1.relocate(grid.move_player(player_1, 0, (amount_of_steps * -1)))
 
                     if turn == 1:
-                        player_2.relocate(grid.move_player(player_2, 0, (dice_number * -1)))
+                        player_2.relocate(grid.move_player(player_2, 0, (amount_of_steps * -1)))
 
 
                 if direction == 2:  #RIGHT
                     if turn == 0:
-                        player_1.relocate(grid.move_player(player_1, dice_number, 0))
+                        player_1.relocate(grid.move_player(player_1, amount_of_steps, 0))
 
                     if turn == 1:
-                        player_2.relocate(grid.move_player(player_2, dice_number, 0))
+                        player_2.relocate(grid.move_player(player_2, amount_of_steps, 0))
 
 
                 if direction == 3:  #DOWN
                     if turn == 0:
-                        player_1.relocate(grid.move_player(player_1, 0, dice_number))
+                        player_1.relocate(grid.move_player(player_1, 0, amount_of_steps))
 
                     if turn == 1:
-                        player_2.relocate(grid.move_player(player_2, 0, dice_number))
+                        player_2.relocate(grid.move_player(player_2, 0, amount_of_steps))
 
 
 

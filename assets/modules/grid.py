@@ -31,7 +31,7 @@ class Grid:
         square = pygame.Surface((30, 30))
         square = square.convert()
 
-        square_x = 40
+        square_x = 520
         square_y = 60
 
         square_font = pygame.font.Font(None, 30)
