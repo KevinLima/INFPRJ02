@@ -7,11 +7,10 @@ class Questions:
         self.get_questions()
 
     def get_questions(self):
-
         # The questions
         self.question_list = retrieve_questions()
 
-        print(self.question_list)
+        # print(self.question_list)
         self.categories = [
             "Sport",
             "Geografie",
@@ -73,3 +72,5 @@ class Questions:
         else:
             print("GAME OVER: all the questions have been used")
             # TODO: end the game
+
+questions = Questions()
