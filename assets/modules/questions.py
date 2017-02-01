@@ -1,5 +1,5 @@
 from random import randint
-
+from .connector import *
 
 class Questions:
 
@@ -9,79 +9,8 @@ class Questions:
     def get_questions(self):
 
         # Dummy questions
-        self.question_list = [
-            [
-                0,  # ID
-                "Entertainment",  # Category
-                "Welke bar in Rotterdam werd in 2009 de beste bar ter wereld benoemd?",  # Question
-                ["De Witte Aap",
-                 "Het NRC",
-                 "Café de Beurs"],  # Answers
-                1  # Index of the correct answer
-            ],
-            [
-                1,  # ID
-                "Entertainment",  # Category
-                "In welke bioscoop vindt het Wildlife Film Festival plaats?",  # Question
-                ["Cinerama",
-                 "Pathé de Kuip",
-                 "Pathé Schouwburgplein"],  # Answers
-                0  # Index of the correct answer
-            ],
-            [
-                2,  # ID
-                "Geografie",  # Category
-                "Rotterdam is de hoofdstad van Nederland.",  # Question
-                ["WAAR",
-                 "NIET WAAR"],  # Answers
-                1  # Index of the correct answer
-            ],
-            [
-                3,  # ID
-                "Geografie",  # Category
-                "Hoeveel millimeter regen valt er gemiddeld per jaar in Rotterdam?",  # Question
-                ["760 tot 780 mm",
-                 "780 tot 800mm",
-                 "800 tot 820mm"],  # Answers
-                3  # Index of the correct answer
-            ],
-            [
-                4,  # ID
-                "Sport",  # Category
-                "Wat is een hockeyclub uit Rotterdam?",  # Question
-                ["HC Rotterdam",
-                 "Focus",
-                 "HVGR"],  # Answers
-                1  # Index of the correct answer
-            ],
-            [
-                5,  # ID
-                "Sport",  # Category
-                "Welke Olympiër groeide op in Rotterdam?",  # Question
-                ["Dorian van Rijsselberghe",
-                 "Marhinde Verkerk",
-                 "Edith Bosch"],  # Answers
-                2  # Index of the correct answer
-            ],
-            [
-                6,  # ID
-                "Geschiedenis",  # Category
-                "Wanneer is diergaarde Blijdorp geopend?",  # Question
-                ["1855",
-                 "1915",
-                 "1075"],  # Answers
-                1  # Index of the correct answer
-            ],
-            [
-                7,  # ID
-                "Geschiedenis",  # Category
-                "Waar dankt Rotterdam haar naam aan?",  # Question
-                ["Kooplieden hebben deze naam bedacht",
-                 "Aan de rivier de Rotte",
-                 "Er was een dam aangelegd in de Maas"],  # Answers
-                3  # Index of the correct answer
-            ]
-        ]
+        self.question_list = retrieve_questions()
+        print(self.question_list)
         self.categories = [
             "Sport",
             "Geografie",
