@@ -23,8 +23,6 @@ class Grid:
         self.insert_player(p1_space, p1.coordinates.x, p1.coordinates.y)
         self.insert_player(p2_space, p2.coordinates.x, p2.coordinates.y)
 
-        #self.move_player(p2, 1, 0)
-
 
     # Creates a 2d list (4x16) of Space()
     def create_grid(self):
