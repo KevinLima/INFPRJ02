@@ -14,7 +14,6 @@ def connector(query):
 def retrieve_questions():
     array_vullen = "SELECT id, vraag_cat, vraag, vraag_goed, antwoord1, antwoord2, antwoord3 FROM vragen"
 
-
     data = connector(array_vullen)
     #print(data)  # Result van één query printen
     # print(connector(array_vullen1))  # Result van een query (afhankelijk van andere queries) printen
