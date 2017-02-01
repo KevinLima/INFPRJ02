@@ -1,14 +1,9 @@
-from assets.modules.screens.win_screen import *
-from assets.modules.screens.help_screen import *
+from assets.modules.gui2.subheading import *
 from assets.modules.screens.title_screen import *
+from .grid import *
 from .gui import *
 from .mechanics import Dice
 from .mechanics2.player import *
-from .space import *
-from .grid import *
-
-# Import required modules
-from assets.modules.gui2.screen import *
 
 # Set fps
 fps = 30  # frames per second setting
@@ -47,12 +42,14 @@ def gameplay():
     player_1 = Player("Player 1",
                       color_pallete.green500,
                       "P1",
-                      0,15)
+                      0, 15,
+                      0)
 
     player_2 = Player("Player 2",
                       color_pallete.blue500,
                       "P2",
-                      2, 15)
+                      2, 15,
+                      0)
 
 
     # GAME
@@ -188,7 +185,6 @@ def gameplay():
                         player_2.relocate(grid.move_player(player_2, 0, amount_of_steps))
 
 
-
         if next_turn.action:
             pygame.time.wait(100)
             # Keep switching between the players turn
@@ -204,14 +200,28 @@ def gameplay():
             next_turn.update_text()
             next_turn.action = False
 
+        players_scoreboard = [
+            player_1.name + " - " + str(player_1.score),
+            player_2.name + " - " + str(player_2.score)
+        ]
+
+        score_body_font = pygame.font.Font("assets/fonts/roboto-regular.ttf", int((screen.width * 0.0175)))
+
+        # Generate surfaces
+        text_surfaces = [score_body_font.render(player, 1, color_pallete.grey50) for player in players_scoreboard]
+
         # Update Players
         player_1.update()
         player_2.update()
         grid.create_grid()
 
+        # Blit the text surfaces
+        for index, surface in enumerate(text_surfaces):
+            screen.surface.blit(surface,
+                                ((screen.width * 0.1), (index * surface.get_height()) + (int(screen.height * 0.30))))
+
+        subheading = Subheading("Scoreboard", screen.width * 0.1, screen.height * 0.26)
+
         # Display screen.surface, according to framerate
         pygame.display.update()
         fps_clock.tick(fps)
-
-
-
