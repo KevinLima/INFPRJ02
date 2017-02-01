@@ -62,7 +62,6 @@ def gameplay():
     # GAME
     background = pygame.Surface(screen.surface.get_size())
     background = background.convert()
-    background.fill(color_pallete.purple500)
     grid = Grid(player_1, player_2)
 
     # MAIN GAME LOOP
@@ -85,6 +84,9 @@ def gameplay():
         mouse_pressed_1, mouse_pressed_2, mouse_pressed_3 = pygame.mouse.get_pressed()
 
         screen.surface.blit(background, (0, 0))
+
+        # Set background image
+        screen.set_background_image("assets/images/game_screen_background.png")
 
         # button update
         quit_button.track_mouse()
