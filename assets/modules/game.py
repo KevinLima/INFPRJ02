@@ -205,5 +205,3 @@ def gameplay():
         pygame.display.update()
         fps_clock.tick(fps)
 
-
-

@@ -1,6 +1,5 @@
 import MySQLdb
 
-
 def connector(query):
     db = MySQLdb.connect(host="37.187.108.9",
                          port=3306, user="prj2user",
@@ -45,5 +44,4 @@ def retrieve_questions():
 
     #print(qlist)
     return qlist
-
 
