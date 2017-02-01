@@ -20,10 +20,10 @@ def title_screen():
     screen.set_background_image("assets/images/title_screen_background.png")
 
     # Initialize buttons
-    play_button = Button999("Play", color_pallete.pink300, color_pallete.pink500)
-    highscores_button = Button999("Highscores", color_pallete.pink300, color_pallete.pink500)
-    help_button = Button999("Help", color_pallete.pink300, color_pallete.pink500)
-    quit_button = Button999("Quit", color_pallete.pink300, color_pallete.pink500)
+    play_button = Button999("Play")
+    highscores_button = Button999("Highscores")
+    help_button = Button999("Help")
+    quit_button = Button999("Quit")
 
     # Set PyGame clock
     clock = pygame.time.Clock()

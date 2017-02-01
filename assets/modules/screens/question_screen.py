@@ -8,238 +8,248 @@ from assets.modules.gui2.color_pallete import *
 from assets.modules.gui2.screen import *
 from assets.modules.gui2.text import *
 from assets.modules.screens.help_screen import *
-from assets.modules.screens.highscores_screen import *
-from assets.modules.screens.rules_screen import *
 from assets.modules.questions import *
 
 # Initialize PyGame
 pygame.init()
 
 # Title screen
-def question_screen(catagory):
+def question_screen(category):
     # Set background image
     screen.set_background_image("assets/images/background.png")
 
-    # Assign query to question variable
-    question = questions.get_question(catagory)
+    # Assign get_question() to data variable
+    # data[0] = Question ID
+    # data[1] = Category
+    # data[2] = Questions
+    # data[3] = Correct answer
+    # data[4] = Answers
+    data = questions.get_question(category)
 
-    # Print question to screen
-    question_text = Text999("{}: {}".format(question[0], question[2]), "roboto-regular-bold", color_pallete.orange500,
-                            screen.width * 0.0375, screen.width * 0.05,
-                            screen.height * 0.2)
+    # Draw question on screen
+    question = Text999("{}: {}".format(data[0], data[2]),
+                       "roboto-regular-bold", color_pallete.orange500,
+                       screen.width * 0.0375, screen.width * 0.05,
+                       screen.height * 0.2)
 
-    # Seperate answers from query
-    answers = question[4]
+    # Get answers from data variable
+    answers = data[4]
 
-    # Seperate correct answer from query
-    correct_answer = question[3]
+    # Get correct answer from data variable
+    correct_answer = data[3]
 
-    print("Correct answer: {}".format(correct_answer))
+    # Determine amount of answers in data variable
+    amount_of_answers = len(answers)
 
-    # Print menu according to amount of answers
-    amount_of_answers = 0
+    if amount_of_answers == 2:
+        return buttons_for_2_answers_(answers, correct_answer)
 
-    for x in answers:
-        amount_of_answers += 1
+    elif amount_of_answers == 3:
+        return buttons_for_3_answers_(answers, correct_answer)
 
-    if amount_of_answers != 0:
-        if amount_of_answers == 2:
-            answer_a = answers[0]
-            answer_b = answers[1]
+    elif amount_of_answers == 4:
+        return buttons_for_4_answers_(answers, correct_answer)
 
-            # Initialize buttons
-            answer_a_button = Button999("A: {}".format(answer_a), color_pallete.pink300, color_pallete.pink500)
-            answer_b_button = Button999("B: {}".format(answer_b), color_pallete.pink300, color_pallete.pink500)
+def buttons_for_2_answers_(answers, correct_answer):
+    # Seperate answers into independent variables
+    answer_a = answers[0]
+    answer_b = answers[1]
 
-            # Set PyGame clock
-            clock = pygame.time.Clock()
+    # Initialize buttons
+    answer_a_button = Button999("A: {}".format(answer_a))
+    answer_b_button = Button999("B: {}".format(answer_b))
 
-            # Title screen loop
-            while True:
-                mouse = pygame.mouse.get_pos()
-                for event in pygame.event.get():
-                    if event.type == pygame.QUIT:
-                        pygame.quit()
-                        sys.exit()
+    # Set PyGame clock
+    clock = pygame.time.Clock()
 
-                    elif event.type == pygame.MOUSEBUTTONDOWN:
-                        if answer_a_button.obj.collidepoint(mouse):
-                            answer_id = 1
-                            if answer_id == correct_answer:
-                                return(True)
-                            else:
-                                return(False)
+    # Title screen loop
+    while True:
+        mouse = pygame.mouse.get_pos()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
 
-                        elif answer_b_button.obj.collidepoint(mouse):
-                            answer_id = 2
-                            if answer_id == correct_answer:
-                                return(True)
-                            else:
-                                return(False)
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if answer_a_button.obj.collidepoint(mouse):
+                    answer_id = 1
+                    if answer_id == correct_answer:
+                        return(True)
+                    else:
+                        return(False)
 
-                # Draw buttons
-                    answer_a_button.draw(screen, mouse, (screen.width * 0.05,
-                                         screen.height * 0.5,
-                                         screen.width * 0.75,
-                                         screen.height * 0.075),
-                                         (screen.width * 0.05,
-                                          screen.height * 0.5))
-                    answer_b_button.draw(screen, mouse, (screen.width * 0.05,
-                                               screen.height * 0.6,
-                                               screen.width * 0.75,
-                                               screen.height * 0.075),
-                                               (screen.width * 0.05,
-                                                screen.height * 0.6))
+                elif answer_b_button.obj.collidepoint(mouse):
+                    answer_id = 2
+                    if answer_id == correct_answer:
+                        return(True)
+                    else:
+                        return(False)
 
-                # Update PyGame screen
-                pygame.display.update()
-                clock.tick(30)
+        # Draw buttons
+        answer_a_button.draw(screen, mouse, (screen.width * 0.05,
+                                             screen.height * 0.5,
+                                             screen.width * 0.75,
+                                             screen.height * 0.075),
+                                             (screen.width * 0.05,
+                                              screen.height * 0.5))
+        answer_b_button.draw(screen, mouse, (screen.width * 0.05,
+                                             screen.height * 0.6,
+                                             screen.width * 0.75,
+                                             screen.height * 0.075),
+                                             (screen.width * 0.05,
+                                              screen.height * 0.6))
 
-        elif amount_of_answers == 3:
-            answer_a = answers[0]
-            answer_b = answers[1]
-            answer_c = answers[2]
+        # Update PyGame screen
+        pygame.display.update()
+        clock.tick(30)
 
-            # Initialize buttons
-            answer_a_button = Button999("A: {}".format(answer_a), color_pallete.pink300, color_pallete.pink500)
-            answer_b_button = Button999("B: {}".format(answer_b), color_pallete.pink300, color_pallete.pink500)
-            answer_c_button = Button999("C: {}".format(answer_c), color_pallete.pink300, color_pallete.pink500)
+def buttons_for_3_answers_(answers, correct_answer):
+    # Seperate answers into independent variables
+    answer_a = answers[0]
+    answer_b = answers[1]
+    answer_c = answers[2]
 
-            # Set PyGame clock
-            clock = pygame.time.Clock()
+    # Initialize buttons
+    answer_a_button = Button999("A: {}".format(answer_a))
+    answer_b_button = Button999("B: {}".format(answer_b))
+    answer_c_button = Button999("C: {}".format(answer_c))
 
-            # Title screen loop
-            while True:
-                mouse = pygame.mouse.get_pos()
-                for event in pygame.event.get():
-                    if event.type == pygame.QUIT:
-                        pygame.quit()
-                        sys.exit()
+    # Set PyGame clock
+    clock = pygame.time.Clock()
 
-                    elif event.type == pygame.MOUSEBUTTONDOWN:
-                        if answer_a_button.obj.collidepoint(mouse):
-                            answer_id = 1
-                            if answer_id == correct_answer:
-                                return(True)
-                            else:
-                                return(False)
+    # Title screen loop
+    while True:
+        mouse = pygame.mouse.get_pos()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
 
-                        elif answer_b_button.obj.collidepoint(mouse):
-                            answer_id = 2
-                            if answer_id == correct_answer:
-                                return(True)
-                            else:
-                                return(False)
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if answer_a_button.obj.collidepoint(mouse):
+                    answer_id = 1
+                    if answer_id == correct_answer:
+                        return(True)
+                    else:
+                        return(False)
 
-                        elif answer_c_button.obj.collidepoint(mouse):
-                            answer_id = 3
-                            if answer_id == correct_answer:
-                                return(True)
-                            else:
-                                return(False)
+                elif answer_b_button.obj.collidepoint(mouse):
+                    answer_id = 2
+                    if answer_id == correct_answer:
+                        return(True)
+                    else:
+                        return(False)
 
-                # Draw buttons
-                    answer_a_button.draw(screen, mouse, (screen.width * 0.05,
-                                         screen.height * 0.5,
-                                         screen.width * 0.75,
-                                         screen.height * 0.075),
-                                         (screen.width * 0.05,
-                                          screen.height * 0.5))
-                    answer_b_button.draw(screen, mouse, (screen.width * 0.05,
-                                               screen.height * 0.6,
-                                               screen.width * 0.75,
-                                               screen.height * 0.075),
-                                               (screen.width * 0.05,
-                                                screen.height * 0.6))
-                    answer_c_button.draw(screen, mouse, (screen.width * 0.05,
-                                         screen.height * 0.7,
-                                         screen.width * 0.75,
-                                         screen.height * 0.075),
-                                         (screen.width * 0.05,
-                                          screen.height * 0.7))
+                elif answer_c_button.obj.collidepoint(mouse):
+                    answer_id = 3
+                    if answer_id == correct_answer:
+                        return(True)
+                    else:
+                        return(False)
 
-                # Update PyGame screen
-                pygame.display.update()
-                clock.tick(30)
+        # Draw buttons
+        answer_a_button.draw(screen, mouse, (screen.width * 0.05,
+                                             screen.height * 0.5,
+                                             screen.width * 0.75,
+                                             screen.height * 0.075),
+                                             (screen.width * 0.05,
+                                              screen.height * 0.5))
+        answer_b_button.draw(screen, mouse, (screen.width * 0.05,
+                                             screen.height * 0.6,
+                                             screen.width * 0.75,
+                                             screen.height * 0.075),
+                                             (screen.width * 0.05,
+                                              screen.height * 0.6))
+        answer_c_button.draw(screen, mouse, (screen.width * 0.05,
+                                             screen.height * 0.7,
+                                             screen.width * 0.75,
+                                             screen.height * 0.075),
+                                             (screen.width * 0.05,
+                                              screen.height * 0.7))
 
-        elif amount_of_answers == 4:
-            answer_a = answers[0]
-            answer_b = answers[1]
-            answer_c = answers[2]
-            answer_d = answers[3]
+        # Update PyGame screen
+        pygame.display.update()
+        clock.tick(30)
 
-            # Initialize buttons
-            answer_a_button = Button999("A: {}".format(answer_a), color_pallete.pink300, color_pallete.pink500)
-            answer_b_button = Button999("B: {}".format(answer_b), color_pallete.pink300, color_pallete.pink500)
-            answer_c_button = Button999("C: {}".format(answer_c), color_pallete.pink300, color_pallete.pink500)
-            answer_d_button = Button999("D: {}".format(answer_d), color_pallete.pink300, color_pallete.pink500)
+def buttons_for_4_answers_(answers, correct_answer):
+    # Seperate answers into independent variables
+    answer_a = answers[0]
+    answer_b = answers[1]
+    answer_c = answers[2]
+    answer_d = answers[3]
 
-            # Set PyGame clock
-            clock = pygame.time.Clock()
+    # Initialize buttons
+    answer_a_button = Button999("A: {}".format(answer_a))
+    answer_b_button = Button999("B: {}".format(answer_b))
+    answer_c_button = Button999("C: {}".format(answer_c))
+    answer_d_button = Button999("D: {}".format(answer_d))
 
-            # Title screen loop
-            while True:
-                mouse = pygame.mouse.get_pos()
-                for event in pygame.event.get():
-                    if event.type == pygame.QUIT:
-                        pygame.quit()
-                        sys.exit()
+    # Set PyGame clock
+    clock = pygame.time.Clock()
 
-                    elif event.type == pygame.MOUSEBUTTONDOWN:
-                        if answer_a_button.obj.collidepoint(mouse):
-                            answer_id = 1
-                            if answer_id == correct_answer:
-                                return(True)
-                            else:
-                                return(False)
+    # Title screen loop
+    while True:
+        mouse = pygame.mouse.get_pos()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
 
-                        elif answer_b_button.obj.collidepoint(mouse):
-                            answer_id = 2
-                            if answer_id == correct_answer:
-                                return(True)
-                            else:
-                                return(False)
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if answer_a_button.obj.collidepoint(mouse):
+                    answer_id = 1
+                    if answer_id == correct_answer:
+                        return(True)
+                    else:
+                        return(False)
 
-                        elif answer_c_button.obj.collidepoint(mouse):
-                            answer_id = 3
-                            if answer_id == correct_answer:
-                                return(True)
-                            else:
-                                return(False)
+                elif answer_b_button.obj.collidepoint(mouse):
+                    answer_id = 2
+                    if answer_id == correct_answer:
+                        return(True)
+                    else:
+                        return(False)
 
-                        elif answer_d_button.obj.collidepoint(mouse):
-                            answer_id = 4
-                            if answer_id == correct_answer:
-                                return(True)
-                            else:
-                                return(False)
+                elif answer_c_button.obj.collidepoint(mouse):
+                    answer_id = 3
+                    if answer_id == correct_answer:
+                        return(True)
+                    else:
+                        return(False)
 
-                # Draw buttons
-                    answer_a_button.draw(screen, mouse, (screen.width * 0.05,
-                                         screen.height * 0.5,
-                                         screen.width * 0.75,
-                                         screen.height * 0.075),
-                                         (screen.width * 0.05,
-                                          screen.height * 0.5))
-                    answer_b_button.draw(screen, mouse, (screen.width * 0.05,
-                                               screen.height * 0.6,
-                                               screen.width * 0.75,
-                                               screen.height * 0.075),
-                                               (screen.width * 0.05,
-                                                screen.height * 0.6))
-                    answer_c_button.draw(screen, mouse, (screen.width * 0.05,
-                                         screen.height * 0.7,
-                                         screen.width * 0.75,
-                                         screen.height * 0.075),
-                                         (screen.width * 0.05,
-                                          screen.height * 0.7))
-                    answer_d_button.draw(screen, mouse, (screen.width * 0.05,
-                                         screen.height * 0.8,
-                                         screen.width * 0.75,
-                                         screen.height * 0.075),
-                                         (screen.width * 0.05,
-                                          screen.height * 0.8))
-                # Update PyGame screen
-                pygame.display.update()
-                clock.tick(30)
+                elif answer_d_button.obj.collidepoint(mouse):
+                    answer_id = 4
+                    if answer_id == correct_answer:
+                        return(True)
+                    else:
+                        return(False)
+
+        # Draw buttons
+        answer_a_button.draw(screen, mouse, (screen.width * 0.05,
+                                             screen.height * 0.5,
+                                             screen.width * 0.75,
+                                             screen.height * 0.075),
+                                             (screen.width * 0.05,
+                                              screen.height * 0.5))
+        answer_b_button.draw(screen, mouse, (screen.width * 0.05,
+                                             screen.height * 0.6,
+                                             screen.width * 0.75,
+                                             screen.height * 0.075),
+                                             (screen.width * 0.05,
+                                              screen.height * 0.6))
+        answer_c_button.draw(screen, mouse, (screen.width * 0.05,
+                                             screen.height * 0.7,
+                                             screen.width * 0.75,
+                                             screen.height * 0.075),
+                                             (screen.width * 0.05,
+                                              screen.height * 0.7))
+        answer_d_button.draw(screen, mouse, (screen.width * 0.05,
+                                             screen.height * 0.8,
+                                             screen.width * 0.75,
+                                             screen.height * 0.075),
+                                             (screen.width * 0.05,
+                                              screen.height * 0.8))
+        # Update PyGame screen
+        pygame.display.update()
+        clock.tick(30)
 
