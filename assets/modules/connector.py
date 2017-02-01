@@ -12,11 +12,7 @@ def connector(query):
     return result
 
 def retrieve_questions():
-    array_vullen = "SELECT id, vraag, vraag_goed, antwoord1, antwoord2, antwoord3 FROM vragen"
-    array_vullen1 = "SELECT vraag FROM vragen WHERE id = %s", (array_vullen)
-    array_vullen2 = "SELECT antwoord1, antwoord2, antwoord3 FROM vragen WHERE id = %s", (array_vullen)
-    array_vullen3 = "SELECT vraag_goed FROM vragen WHERE id = %s", (array_vullen)
-
+    array_vullen = "SELECT id, vraag_cat, vraag, vraag_goed, antwoord1, antwoord2, antwoord3 FROM vragen"
 
     data = connector(array_vullen)
     #print(data)  # Result van één query printen
