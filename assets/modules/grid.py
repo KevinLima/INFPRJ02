@@ -79,8 +79,10 @@ class Grid:
         if new_y < 0: new_y = 0
         if new_y > 15: new_y = 15
 
-        self.grid[new_x][new_y].occupy(player)
-        self.remove_player(player.coordinates.x, player.coordinates.y)
+        if player.coordinates.x != new_x or player.coordinates.y != new_y:
+            #print("{}-{}".format(new_x, new_y))
+            self.grid[new_x][new_y].occupy(player)
+            self.remove_player(player.coordinates.x, player.coordinates.y)
         return Position(new_x, new_y)
 
     # This function is meant to "circle" the player around the grid

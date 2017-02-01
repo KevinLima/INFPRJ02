@@ -11,7 +11,6 @@ class Player:
         # TODO: rewrite
         if self.coordinates.y <= 0:
             print(self.name + " won!")
-            self.coordinates.y = 550
 
     def relocate(self, position):
         self.coordinates = position
