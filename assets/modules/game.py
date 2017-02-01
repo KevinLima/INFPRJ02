@@ -2,7 +2,8 @@ from assets.modules.screens.win_screen import *
 from assets.modules.screens.help_screen import *
 from assets.modules.screens.title_screen import *
 from .gui import *
-from .mechanics import Dice, Player
+from .mechanics import Dice
+from .mechanics2.player import *
 from .space import *
 from .grid import *
 
@@ -155,34 +156,41 @@ def gameplay():
             if direction == 0: #LEFT
                 if turn == 0:
                     #player_1.position.x -= player_1.height * dice_number
-                    grid.move_player(player_1, -1, 0)
+                    player_1.relocate(grid.move_player(player_1, -1, 0))
                 if turn == 1:
                     #player_2.position.x -= player_2.height * dice_number
-                    grid.move_player(player_2, -1, 0)
+                    player_2.relocate(grid.move_player(player_2, -1, 0))
+
 
             if direction == 1: #UP
                 if turn == 0:
                     #player_1.position.y -= player_1.height * dice_number
-                    grid.move_player(player_1, 0, 1)
+                    player_1.relocate(grid.move_player(player_1, 0, 1))
+
                 if turn == 1:
                     #player_2.position.y -= player_2.height * dice_number
-                    grid.move_player(player_2, 0, 1)
+                    player_2.relocate(grid.move_player(player_2, 0, 1))
+
 
             if direction == 2:  #RIGHT
                 if turn == 0:
                     #player_1.position.x += player_1.height * dice_number
-                    grid.move_player(player_1, 1, 0)
+                    player_1.relocate(grid.move_player(player_1, 1, 0))
+
                 if turn == 1:
                     #player_2.position.x += player_2.height * dice_number
-                    grid.move_player(player_2, 1, 0)
+                    player_2.relocate(grid.move_player(player_2, 1, 0))
+
 
             if direction == 3:  #DOWN
                 if turn == 0:
                     #player_1.position.y += player_1.height * dice_number
-                    grid.move_player(player_1, 0, -1)
+                    player_1.relocate(grid.move_player(player_1, 0, -1))
+
                 if turn == 1:
                     #player_2.position.y += player_2.height * dice_number
-                    grid.move_player(player_2, 0, -1)
+                    player_2.relocate(grid.move_player(player_2, 0, -1))
+
 
         if next_turn.action:
             pygame.time.wait(100)

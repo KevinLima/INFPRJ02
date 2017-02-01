@@ -1,6 +1,7 @@
 import pygame
 from assets.modules.gui2.color_pallete import *
 from .gui2.screen import *
+from .gui2.position import *
 from .space import *
 
 class Grid:
@@ -80,6 +81,7 @@ class Grid:
 
         self.grid[new_x][new_y].occupy(player)
         self.remove_player(player.coordinates.x, player.coordinates.y)
+        return Position(new_x, new_y)
 
     # This is used to remove a player that has been inserted in a other position
     def remove_player(self, x, y):
