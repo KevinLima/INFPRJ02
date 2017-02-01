@@ -40,6 +40,9 @@ def gameplay():
     # Initialize direction
     direction = 1 #UP
 
+    # Has the player already trown the dice this turn?
+    player_trew_dice = False
+
     # Initialize Players
     player_1 = Player("Player 1",
                       color_pallete.green500,
@@ -136,43 +139,45 @@ def gameplay():
             direction_button.action = False
 
         if dice_button.action:
-            pygame.time.wait(100)
-            dice = Dice()
-            dice_number = dice.number()
-            dice_button.text = str(dice_number)
-            dice_button.update_text()
-            dice_button.action = False
+            if player_trew_dice == False:
+                pygame.time.wait(100)
+                dice = Dice()
+                dice_number = dice.number()
+                dice_button.text = str(dice_number)
+                dice_button.update_text()
+                dice_button.action = False
+                player_trew_dice = True
 
 
-            if direction == 0: #LEFT
-                if turn == 0:
-                    player_1.relocate(grid.move_player(player_1, (dice_number * -1), 0))
-                if turn == 1:
-                    player_2.relocate(grid.move_player(player_2, (dice_number * -1), 0))
+                if direction == 0: #LEFT
+                    if turn == 0:
+                        player_1.relocate(grid.move_player(player_1, (dice_number * -1), 0))
+                    if turn == 1:
+                        player_2.relocate(grid.move_player(player_2, (dice_number * -1), 0))
 
 
-            if direction == 1: #UP
-                if turn == 0:
-                    player_1.relocate(grid.move_player(player_1, 0, (dice_number * -1)))
+                if direction == 1: #UP
+                    if turn == 0:
+                        player_1.relocate(grid.move_player(player_1, 0, (dice_number * -1)))
 
-                if turn == 1:
-                    player_2.relocate(grid.move_player(player_2, 0, (dice_number * -1)))
-
-
-            if direction == 2:  #RIGHT
-                if turn == 0:
-                    player_1.relocate(grid.move_player(player_1, dice_number, 0))
-
-                if turn == 1:
-                    player_2.relocate(grid.move_player(player_2, dice_number, 0))
+                    if turn == 1:
+                        player_2.relocate(grid.move_player(player_2, 0, (dice_number * -1)))
 
 
-            if direction == 3:  #DOWN
-                if turn == 0:
-                    player_1.relocate(grid.move_player(player_1, 0, dice_number))
+                if direction == 2:  #RIGHT
+                    if turn == 0:
+                        player_1.relocate(grid.move_player(player_1, dice_number, 0))
 
-                if turn == 1:
-                    player_2.relocate(grid.move_player(player_2, 0, dice_number))
+                    if turn == 1:
+                        player_2.relocate(grid.move_player(player_2, dice_number, 0))
+
+
+                if direction == 3:  #DOWN
+                    if turn == 0:
+                        player_1.relocate(grid.move_player(player_1, 0, dice_number))
+
+                    if turn == 1:
+                        player_2.relocate(grid.move_player(player_2, 0, dice_number))
 
 
 
@@ -185,6 +190,7 @@ def gameplay():
             else:
                 # Player 2's turn
                 turn = 1
+            player_trew_dice = False
 
             next_turn.text = "Player " + str(turn + 1)
             next_turn.update_text()

@@ -12,10 +12,7 @@ def connector(query):
     return result
 
 def retrieve_questions():
-    array_vullen = "SELECT id, vraag, vraag_goed, antwoord1, antwoord2, antwoord3 FROM vragen"
-    array_vullen1 = "SELECT vraag FROM vragen WHERE id = %s", (array_vullen)
-    array_vullen2 = "SELECT antwoord1, antwoord2, antwoord3 FROM vragen WHERE id = %s", (array_vullen)
-    array_vullen3 = "SELECT vraag_goed FROM vragen WHERE id = %s", (array_vullen)
+    array_vullen = "SELECT id, vraag_cat, vraag, vraag_goed, antwoord1, antwoord2, antwoord3 FROM vragen"
 
 
     data = connector(array_vullen)
@@ -26,22 +23,24 @@ def retrieve_questions():
     #if 0 <= index < len(list):
 
     for x in data:
-        if x[5] is not None:
+        if x[6] is not None:
             list = [
                 x[0],
                 x[1],
                 x[2],
-                [x[3],
-                 x[4],
-                 x[5]]
+                x[3],
+                [x[4],
+                 x[5],
+                 x[6]]
             ]
         else:
             list = [
                 x[0],
                 x[1],
                 x[2],
-                [x[3],
-                 x[4]]
+                x[3],
+                [x[4],
+                 x[5]]
             ]
         qlist.append(list)
 
