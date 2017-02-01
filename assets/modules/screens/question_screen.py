@@ -34,7 +34,7 @@ def question_screen(catagory):
     # Seperate correct answer from query
     correct_answer = question[3]
 
-    print(correct_answer)
+    print("Correct answer: {}".format(correct_answer))
 
     # Print menu according to amount of answers
     amount_of_answers = 0
