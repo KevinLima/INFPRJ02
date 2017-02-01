@@ -1,5 +1,6 @@
 from assets.modules.game import *
 from assets.modules.screens.title_screen import *
+
 pygame.init()
 
 
