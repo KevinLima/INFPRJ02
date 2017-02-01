@@ -12,10 +12,10 @@ class Questions:
 
         # print(self.question_list)
         self.categories = [
-            "Sport",
-            "Geografie",
             "Entertainment",
-            "Geschiedenis"
+            "Geografie",
+            "Geschiedenis",
+            "Sport"
         ]
 
         # List with al the used questions
