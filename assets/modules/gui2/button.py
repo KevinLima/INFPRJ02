@@ -11,11 +11,12 @@ from assets.modules.gui2.screen import *
 pygame.init()
 
 class Button999:
-    def __init__(self, text, color=color_pallete.pink300, color_hover=color_pallete.pink500):
+    def __init__(self, text, default_color=color_pallete.pink300,
+                 hover_color=color_pallete.pink500):
         self.text = text
         self.is_hover = False
-        self.default_color = color
-        self.hover_color = color_hover
+        self.default_color = default_color
+        self.hover_color = hover_color
         self.font_color = color_pallete.grey50
         self.obj = None
 
