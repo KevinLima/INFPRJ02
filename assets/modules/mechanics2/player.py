@@ -15,7 +15,7 @@ class Player:
 
     def relocate(self, position):
         self.coordinates = position
-        print(self.coordinates)
+        #print(self.coordinates)
 
     def __repr__(self):
         return "Player Obj\n Name: {}\n Color: {}\n Coordinates: {}\n Score: {}\n".format(self.name, self.color,
