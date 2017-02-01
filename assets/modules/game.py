@@ -36,7 +36,6 @@ def gameplay():
 
     # Initialize whose turn
     turn = 0 #player 1
-    number_of_players = 2
 
     # Initialize direction
     direction = 1 #UP
@@ -118,8 +117,6 @@ def gameplay():
             direction_button.size.width, direction_button.size.height))
         screen.surface.blit(direction_button.textSurfaceObj, direction_button.textRectObj)
 
-        grid.create_grid()
-
         if direction_button.action:
             pygame.time.wait(100)
             direction += 1
@@ -176,6 +173,7 @@ def gameplay():
                     player_2.relocate(grid.move_player(player_2, 0, -1))
 
 
+
         if next_turn.action:
             pygame.time.wait(100)
             # Keep switching between the players turn
@@ -193,13 +191,7 @@ def gameplay():
         # Update Players
         player_1.update()
         player_2.update()
-
-        ## draw player_1
-        pygame.draw.rect(screen.surface, player_1.color, (
-        player_1.position.x - player_1.width * 0.5, player_1.position.y - player_1.height * 0.5, player_1.width, player_1.height))
-        pygame.draw.rect(screen.surface, player_2.color, (
-        player_2.position.x - player_2.width * 0.5, player_2.position.y - player_2.height * 0.5, player_2.width, player_2.height))
-        # pygame.draw.rect(screen.surface, player_1.color, (200, 200, 100, 100))
+        grid.create_grid()
 
         # Display screen.surface, according to framerate
         pygame.display.update()

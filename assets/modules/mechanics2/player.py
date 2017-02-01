@@ -8,12 +8,14 @@ class Player:
         self.coordinates = Position(x, z)
 
     def update(self):
+        # TODO: rewrite
         if self.coordinates.y <= 0:
             print(self.name + " won!")
             self.coordinates.y = 550
 
     def relocate(self, position):
         self.coordinates = position
+        print(self.coordinates)
 
     def __repr__(self):
         return "Player Obj\n Name: {}\n Color: {}\n Coordinates: {}\n".format(self.name, self.color, self.coordinates)
