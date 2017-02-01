@@ -159,33 +159,49 @@ def gameplay():
 
                 if direction == 0: #LEFT
                     if turn == 0:
-                        player_1.relocate(grid.move_player(player_1, (amount_of_steps * -1), 0))
+                        players_positions = grid.move_player(player_1, (amount_of_steps * -1), 0, player_2)
+                        player_1.relocate(players_positions[0])
+                        player_2.relocate(players_positions[1])
                     if turn == 1:
-                        player_2.relocate(grid.move_player(player_2, (amount_of_steps * -1), 0))
+                        players_positions = grid.move_player(player_2, (amount_of_steps * -1), 0, player_1)
+                        player_2.relocate(players_positions[0])
+                        player_1.relocate(players_positions[1])
 
 
                 if direction == 1: #UP
                     if turn == 0:
-                        player_1.relocate(grid.move_player(player_1, 0, (amount_of_steps * -1)))
+                        players_positions = grid.move_player(player_1, 0, (amount_of_steps * -1), player_2)
+                        player_1.relocate(players_positions[0])
+                        player_2.relocate(players_positions[1])
 
                     if turn == 1:
-                        player_2.relocate(grid.move_player(player_2, 0, (amount_of_steps * -1)))
+                        players_positions = grid.move_player(player_2, 0, (amount_of_steps * -1), player_1)
+                        player_2.relocate(players_positions[0])
+                        player_1.relocate(players_positions[1])
 
 
                 if direction == 2:  #RIGHT
                     if turn == 0:
-                        player_1.relocate(grid.move_player(player_1, amount_of_steps, 0))
+                        players_positions = grid.move_player(player_1, amount_of_steps, 0, player_2)
+                        player_1.relocate(players_positions[0])
+                        player_2.relocate(players_positions[1])
 
                     if turn == 1:
-                        player_2.relocate(grid.move_player(player_2, amount_of_steps, 0))
+                        players_positions = grid.move_player(player_2, amount_of_steps, 0, player_1)
+                        player_2.relocate(players_positions[0])
+                        player_1.relocate(players_positions[1])
 
 
                 if direction == 3:  #DOWN
                     if turn == 0:
-                        player_1.relocate(grid.move_player(player_1, 0, amount_of_steps))
+                        players_positions = grid.move_player(player_1, 0, amount_of_steps, player_2)
+                        player_1.relocate(players_positions[0])
+                        player_2.relocate(players_positions[1])
 
                     if turn == 1:
-                        player_2.relocate(grid.move_player(player_2, 0, amount_of_steps))
+                        players_positions = grid.move_player(player_2, 0, amount_of_steps, player_1)
+                        player_2.relocate(players_positions[0])
+                        player_1.relocate(players_positions[1])
 
 
 
