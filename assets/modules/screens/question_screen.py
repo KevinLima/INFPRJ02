@@ -73,17 +73,11 @@ def buttons_for_2_answers_(answers, correct_answer):
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if answer_a_button.obj.collidepoint(mouse):
                     answer_id = 1
-                    if answer_id == correct_answer:
-                        return(True)
-                    else:
-                        return(False)
+                    return check_answer(answer_id, correct_answer)
 
                 elif answer_b_button.obj.collidepoint(mouse):
                     answer_id = 2
-                    if answer_id == correct_answer:
-                        return(True)
-                    else:
-                        return(False)
+                    return check_answer(answer_id, correct_answer)
 
         # Draw buttons
         answer_a_button.draw(screen, mouse, (screen.width * 0.05,
@@ -128,24 +122,15 @@ def buttons_for_3_answers_(answers, correct_answer):
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if answer_a_button.obj.collidepoint(mouse):
                     answer_id = 1
-                    if answer_id == correct_answer:
-                        return(True)
-                    else:
-                        return(False)
+                    return check_answer(answer_id, correct_answer)
 
                 elif answer_b_button.obj.collidepoint(mouse):
                     answer_id = 2
-                    if answer_id == correct_answer:
-                        return(True)
-                    else:
-                        return(False)
+                    return check_answer(answer_id, correct_answer)
 
                 elif answer_c_button.obj.collidepoint(mouse):
                     answer_id = 3
-                    if answer_id == correct_answer:
-                        return(True)
-                    else:
-                        return(False)
+                    return check_answer(answer_id, correct_answer)
 
         # Draw buttons
         answer_a_button.draw(screen, mouse, (screen.width * 0.05,
@@ -198,31 +183,19 @@ def buttons_for_4_answers_(answers, correct_answer):
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if answer_a_button.obj.collidepoint(mouse):
                     answer_id = 1
-                    if answer_id == correct_answer:
-                        return(True)
-                    else:
-                        return(False)
+                    return check_answer(answer_id, correct_answer)
 
                 elif answer_b_button.obj.collidepoint(mouse):
                     answer_id = 2
-                    if answer_id == correct_answer:
-                        return(True)
-                    else:
-                        return(False)
+                    return check_answer(answer_id, correct_answer)
 
                 elif answer_c_button.obj.collidepoint(mouse):
                     answer_id = 3
-                    if answer_id == correct_answer:
-                        return(True)
-                    else:
-                        return(False)
+                    return check_answer(answer_id, correct_answer)
 
                 elif answer_d_button.obj.collidepoint(mouse):
                     answer_id = 4
-                    if answer_id == correct_answer:
-                        return(True)
-                    else:
-                        return(False)
+                    return check_answer(answer_id, correct_answer)
 
         # Draw buttons
         answer_a_button.draw(screen, mouse, (screen.width * 0.05,
@@ -253,3 +226,8 @@ def buttons_for_4_answers_(answers, correct_answer):
         pygame.display.update()
         clock.tick(30)
 
+def check_answer(answer_id, correct_answer):
+    if answer_id == correct_answer:
+        return(True)
+    else:
+        return(False)
