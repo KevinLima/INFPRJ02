@@ -5,6 +5,7 @@ from .mechanics2.player import *
 from .grid import *
 from .screens.question_screen import *
 from assets.modules.gui2.screen import *
+from assets.modules.mechanics2.event_log import *
 
 # Set fps
 fps = 30  # frames per second setting
@@ -60,6 +61,10 @@ def gameplay():
     background = pygame.Surface(screen.surface.get_size())
     background = background.convert()
     grid = Grid(player_1, player_2)
+
+
+    # Event log
+    #event_log = Event_log()
 
     # MAIN GAME LOOP
     while True:
@@ -149,6 +154,7 @@ def gameplay():
                 dice_button.update_text()
                 dice_button.action = False
                 player_trew_dice = True
+                event_log.add("[P{}]:Rolled a {}".format((turn + 1), dice_number))
 
                 if player_answered_question == False:
                     x_index = 0
@@ -161,6 +167,7 @@ def gameplay():
 
                 result = question_screen(category)
                 print("Result {}".format(result))
+                event_log.add("[P{}]:The answer was {}".format((turn + 1), result))
 
                 # Only move the player if the question was answered correctly
                 if result == True:
@@ -172,6 +179,7 @@ def gameplay():
                         amount_of_steps = 2
                     if dice_number == 5 or dice_number == 6:
                         amount_of_steps = 3
+
 
                     if direction == 0: #LEFT
                         if turn == 0:
@@ -194,6 +202,8 @@ def gameplay():
                             players_positions = grid.move_player(player_2, 0, (amount_of_steps * -1), player_1)
                             player_2.relocate(players_positions[0])
                             player_1.relocate(players_positions[1])
+
+                        event_log.add("[P{}]:Took {} steps".format((turn + 1), amount_of_steps))
 
 
                     if direction == 2:  #RIGHT
@@ -230,6 +240,7 @@ def gameplay():
                 # Player 2's turn
                 turn = 1
             player_trew_dice = False
+            event_log.add("[Game]:Turn switched")
 
             next_turn.text = "Player " + str(turn + 1)
             next_turn.update_text()
@@ -249,6 +260,7 @@ def gameplay():
         player_1.update()
         player_2.update()
         grid.create_grid()
+        event_log.create()
 
         # Blit the text surfaces
         for index, surface in enumerate(text_surfaces):
@@ -256,6 +268,7 @@ def gameplay():
                                 ((screen.width * 0.1), (index * surface.get_height()) + (int(screen.height * 0.30))))
 
         subheading = Subheading("Scoreboard", screen.width * 0.1, screen.height * 0.26)
+
 
         # Display screen.surface, according to framerate
         pygame.display.update()
