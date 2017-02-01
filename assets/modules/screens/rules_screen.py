@@ -40,9 +40,7 @@ def rules_screen():
         "Yellow = History",
         " ",
         "If a category runs out of questions, move to the category on your right",
-        " ",
-        "If the player gives a wrong answer, doesn’t understand the question or doesn’t give an ",
-        "answer within 50 seconds it will be considered wrong and the turn goes to the next player."
+        " "
     ]
     rules_body_font = pygame.font.Font("assets/fonts/roboto-regular.ttf", int((screen.width * 0.0175)))
     # Generate surfaces
