@@ -13,6 +13,7 @@ class ColorPalette:
         self.red500 = (244, 67, 54)
         self.yellow500 = (255, 233, 59)
         self.purple500 = (142, 36, 170)
+        self.bluegrey500 = (96, 125, 139)
 
         #Colors for the grid
         self.grid_colors =[

@@ -1,11 +1,12 @@
 from assets.modules.gui2.position import *
 
 class Player:
-    def __init__(self, name, color, title, x, z):
+    def __init__(self, name, color, title, x, z, score):
         self.name = name
         self.title = title
         self.color = color
         self.coordinates = Position(x, z)
+        self.score = score
 
     def update(self):
         # TODO: rewrite
@@ -17,5 +18,5 @@ class Player:
         print(self.coordinates)
 
     def __repr__(self):
-        return "Player Obj\n Name: {}\n Color: {}\n Coordinates: {}\n".format(self.name, self.color, self.coordinates)
-
+        return "Player Obj\n Name: {}\n Color: {}\n Coordinates: {}\n Score: {}\n".format(self.name, self.color,
+                                                                                          self.coordinates, self.score)
