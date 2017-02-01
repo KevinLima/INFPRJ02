@@ -8,7 +8,7 @@ pygame.init()
 def main():
     # Uncomment te following line to demo the win screen
     # win_screen("John Doe")
-    # print(question_screen("Sport"))
+    print(question_screen("Sport"))
     title_screen()
     gameplay()
 
