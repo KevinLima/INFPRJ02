@@ -151,10 +151,10 @@ def gameplay():
 
             if direction == 1: #UP
                 if turn == 0:
-                    player_1.relocate(grid.move_player(player_1, 0, 1))
+                    player_1.relocate(grid.move_player(player_1, 0, -1))
 
                 if turn == 1:
-                    player_2.relocate(grid.move_player(player_2, 0, 1))
+                    player_2.relocate(grid.move_player(player_2, 0, -1))
 
 
             if direction == 2:  #RIGHT
@@ -167,10 +167,10 @@ def gameplay():
 
             if direction == 3:  #DOWN
                 if turn == 0:
-                    player_1.relocate(grid.move_player(player_1, 0, -1))
+                    player_1.relocate(grid.move_player(player_1, 0, 1))
 
                 if turn == 1:
-                    player_2.relocate(grid.move_player(player_2, 0, -1))
+                    player_2.relocate(grid.move_player(player_2, 0, 1))
 
 
 

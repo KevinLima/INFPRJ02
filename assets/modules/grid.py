@@ -72,16 +72,36 @@ class Grid:
 
         new_x = player.coordinates.x + x
         new_y = player.coordinates.y + y
-
-        if new_x < 0: new_x = 0
-        if new_x > 3: new_x = 3
+        # [0][1][2][3]
+        new_x = self.loop_negative(new_x)
+        new_x = self.loop_positive(new_x)
 
         if new_y < 0: new_y = 0
-        if new_y > 14: new_y = 14
+        if new_y > 15: new_y = 15
 
         self.grid[new_x][new_y].occupy(player)
         self.remove_player(player.coordinates.x, player.coordinates.y)
         return Position(new_x, new_y)
+
+    # This function is meant to "circle" the player around the grid
+    def loop_negative(self, x):
+        bl = True
+        while (bl):
+            if x < 0:
+                x += 4
+            else:
+                bl = False
+        return x
+
+    # This function is meant to "circle" the player around the grid
+    def loop_positive(self, x):
+        bl = True
+        while(bl):
+            if x > 3:
+                x -= 4
+            else:
+                bl = False
+        return x
 
     # This is used to remove a player that has been inserted in a other position
     def remove_player(self, x, y):
