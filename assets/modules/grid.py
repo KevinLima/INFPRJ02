@@ -68,7 +68,7 @@ class Grid:
     # Use the x and y parameters to pass the amount of positions that the players moves
         # DO NOT use the parameters to give a position, only the change in position
         # You can use negative and positive numbers
-    def move_player(self, player, x, y):
+    def move_player(self, player, x, y, other_player):
 
         new_x = player.coordinates.x + x
         new_y = player.coordinates.y + y
@@ -80,10 +80,29 @@ class Grid:
         if new_y > 15: new_y = 15
 
         if player.coordinates.x != new_x or player.coordinates.y != new_y:
-            #print("{}-{}".format(new_x, new_y))
-            self.grid[new_x][new_y].occupy(player)
-            self.remove_player(player.coordinates.x, player.coordinates.y)
-        return Position(new_x, new_y)
+            # Check if the position is occupied
+            if self.grid[new_x][new_y].empty == True:
+                self.grid[new_x][new_y].occupy(player)
+                self.remove_player(player.coordinates.x, player.coordinates.y)
+            else:
+                bump_player = self.grid[new_x][new_y].player
+                if new_y == 15:
+                    if new_y == 0:
+                        self.grid[1][15].occupy(bump_player)
+                        other_player.coordinates = Position(1,15)
+                    elif new_y == 3:
+                        self.grid[2][15].occupy(bump_player)
+                        other_player.coordinates = Position(2, 15)
+                    else:
+                        self.grid[new_x - 1][15].occupy(bump_player)
+                        other_player.coordinates = Position(new_x - 1, 15)
+                else:
+                    self.grid[new_x][new_y + 1].occupy(bump_player)
+                self.grid[new_x][new_y].occupy(player)
+                self.remove_player(player.coordinates.x, player.coordinates.y)
+
+        return (Position(new_x, new_y),
+                Position(other_player.coordinates.x, other_player.coordinates.y))
 
     # This function is meant to "circle" the player around the grid
     def loop_negative(self, x):
