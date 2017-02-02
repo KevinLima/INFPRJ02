@@ -17,6 +17,10 @@ class Player:
         self.coordinates = position
         #print(self.coordinates)
 
+    def scored(self):
+        self.score += 10
+
     def __repr__(self):
         return "Player Obj\n Name: {}\n Color: {}\n Coordinates: {}\n Score: {}\n".format(self.name, self.color,
                                                                                           self.coordinates, self.score)
+
