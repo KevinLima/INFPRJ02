@@ -26,6 +26,7 @@ def question_screen(category):
     # data[4] = Answers
     data = questions.get_question(category)
 
+    questions.used(data[0])
     question_list = data[2].split(" ")
     questions_list_lenght = len(question_list)
 
