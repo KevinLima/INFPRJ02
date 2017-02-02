@@ -1,32 +1,48 @@
-# Import PyGame & Sys modules
-import pygame, sys
-from pygame.locals import *
-
 # Import required modules
 from assets.modules.gui2.button import *
-from assets.modules.gui2.color_pallete import *
 from assets.modules.gui2.heading import *
-from assets.modules.gui2.screen import *
-from assets.modules.gui2.text import *
+from assets.modules.highscore import *
 from assets.modules.screens.rules_screen import *
-from assets.modules.mechanics2.game_over import *
 
 # Initialize PyGame
 pygame.init()
 
-# Win screen
-def win_screen(winner_name, winner_score):
+
+# Help screen
+def highscores_screen():
     # Set background image
     screen.set_background_image("assets/images/background.png")
 
     # Initialize back button
     back_button = Button999("Back", color_pallete.pink300, color_pallete.pink500)
 
-    winner = Text999("Winner: {}".format(winner_name), "roboto-regular", color_pallete.grey50, screen.width * 0.1, screen.width * 0.1, screen.height * 0.4)
-    score = Text999("Score: {}".format(winner_score), "roboto-regular", color_pallete.grey50, screen.width * 0.1, screen.width * 0.1, screen.height * 0.6)
+    data = selectHighscores()
+    highscoreList = []
 
+    for i in data:
+        list = [
+            i[0],
+            i[1]
+        ]
+        highscoreList.append(list)
 
-    heading = Heading("GAME OVER", screen.width * 0.125, screen.height * 0.05)
+    highscore_body_font = pygame.font.Font("assets/fonts/roboto-mono-regular.ttf", int((screen.width * 0.025)))
+
+    # Generate surfaces
+    text_surfaces = [highscore_body_font.render("{:>3d}. {:<10} - {:>4d}".format((highscoreList.index(score) + 1),
+                                                                                 score[0],
+                                                                                 score[1]),
+                                                1, color_pallete.grey50) for score in highscoreList]
+
+    # Blit the text surfaces
+    for index, surface in enumerate(text_surfaces):
+        screen.background.blit(surface, ((screen.width * 0.1),
+                                  (index * surface.get_height()) + (int(screen.height * 0.2))))
+
+    # Display background
+    screen.surface.blit(screen.background, (0, 0))
+
+    heading = Heading("HIGHSCORES", screen.width * 0.125, screen.height * 0.05)
 
     # Set PyGame clock
     clock = pygame.time.Clock()
@@ -42,7 +58,6 @@ def win_screen(winner_name, winner_score):
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if back_button.obj.collidepoint(mouse):
                     return
-        game_over.clear()
 
         # Draw back button
         back_button.draw(screen, mouse, (screen.width * 0.8,

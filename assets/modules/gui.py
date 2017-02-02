@@ -1,21 +1,29 @@
-import pygame
+# Import PyGame & Sys modules
+import pygame, sys
+from pygame.locals import *
+
+# Import required modules
+from assets.modules.gui2.screen import *
+
+# Initialize PyGame
+pygame.init()
 
 class Button:
     def __init__(self, text, x, y, size):
         self.text = text
         self.position = Position(x, y)
         if size == "small":
-            self.size = Size(screen.size.width * 0.125, screen.size.height * 0.05)
+            self.size = Size(screen.width * 0.03, screen.height * 0.05)
         elif size == "medium":
-            self.size = Size(screen.size.width * 0.125, screen.size.height * 0.05)
+            self.size = Size(screen.width * 0.125, screen.height * 0.05)
         elif size == "large":
-            self.size = Size(screen.size.width * 0.25, screen.size.height * 0.1)
+            self.size = Size(screen.width * 0.25, screen.height * 0.1)
 
         self.hover = False
         self.color = color_pallete.red500
         self.action = False
 
-        self.fontObj = pygame.font.Font("roboto-regular.ttf", int(self.size.width * 0.175))
+        self.fontObj = pygame.font.Font("assets/fonts/roboto-regular.ttf", int(self.size.width * 0.175))
         self.textSurfaceObj = self.fontObj.render(self.text, True, color_pallete.grey50, ())
         self.textRectObj = self.textSurfaceObj.get_rect()
         self.textRectObj.center = (self.position.x, self.position.y)
@@ -57,7 +65,22 @@ class ColorPalette:
         self.grey800 = (66, 66, 66)
         self.grey900 = (33, 33, 33)
         self.indigo500 = (63, 81, 181)
+        self.orange500 = (255,152,0)
+        self.pink300 = (240,98,146)
+        self.pink500 = (233,30,99)
         self.red500 = (244, 67, 54)
+        self.yellow500 = (255, 233, 59)
+        self.purple500 = (142, 36, 170)
+        self.black = (0,0,0)
+        self.white = (255,255,255)
+
+        #Colors for the grid
+        self.grid_colors =[
+            self.blue500,
+            self.green500,
+            self.red500,
+            self.yellow500
+        ]
 
 color_pallete = ColorPalette()
 
@@ -70,12 +93,5 @@ class Position:
     def __init__(self, x, y):
         self.x = x
         self.y = y
-
-class Screen():
-    def __init__(self):
-        self.size = Size(1280, 720)
-        self.screen = pygame.display.set_mode((self.size.width, self.size.height))
-
-screen = Screen()
-
-
+    def __repr__(self):
+        return "Position Obj\n x: {}\n y: {}".format(self.x, self.y)

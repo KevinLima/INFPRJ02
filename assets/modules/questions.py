@@ -1,5 +1,5 @@
 from random import randint
-
+from .connector import *
 
 class Questions:
 
@@ -7,41 +7,15 @@ class Questions:
         self.get_questions()
 
     def get_questions(self):
+        # The questions
+        self.question_list = retrieve_questions()
 
-        # Dummy questions
-        self.question_list = [
-            [
-                0,  # ID
-                "Entertainment",  # Category
-                "Welke bar in Rotterdam werd in 2009 de beste bar ter wereld benoemd?",  # Question
-                ["De Witte Aap",
-                 "Het NRC",
-                 "Café de Beurs"],  # Answers
-                1  # Index of the correct answer
-            ],
-            [
-                1,  # ID
-                "Entertainment",  # Category
-                "In welke bioscoop vindt het Wildlife Film Festival plaats?",  # Question
-                ["Cinerama",
-                 "Pathé de Kuip",
-                 "Pathé Schouwburgplein"],  # Answers
-                0  # Index of the correct answer
-            ],
-            [
-                2,  # ID
-                "Geography",  # Category
-                "Rotterdam is de hoofdstad van Nederland. ",  # Question
-                ["WAAR",
-                 "NIET WAAR"],  # Answers
-                1  # Index of the correct answer
-            ]
-        ]
+        # print(self.question_list)
         self.categories = [
-            "Sports",
-            "Geography",
             "Entertainment",
-            "History"
+            "Geografie",
+            "Geschiedenis",
+            "Sport"
         ]
 
         # List with al the used questions
@@ -98,3 +72,5 @@ class Questions:
         else:
             print("GAME OVER: all the questions have been used")
             # TODO: end the game
+
+questions = Questions()
