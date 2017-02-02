@@ -13,6 +13,10 @@ class Event_log():
 
     def add(self, event_item):
         self.log.append(event_item)
+    def clear(self):
+        self.log = [
+            "[Game]:Welcome back!.", #17
+        ]
 
     def create(self):
         list = self.log[-17:]

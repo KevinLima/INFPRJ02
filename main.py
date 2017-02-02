@@ -11,7 +11,8 @@ def main():
     # win_screen("John Doe")
     # print(question_screen("Sport"))
     #print(user_input_screen("Name?"))
-    title_screen()
-    gameplay()
+    while True:
+        title_screen()
+        gameplay()
 
 main()
