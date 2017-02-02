@@ -7,6 +7,7 @@ from .screens.question_screen import *
 from assets.modules.gui2.screen import *
 from assets.modules.screens.user_input_screen import *
 from assets.modules.mechanics2.event_log import *
+from assets.modules.mechanics2.game_over import *
 
 # Set fps
 fps = 30  # frames per second setting
@@ -46,7 +47,7 @@ def gameplay():
 
     # Initialize Players
     player_1 = Player(user_input_screen("Player 1 name?"),
-                      color_pallete.green500, "P1", 0, 15, 0)
+                      color_pallete.green500, "P1", 0, 1, 0)
 
     player_2 = Player(user_input_screen("Player 2 name?"),
                       color_pallete.blue500, "P2", 2, 15, 0)
@@ -57,9 +58,6 @@ def gameplay():
     background = background.convert()
     grid = Grid(player_1, player_2)
 
-
-    # Event log
-    #event_log = Event_log()
 
     players_scoreboard = [
         player_1.name + " - " + str(player_1.score),
@@ -75,6 +73,9 @@ def gameplay():
 
         # IF YOU PRESS OPTIONS, RUN STARTMENU
         if quit_button.action:
+            event_log.clear()
+            return
+        if game_over.is_it_over == True:
             event_log.clear()
             return
 
@@ -263,9 +264,11 @@ def gameplay():
         # Generate surfaces
         text_surfaces = [score_body_font.render(player, 1, color_pallete.grey50) for player in players_scoreboard]
 
-        # Update Players
-        player_1.update()
-        player_2.update()
+        if player_1.update() == True:
+            game_over.its_over(player_1.name, player_1.score)
+        if player_2.update() == True:
+            game_over.its_over(player_2.name, player_2.score)
+
         grid.create_grid()
         event_log.create()
 

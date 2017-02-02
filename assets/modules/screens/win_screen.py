@@ -9,12 +9,13 @@ from assets.modules.gui2.heading import *
 from assets.modules.gui2.screen import *
 from assets.modules.gui2.text import *
 from assets.modules.screens.rules_screen import *
+from assets.modules.mechanics2.game_over import *
 
 # Initialize PyGame
 pygame.init()
 
 # Win screen
-def win_screen(winner_name):
+def win_screen(winner_name, score):
     # Set background image
     screen.set_background_image("assets/images/background.png")
 
@@ -40,6 +41,7 @@ def win_screen(winner_name):
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if back_button.obj.collidepoint(mouse):
                     return
+        game_over.clear()
 
         # Draw back button
         back_button.draw(screen, mouse, (screen.width * 0.8,
