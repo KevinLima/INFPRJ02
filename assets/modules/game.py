@@ -1,13 +1,11 @@
+# Import all necessary modules
 from assets.modules.gui2.subheading import *
-from assets.modules.screens.title_screen import *
+from assets.modules.mechanics2.game_over import *
+from assets.modules.screens.user_input_screen import *
+from .grid import *
 from .mechanics import Dice
 from .mechanics2.player import *
-from .grid import *
 from .screens.question_screen import *
-from assets.modules.gui2.screen import *
-from assets.modules.screens.user_input_screen import *
-from assets.modules.mechanics2.event_log import *
-from assets.modules.mechanics2.game_over import *
 
 # Set fps
 fps = 30  # frames per second setting
@@ -16,12 +14,13 @@ fps_clock = pygame.time.Clock()
 # Initialize screen
 pygame.display.set_caption("INFPRJ02")
 
+
 def gameplay():
     # Initialize buttons
-    quit_button = Button("X", screen.width * 0.98, screen.height * 0.05,
-                        "small")
+    quit_button = Button("", screen.width * 0.97, screen.height * 0.05,
+                         "small")
 
-    rules_button = Button("?", screen.width * 0.94, screen.height * 0.05,
+    rules_button = Button("", screen.width * 0.93, screen.height * 0.05,
                           "small")
 
     dice_button = Button("ROLL DICE", screen.width * 0.925,
@@ -83,6 +82,12 @@ def gameplay():
         if rules_button.action:
             help_screen()
 
+        help_icon = Text999("", "material-icons-regular", color_pallete.orange500, screen.width * 0.024,
+                            screen.width * 0.918, screen.height * 0.03)
+        quit_icon = Text999("", "material-icons-regular", color_pallete.orange500, screen.width * 0.024,
+                            screen.width * 0.958,
+                            screen.height * 0.03)
+
         # Get mouse values
         mouse_position_x, mouse_position_y = pygame.mouse.get_pos()
         mouse_pressed_1, mouse_pressed_2, mouse_pressed_3 = pygame.mouse.get_pressed()
@@ -129,7 +134,6 @@ def gameplay():
             direction_button.position.y - direction_button.size.height * 0.5,
             direction_button.size.width, direction_button.size.height))
         screen.surface.blit(direction_button.textSurfaceObj, direction_button.textRectObj)
-
 
         if direction_button.action:
             pygame.time.wait(100)
@@ -188,8 +192,7 @@ def gameplay():
                     else:
                         player_2.scored()
 
-
-                    if direction == 0: #LEFT
+                    if direction == 0:  # LEFT
                         if turn == 0:
                             players_positions = grid.move_player(player_1, (amount_of_steps * -1), 0, player_2)
                             player_1.relocate(players_positions[0])
@@ -199,8 +202,7 @@ def gameplay():
                             player_2.relocate(players_positions[0])
                             player_1.relocate(players_positions[1])
 
-
-                    if direction == 1: #UP
+                    if direction == 1:  # UP
                         if turn == 0:
                             players_positions = grid.move_player(player_1, 0, (amount_of_steps * -1), player_2)
                             player_1.relocate(players_positions[0])
@@ -213,8 +215,7 @@ def gameplay():
 
                         event_log.add("[P{}]:Took {} steps".format((turn + 1), amount_of_steps))
 
-
-                    if direction == 2:  #RIGHT
+                    if direction == 2:  # RIGHT
                         if turn == 0:
                             players_positions = grid.move_player(player_1, amount_of_steps, 0, player_2)
                             player_1.relocate(players_positions[0])
@@ -254,8 +255,6 @@ def gameplay():
             next_turn.update_text()
             next_turn.action = False
 
-
-
         score_body_font = pygame.font.Font("assets/fonts/roboto-regular.ttf", int((screen.width * 0.0175)))
 
         players_scoreboard[0] = player_1.name + " [" + player_1.title + "] - " + str(player_1.score)
@@ -273,14 +272,12 @@ def gameplay():
         event_log.create()
 
 
-
         # Blit the text surfaces
         for index, surface in enumerate(text_surfaces):
             screen.surface.blit(surface,
                                 ((screen.width * 0.1), (index * surface.get_height()) + (int(screen.height * 0.30))))
 
         subheading = Subheading("Scoreboard", screen.width * 0.1, screen.height * 0.26)
-
 
         # Display screen.surface, according to framerate
         pygame.display.update()

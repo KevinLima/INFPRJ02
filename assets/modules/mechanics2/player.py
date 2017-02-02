@@ -1,6 +1,7 @@
 from assets.modules.gui2.position import *
 from assets.modules.mechanics2.event_log import *
 
+
 class Player:
     def __init__(self, name, color, title, x, z, score):
         self.name = name
@@ -17,7 +18,7 @@ class Player:
 
     def relocate(self, position):
         self.coordinates = position
-        #print(self.coordinates)
+        # print(self.coordinates)
 
     def scored(self):
         self.score += 10
@@ -26,4 +27,3 @@ class Player:
     def __repr__(self):
         return "Player Obj\n Name: {}\n Color: {}\n Coordinates: {}\n Score: {}\n".format(self.name, self.color,
                                                                                           self.coordinates, self.score)
-
