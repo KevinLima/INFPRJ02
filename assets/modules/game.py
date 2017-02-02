@@ -47,7 +47,7 @@ def gameplay():
 
     # Initialize Players
     player_1 = Player(user_input_screen("Player 1 name?"),
-                      color_pallete.green500, "P1", 0, 1, 0)
+                      color_pallete.green500, "P1", 0, 15, 0)
 
     player_2 = Player(user_input_screen("Player 2 name?"),
                       color_pallete.blue500, "P2", 2, 15, 0)

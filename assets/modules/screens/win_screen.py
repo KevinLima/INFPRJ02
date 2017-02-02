@@ -15,14 +15,15 @@ from assets.modules.mechanics2.game_over import *
 pygame.init()
 
 # Win screen
-def win_screen(winner_name, score):
+def win_screen(winner_name, winner_score):
     # Set background image
     screen.set_background_image("assets/images/background.png")
 
     # Initialize back button
     back_button = Button999("Back", color_pallete.pink300, color_pallete.pink500)
 
-    winner = Text999("Winner: {}".format(winner_name), "roboto-regular", color_pallete.grey50, screen.width * 0.1, screen.width * 0.1, screen.height * 0.5)
+    winner = Text999("Winner: {}".format(winner_name), "roboto-regular", color_pallete.grey50, screen.width * 0.1, screen.width * 0.1, screen.height * 0.4)
+    score = Text999("Score: {}".format(winner_score), "roboto-regular", color_pallete.grey50, screen.width * 0.1, screen.width * 0.1, screen.height * 0.6)
 
 
     heading = Heading("GAME OVER", screen.width * 0.125, screen.height * 0.05)

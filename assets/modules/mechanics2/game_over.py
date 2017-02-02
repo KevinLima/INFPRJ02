@@ -1,4 +1,4 @@
-
+from assets.modules.highscore import insertWinner
 class Game_over():
 
     def __init__(self):
@@ -8,6 +8,7 @@ class Game_over():
     def its_over(self, name, score):
         self.winner_name = name
         self.winner_score = score
+        insertWinner(self.winner_name, str(self.winner_score))
         self.is_it_over = True
     def clear(self):
         self.is_it_over = False

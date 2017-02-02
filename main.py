@@ -9,7 +9,7 @@ pygame.init()
 
 def main():
     # Uncomment te following line to demo the win screen
-    # win_screen("John Doe")
+    #win_screen("John Doe", 999)
     # print(question_screen("Sport"))
     #print(user_input_screen("Name?"))
     while True:
