@@ -5,6 +5,7 @@ from .mechanics2.player import *
 from .grid import *
 from .screens.question_screen import *
 from assets.modules.gui2.screen import *
+from assets.modules.screens.user_input_screen import *
 from assets.modules.mechanics2.event_log import *
 
 # Set fps
@@ -44,17 +45,11 @@ def gameplay():
     player_answered_question = False
 
     # Initialize Players
-    player_1 = Player("Player 1",
-                      color_pallete.green500,
-                      "P1",
-                      0, 15,
-                      0)
+    player_1 = Player(user_input_screen("Player 1 name?"),
+                      color_pallete.green500, "P1", 0, 15, 0)
 
-    player_2 = Player("Player 2",
-                      color_pallete.blue500,
-                      "P2",
-                      2, 15,
-                      0)
+    player_2 = Player(user_input_screen("Player 2 name?"),
+                      color_pallete.blue500, "P2", 2, 15, 0)
 
 
     # GAME

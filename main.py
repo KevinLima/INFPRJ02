@@ -5,7 +5,6 @@ from assets.modules.screens.user_input_screen import *
 
 pygame.init()
 
-
 def main():
     # Uncomment te following line to demo the win screen
     # win_screen("John Doe")
