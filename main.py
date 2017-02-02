@@ -11,6 +11,10 @@ def main():
     #win_screen("John Doe", 999)
     # print(question_screen("Sport"))
     #print(user_input_screen("Name?"))
+
+    # background_music = pygame.mixer.music.load("assets/audio/background_music.mp3")
+    # pygame.mixer.music.play(-1)
+
     while True:
         title_screen()
         gameplay()
