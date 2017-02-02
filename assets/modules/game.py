@@ -258,8 +258,8 @@ def gameplay():
 
         score_body_font = pygame.font.Font("assets/fonts/roboto-regular.ttf", int((screen.width * 0.0175)))
 
-        players_scoreboard[0] = player_1.name + " - " + str(player_1.score)
-        players_scoreboard[1] = player_2.name + " - " + str(player_2.score)
+        players_scoreboard[0] = player_1.name + " [" + player_1.title + "] - " + str(player_1.score)
+        players_scoreboard[1] = player_2.name + " [" + player_2.title + "] - " + str(player_2.score)
 
         # Generate surfaces
         text_surfaces = [score_body_font.render(player, 1, color_pallete.grey50) for player in players_scoreboard]

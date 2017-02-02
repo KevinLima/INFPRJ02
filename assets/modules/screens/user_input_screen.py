@@ -35,7 +35,7 @@ def get_key():
 
 def display_box(message):
     fontobject = pygame.font.Font("assets/fonts/roboto-bold.ttf", int(screen.width * 0.05))
-    pygame.draw.rect(screen.surface, color_pallete.grey900, (screen.width * 0.1, screen.height * 0.35, screen.width * 0.8, screen.height * 0.35), 0)
+    pygame.draw.rect(screen.surface, color_pallete.pink500, (screen.width * 0.1, screen.height * 0.35, screen.width * 0.8, screen.height * 0.35), 0)
     if len(message) != 0:
         screen.surface.blit(fontobject.render(message, 1, color_pallete.grey50), (screen.width * 0.1, screen.height * 0.35))
     pygame.display.flip()
