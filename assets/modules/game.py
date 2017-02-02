@@ -66,6 +66,11 @@ def gameplay():
     # Event log
     #event_log = Event_log()
 
+    players_scoreboard = [
+        player_1.name + " - " + str(player_1.score),
+        player_2.name + " - " + str(player_2.score)
+    ]
+
     # MAIN GAME LOOP
     while True:
         events = pygame.event.get()
@@ -180,6 +185,12 @@ def gameplay():
                     if dice_number == 5 or dice_number == 6:
                         amount_of_steps = 3
 
+                    # Add to score
+                    if turn == 0:
+                        player_1.scored()
+                    else:
+                        player_2.scored()
+
 
                     if direction == 0: #LEFT
                         if turn == 0:
@@ -246,12 +257,12 @@ def gameplay():
             next_turn.update_text()
             next_turn.action = False
 
-        players_scoreboard = [
-            player_1.name + " - " + str(player_1.score),
-            player_2.name + " - " + str(player_2.score)
-        ]
+
 
         score_body_font = pygame.font.Font("assets/fonts/roboto-regular.ttf", int((screen.width * 0.0175)))
+
+        players_scoreboard[0] = player_1.name + " - " + str(player_1.score)
+        players_scoreboard[1] = player_2.name + " - " + str(player_2.score)
 
         # Generate surfaces
         text_surfaces = [score_body_font.render(player, 1, color_pallete.grey50) for player in players_scoreboard]
@@ -261,6 +272,8 @@ def gameplay():
         player_2.update()
         grid.create_grid()
         event_log.create()
+
+
 
         # Blit the text surfaces
         for index, surface in enumerate(text_surfaces):
