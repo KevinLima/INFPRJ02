@@ -10,9 +10,10 @@ class Player:
         self.score = score
 
     def update(self):
-        # TODO: rewrite
         if self.coordinates.y <= 0:
-            print(self.name + " won!")
+            return True
+        else:
+            return False
 
     def relocate(self, position):
         self.coordinates = position
