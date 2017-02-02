@@ -172,7 +172,8 @@ def gameplay():
                 category = questions.categories[x_index]
 
                 result = question_screen(category)
-                print("Result {}".format(result))
+                player_answered_question = True
+                #print("Result {}".format(result))
                 event_log.add("[P{}]:The answer was {}".format((turn + 1), result))
 
                 # Only move the player if the question was answered correctly
@@ -240,20 +241,22 @@ def gameplay():
 
 
         if next_turn.action:
-            pygame.time.wait(100)
-            # Keep switching between the players turn
-            if turn == 1:
-                # Player 1's turn
-                turn = 0
-            else:
-                # Player 2's turn
-                turn = 1
-            player_trew_dice = False
-            event_log.add("[Game]:Turn switched")
+            if player_answered_question == True:
+                player_answered_question = False
+                pygame.time.wait(100)
+                # Keep switching between the players turn
+                if turn == 1:
+                    # Player 1's turn
+                    turn = 0
+                else:
+                    # Player 2's turn
+                    turn = 1
+                player_trew_dice = False
+                event_log.add("[Game]:Turn switched")
 
-            next_turn.text = "Player " + str(turn + 1)
-            next_turn.update_text()
-            next_turn.action = False
+                next_turn.text = "Player " + str(turn + 1)
+                next_turn.update_text()
+                next_turn.action = False
 
         score_body_font = pygame.font.Font("assets/fonts/roboto-regular.ttf", int((screen.width * 0.0175)))
 
