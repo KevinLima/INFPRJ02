@@ -1,7 +1,6 @@
 # Import PyGame & Sys modules
 import pygame, sys
 from pygame.locals import *
-from assets.modules.events_helper import *
 
 # Import required modules
 from assets.modules.gui2.button import *
@@ -28,10 +27,6 @@ def user_input_screen(question):
 
 def get_key():
     while True:
-        events = pygame.event.get()
-        if event_exist(events, pygame.QUIT):
-            pygame.quit()
-            exit()
         event = pygame.event.poll()
         if event.type == KEYDOWN:
             return event.key
