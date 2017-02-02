@@ -1,4 +1,5 @@
 from assets.modules.gui2.position import *
+from assets.modules.mechanics2.event_log import *
 
 class Player:
     def __init__(self, name, color, title, x, z, score):
@@ -19,6 +20,7 @@ class Player:
 
     def scored(self):
         self.score += 10
+        event_log.add("[{}]:+10 Points".format(self.title))
 
     def __repr__(self):
         return "Player Obj\n Name: {}\n Color: {}\n Coordinates: {}\n Score: {}\n".format(self.name, self.color,
