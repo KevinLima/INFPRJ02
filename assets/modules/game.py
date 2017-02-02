@@ -75,7 +75,8 @@ def gameplay():
 
         # IF YOU PRESS OPTIONS, RUN STARTMENU
         if quit_button.action:
-            title_screen()
+            event_log.clear()
+            return
 
         # Show the rules screen
         if rules_button.action:

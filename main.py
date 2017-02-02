@@ -9,8 +9,9 @@ def main():
     # Uncomment te following line to demo the win screen
     # win_screen("John Doe")
     # print(question_screen("Sport"))
-    # print(user_input_screen("Name?"))
-    title_screen()
-    gameplay()
+    #print(user_input_screen("Name?"))
+    while True:
+        title_screen()
+        gameplay()
 
 main()
