@@ -18,27 +18,102 @@ def question_screen(category):
     # Set background image
     screen.set_background_image("assets/images/background.png")
 
-    # Assign get_question() to data variable
+    # Assign get_question() to data list
     # data[0] = Question ID
     # data[1] = Category
-    # data[2] = Questions
+    # data[2] = Question
     # data[3] = Correct answer
     # data[4] = Answers
     data = questions.get_question(category)
 
-    # Draw question on screen
-    question = Text999("{}: {}".format(data[0], data[2]),
-                       "roboto-regular-bold", color_pallete.orange500,
-                       screen.width * 0.0375, screen.width * 0.05,
-                       screen.height * 0.2)
+    question_list = data[2].split(" ")
+    questions_list_lenght = len(question_list)
 
-    # Get answers from data variable
+    if questions_list_lenght <= 7:
+        question_line_1 = ""
+        for x in question_list[0:6]:
+            question_line_1 += x
+            question_line_1 += " "
+
+        # Draw question on screen
+        question = Text999("{}: {}".format(data[0], question_line_1),
+                           "roboto-regular-bold", color_pallete.orange500,
+                           screen.width * 0.0375, screen.width * 0.05,
+                           screen.height * 0.2)
+
+    elif questions_list_lenght > 7 and questions_list_lenght <= 14:
+        question_line_1 = ""
+        for x in question_list[0:6]:
+            question_line_1 += x
+            question_line_1 += " "
+
+        question_line_2 = ""
+        for x in question_list[7:13]:
+            question_line_2 += x
+            question_line_2 += " "
+
+        # Draw question on screen
+        question = Text999("{}: {}".format(data[0], question_line_1),
+                           "roboto-regular-bold", color_pallete.orange500,
+                           screen.width * 0.0375, screen.width * 0.05,
+                           screen.height * 0.2)
+
+
+        question = Text999("       {}".format(question_line_2),
+                           "roboto-regular-bold", color_pallete.orange500,
+                           screen.width * 0.0375, screen.width * 0.05,
+                           screen.height * 0.3)
+
+    elif questions_list_lenght > 14 and questions_list_lenght <= 21:
+        question_line_1 = ""
+        for x in question_list[0:6]:
+            question_line_1 += x
+            question_line_1 += " "
+
+        question_line_2 = ""
+        for x in question_list[7:13]:
+            question_line_2 += x
+            question_line_2 += " "
+
+        question_line_3 = ""
+        for x in question_list[13:20]:
+            question_line_3 += x
+            question_line_3 += " "
+
+        # Draw question on screen
+        question = Text999("{}: {}".format(data[0], question_line_1),
+                           "roboto-regular-bold", color_pallete.orange500,
+                           screen.width * 0.0375, screen.width * 0.05,
+                           screen.height * 0.2)
+
+
+        question = Text999("       {}".format(question_line_2),
+                           "roboto-regular-bold", color_pallete.orange500,
+                           screen.width * 0.0375, screen.width * 0.05,
+                           screen.height * 0.3)
+
+        question = Text999("       {}".format(question_line_3),
+                           "roboto-regular-bold", color_pallete.orange500,
+                           screen.width * 0.0375, screen.width * 0.05,
+                           screen.height * 0.4)
+
+    else:
+        question_line_1 = ""
+        for x in question_list:
+            question_line_1 += x
+            question_line_1 += " "
+        question = Text999("{}: {}".format(data[0], question_line_1),
+                           "roboto-regular-bold", color_pallete.orange500,
+                           screen.width * 0.0375, screen.width * 0.05,
+                           screen.height * 0.2)
+
+    # Get answers from data list
     answers = data[4]
 
-    # Get correct answer from data variable
+    # Get correct answer from data list
     correct_answer = data[3]
 
-    # Determine amount of answers in data variable
+    # Determine amount of answers in data list
     amount_of_answers = len(answers)
 
     if amount_of_answers == 2:
