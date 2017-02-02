@@ -14,6 +14,9 @@ class Text999:
         if font == "material-icons-regular":
             self.font = pygame.font.Font("assets/fonts/material-icons-regular.ttf", int(size))
 
+        elif font == "roboto-mono-bold":
+            self.font = pygame.font.Font("assets/fonts/roboto-mono-bold.ttf", int(size))
+
         elif font == "roboto-mono-regular":
             self.font = pygame.font.Font("assets/fonts/roboto-mono-regular.ttf", int(size))
 

@@ -26,75 +26,110 @@ def question_screen(category):
     # data[4] = Answers
     data = questions.get_question(category)
 
+    # Add question to used list
     questions.used(data[0])
+
     question_list = data[2].split(" ")
     questions_list_lenght = len(question_list)
 
     if questions_list_lenght <= 7:
         question_line_1 = ""
         for x in question_list[0:6]:
-            question_line_1 += x
-            question_line_1 += " "
+            question_line_1 += x + " "
 
         # Draw question on screen
         question = Text999("{}: {}".format(data[0], question_line_1),
-                           "roboto-regular-bold", color_pallete.orange500,
+                           "roboto-mono-bold", color_pallete.orange500,
                            screen.width * 0.0375, screen.width * 0.05,
                            screen.height * 0.2)
 
     elif questions_list_lenght > 7 and questions_list_lenght <= 14:
         question_line_1 = ""
         for x in question_list[0:6]:
-            question_line_1 += x
-            question_line_1 += " "
+            question_line_1 += x + " "
 
         question_line_2 = ""
         for x in question_list[7:13]:
-            question_line_2 += x
-            question_line_2 += " "
+            question_line_2 += x + " "
 
         # Draw question on screen
         question = Text999("{}: {}".format(data[0], question_line_1),
-                           "roboto-regular-bold", color_pallete.orange500,
+                           "roboto-mono-bold", color_pallete.orange500,
                            screen.width * 0.0375, screen.width * 0.05,
                            screen.height * 0.2)
 
 
-        question = Text999("       {}".format(question_line_2),
-                           "roboto-regular-bold", color_pallete.orange500,
+        question = Text999("    {}".format(question_line_2),
+                           "roboto-mono-bold", color_pallete.orange500,
                            screen.width * 0.0375, screen.width * 0.05,
                            screen.height * 0.3)
 
     elif questions_list_lenght > 14 and questions_list_lenght <= 21:
         question_line_1 = ""
         for x in question_list[0:6]:
-            question_line_1 += x
-            question_line_1 += " "
+            question_line_1 += x + " "
 
         question_line_2 = ""
         for x in question_list[7:13]:
-            question_line_2 += x
-            question_line_2 += " "
+            question_line_2 += x + " "
 
         question_line_3 = ""
-        for x in question_list[13:20]:
-            question_line_3 += x
-            question_line_3 += " "
+        for x in question_list[14:21]:
+            question_line_3 += x + " "
 
         # Draw question on screen
         question = Text999("{}: {}".format(data[0], question_line_1),
-                           "roboto-regular-bold", color_pallete.orange500,
+                           "roboto-mono-bold", color_pallete.orange500,
                            screen.width * 0.0375, screen.width * 0.05,
                            screen.height * 0.2)
 
 
-        question = Text999("       {}".format(question_line_2),
-                           "roboto-regular-bold", color_pallete.orange500,
+        question = Text999("    {}".format(question_line_2),
+                           "roboto-mono-bold", color_pallete.orange500,
                            screen.width * 0.0375, screen.width * 0.05,
                            screen.height * 0.3)
 
-        question = Text999("       {}".format(question_line_3),
-                           "roboto-regular-bold", color_pallete.orange500,
+        question = Text999("    {}".format(question_line_3),
+                           "roboto-mono-bold", color_pallete.orange500,
+                           screen.width * 0.0375, screen.width * 0.05,
+                           screen.height * 0.4)
+
+    elif questions_list_lenght > 21 and questions_list_lenght <= 28:
+        question_line_1 = ""
+        for x in question_list[0:6]:
+            question_line_1 += x + " "
+
+        question_line_2 = ""
+        for x in question_list[7:13]:
+            question_line_2 += x + " "
+
+        question_line_3 = ""
+        for x in question_list[14:21]:
+            question_line_3 += x + " "
+
+        question_line_4 = ""
+        for x in question_list[22:28]:
+            question_line_4 += x + " "
+
+        # Draw question on screen
+        question = Text999("{}: {}".format(data[0], question_line_1),
+                           "roboto-mono-bold", color_pallete.orange500,
+                           screen.width * 0.0375, screen.width * 0.05,
+                           screen.height * 0.1)
+
+
+        question = Text999("    {}".format(question_line_2),
+                           "roboto-mono-bold", color_pallete.orange500,
+                           screen.width * 0.0375, screen.width * 0.05,
+                           screen.height * 0.2)
+
+        question = Text999("    {}".format(question_line_3),
+                           "roboto-mono-bold", color_pallete.orange500,
+                           screen.width * 0.0375, screen.width * 0.05,
+                           screen.height * 0.3)
+
+        question = Text999("    {}".format(question_line_4),
+                           "roboto-mono-bold", color_pallete.orange500,
                            screen.width * 0.0375, screen.width * 0.05,
                            screen.height * 0.4)
 
@@ -103,8 +138,8 @@ def question_screen(category):
         for x in question_list:
             question_line_1 += x
             question_line_1 += " "
-        question = Text999("{}: {}".format(data[0], question_line_1),
-                           "roboto-regular-bold", color_pallete.orange500,
+        question = Text999("{}:\t{}".format(data[0], question_line_1),
+                           "roboto-mono-bold", color_pallete.orange500,
                            screen.width * 0.0375, screen.width * 0.05,
                            screen.height * 0.2)
 
@@ -307,3 +342,4 @@ def check_answer(answer_id, correct_answer):
         return(True)
     else:
         return(False)
+
