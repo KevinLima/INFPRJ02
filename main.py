@@ -2,18 +2,13 @@
 from assets.modules.game import *
 from assets.modules.screens.title_screen import *
 from assets.modules.screens.win_screen import *
+from assets.modules.mechanics2.background_music import *
 
 pygame.init()
 
 
 def main():
-    # Uncomment te following line to demo the win screen
-    #win_screen("John Doe", 999)
-    # print(question_screen("Sport"))
-    #print(user_input_screen("Name?"))
-
-    # background_music = pygame.mixer.music.load("assets/audio/background_music.mp3")
-    # pygame.mixer.music.play(-1)
+    background_music("On")
 
     while True:
         title_screen()

@@ -9,7 +9,7 @@ from assets.modules.gui2.screen import *
 from assets.modules.gui2.text import *
 from assets.modules.screens.help_screen import *
 from assets.modules.screens.highscores_screen import *
-from assets.modules.screens.rules_screen import *
+from assets.modules.screens.settings_screen import *
 
 # Initialize PyGame
 pygame.init()
@@ -23,6 +23,7 @@ def title_screen():
     play_button = Button999("Play")
     highscores_button = Button999("Highscores")
     help_button = Button999("Help")
+    settings_button = Button999("Settings")
     quit_button = Button999("Quit")
 
     # Set PyGame clock
@@ -49,6 +50,10 @@ def title_screen():
                     help_screen()
                     screen.set_background_image("assets/images/title_screen_background.png")
 
+                elif settings_button.obj.collidepoint(mouse):
+                    settings_screen()
+                    screen.set_background_image("assets/images/title_screen_background.png")
+
                 elif quit_button.obj.collidepoint(mouse):
                     pygame.quit()
                     sys.exit()
@@ -72,6 +77,12 @@ def title_screen():
                                          screen.height * 0.075),
                                          (screen.width * 0.1,
                                           screen.height * 0.45))
+        settings_button.draw(screen, mouse, (screen.width * 0.05,
+                                         screen.height * 0.55,
+                                         screen.width * 0.375,
+                                         screen.height * 0.075),
+                                         (screen.width * 0.1,
+                                          screen.height * 0.55))
         quit_button.draw(screen, mouse, (screen.width * 0.8,
                                          screen.height * 0.9,
                                          screen.width * 0.15,
