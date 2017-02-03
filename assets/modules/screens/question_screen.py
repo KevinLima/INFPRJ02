@@ -32,45 +32,45 @@ def question_screen(category):
     question_list = data[2].split(" ")
     questions_list_lenght = len(question_list)
 
-    if questions_list_lenght <= 7:
+    if questions_list_lenght <= 6:
         question_line_1 = ""
-        for x in question_list[0:6]:
+        for x in question_list[0:7]:
             question_line_1 += x + " "
 
         # Draw question on screen
         question = Text999("{}: {}".format(data[0], question_line_1),
                            "roboto-mono-bold", color_pallete.orange500,
-                           screen.width * 0.0375, screen.width * 0.05,
+                           screen.width * 0.0275, screen.width * 0.05,
                            screen.height * 0.2)
 
-    elif questions_list_lenght > 7 and questions_list_lenght <= 14:
+    elif questions_list_lenght > 6 and questions_list_lenght <= 12:
         question_line_1 = ""
-        for x in question_list[0:6]:
+        for x in question_list[0:7]:
             question_line_1 += x + " "
 
         question_line_2 = ""
-        for x in question_list[7:13]:
+        for x in question_list[7:14]:
             question_line_2 += x + " "
 
         # Draw question on screen
         question = Text999("{}: {}".format(data[0], question_line_1),
                            "roboto-mono-bold", color_pallete.orange500,
-                           screen.width * 0.0375, screen.width * 0.05,
+                           screen.width * 0.0275, screen.width * 0.05,
                            screen.height * 0.2)
 
 
         question = Text999("    {}".format(question_line_2),
                            "roboto-mono-bold", color_pallete.orange500,
-                           screen.width * 0.0375, screen.width * 0.05,
+                           screen.width * 0.0275, screen.width * 0.05,
                            screen.height * 0.3)
 
-    elif questions_list_lenght > 14 and questions_list_lenght <= 21:
+    elif questions_list_lenght > 12 and questions_list_lenght <= 18:
         question_line_1 = ""
-        for x in question_list[0:6]:
+        for x in question_list[0:7]:
             question_line_1 += x + " "
 
         question_line_2 = ""
-        for x in question_list[7:13]:
+        for x in question_list[7:14]:
             question_line_2 += x + " "
 
         question_line_3 = ""
@@ -80,27 +80,27 @@ def question_screen(category):
         # Draw question on screen
         question = Text999("{}: {}".format(data[0], question_line_1),
                            "roboto-mono-bold", color_pallete.orange500,
-                           screen.width * 0.0375, screen.width * 0.05,
+                           screen.width * 0.0275, screen.width * 0.05,
                            screen.height * 0.2)
 
 
         question = Text999("    {}".format(question_line_2),
                            "roboto-mono-bold", color_pallete.orange500,
-                           screen.width * 0.0375, screen.width * 0.05,
+                           screen.width * 0.0275, screen.width * 0.05,
                            screen.height * 0.3)
 
         question = Text999("    {}".format(question_line_3),
                            "roboto-mono-bold", color_pallete.orange500,
-                           screen.width * 0.0375, screen.width * 0.05,
+                           screen.width * 0.0275, screen.width * 0.05,
                            screen.height * 0.4)
 
-    elif questions_list_lenght > 21 and questions_list_lenght <= 28:
+    elif questions_list_lenght > 18 and questions_list_lenght <= 24:
         question_line_1 = ""
-        for x in question_list[0:6]:
+        for x in question_list[0:7]:
             question_line_1 += x + " "
 
         question_line_2 = ""
-        for x in question_list[7:13]:
+        for x in question_list[7:14]:
             question_line_2 += x + " "
 
         question_line_3 = ""
@@ -108,39 +108,145 @@ def question_screen(category):
             question_line_3 += x + " "
 
         question_line_4 = ""
-        for x in question_list[22:28]:
+        for x in question_list[21:28]:
             question_line_4 += x + " "
 
         # Draw question on screen
         question = Text999("{}: {}".format(data[0], question_line_1),
                            "roboto-mono-bold", color_pallete.orange500,
-                           screen.width * 0.0375, screen.width * 0.05,
+                           screen.width * 0.0275, screen.width * 0.05,
                            screen.height * 0.1)
 
 
         question = Text999("    {}".format(question_line_2),
                            "roboto-mono-bold", color_pallete.orange500,
-                           screen.width * 0.0375, screen.width * 0.05,
+                           screen.width * 0.0275, screen.width * 0.05,
                            screen.height * 0.2)
 
         question = Text999("    {}".format(question_line_3),
                            "roboto-mono-bold", color_pallete.orange500,
-                           screen.width * 0.0375, screen.width * 0.05,
+                           screen.width * 0.0275, screen.width * 0.05,
                            screen.height * 0.3)
 
         question = Text999("    {}".format(question_line_4),
                            "roboto-mono-bold", color_pallete.orange500,
-                           screen.width * 0.0375, screen.width * 0.05,
+                           screen.width * 0.0275, screen.width * 0.05,
                            screen.height * 0.4)
+
+    elif questions_list_lenght > 24 and questions_list_lenght <= 30:
+        question_line_1 = ""
+        for x in question_list[0:7]:
+            question_line_1 += x + " "
+
+        question_line_2 = ""
+        for x in question_list[7:14]:
+            question_line_2 += x + " "
+
+        question_line_3 = ""
+        for x in question_list[14:21]:
+            question_line_3 += x + " "
+
+        question_line_4 = ""
+        for x in question_list[21:28]:
+            question_line_4 += x + " "
+
+        question_line_5 = ""
+        for x in question_list[28:35]:
+            question_line_5 += x + " "
+
+        # Draw question on screen
+        question = Text999("{}: {}".format(data[0], question_line_1),
+                           "roboto-mono-bold", color_pallete.orange500,
+                           screen.width * 0.0275, screen.width * 0.05,
+                           screen.height * 0.1)
+
+
+        question = Text999("    {}".format(question_line_2),
+                           "roboto-mono-bold", color_pallete.orange500,
+                           screen.width * 0.0275, screen.width * 0.05,
+                           screen.height * 0.2)
+
+        question = Text999("    {}".format(question_line_3),
+                           "roboto-mono-bold", color_pallete.orange500,
+                           screen.width * 0.0275, screen.width * 0.05,
+                           screen.height * 0.3)
+
+        question = Text999("    {}".format(question_line_4),
+                           "roboto-mono-bold", color_pallete.orange500,
+                           screen.width * 0.0275, screen.width * 0.05,
+                           screen.height * 0.4)
+
+        question = Text999("    {}".format(question_line_5),
+                           "roboto-mono-bold", color_pallete.orange500,
+                           screen.width * 0.0275, screen.width * 0.05,
+                           screen.height * 0.5)
+
+    elif questions_list_lenght > 30 and questions_list_lenght <= 36:
+        question_line_1 = ""
+        for x in question_list[0:7]:
+            question_line_1 += x + " "
+
+        question_line_2 = ""
+        for x in question_list[7:14]:
+            question_line_2 += x + " "
+
+        question_line_3 = ""
+        for x in question_list[14:21]:
+            question_line_3 += x + " "
+
+        question_line_4 = ""
+        for x in question_list[21:28]:
+            question_line_4 += x + " "
+
+        question_line_5 = ""
+        for x in question_list[28:35]:
+            question_line_5 += x + " "
+
+        question_line_6 = ""
+        for x in question_list[35:42]:
+            question_line_6 += x + " "
+
+        # Draw question on screen
+        question = Text999("{}: {}".format(data[0], question_line_1),
+                           "roboto-mono-bold", color_pallete.orange500,
+                           screen.width * 0.0275, screen.width * 0.05,
+                           screen.height * 0.1)
+
+
+        question = Text999("    {}".format(question_line_2),
+                           "roboto-mono-bold", color_pallete.orange500,
+                           screen.width * 0.0275, screen.width * 0.05,
+                           screen.height * 0.2)
+
+        question = Text999("    {}".format(question_line_3),
+                           "roboto-mono-bold", color_pallete.orange500,
+                           screen.width * 0.0275, screen.width * 0.05,
+                           screen.height * 0.3)
+
+        question = Text999("    {}".format(question_line_4),
+                           "roboto-mono-bold", color_pallete.orange500,
+                           screen.width * 0.0275, screen.width * 0.05,
+                           screen.height * 0.4)
+
+        question = Text999("    {}".format(question_line_5),
+                           "roboto-mono-bold", color_pallete.orange500,
+                           screen.width * 0.0275, screen.width * 0.05,
+                           screen.height * 0.5)
+
+        question = Text999("    {}".format(question_line_6),
+                           "roboto-mono-bold", color_pallete.orange500,
+                           screen.width * 0.0275, screen.width * 0.05,
+                           screen.height * 0.6)
+
 
     else:
         question_line_1 = ""
         for x in question_list:
             question_line_1 += x
             question_line_1 += " "
-        question = Text999("{}:\t{}".format(data[0], question_line_1),
+        question = Text999("{}: {}".format(data[0], question_line_1),
                            "roboto-mono-bold", color_pallete.orange500,
-                           screen.width * 0.0375, screen.width * 0.05,
+                           screen.width * 0.0275, screen.width * 0.05,
                            screen.height * 0.2)
 
     # Get answers from data list
