@@ -6,7 +6,6 @@ from assets.modules.mechanics2.background_music import *
 
 pygame.init()
 
-
 def main():
     background_music("On")
 
